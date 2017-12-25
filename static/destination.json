@@ -1,0 +1,16 @@
+{
+	"ret":true,
+	"data":{
+		 "headerInfo":{
+		 	"city":"北京",
+			 "area":"昌平",
+			 "temperature":"5°",
+			 "viewImg":"http://c4-q.mafengwo.net/s7/M00/2E/D4/wKgB6lSgx0KAAtuCAAVoSPI1DUk40.jpeg?imageMogr2%2Fthumbnail%2F%21300x180r%2Fgravity%2FCenter%2Fcrop%2F%21300x180%2Fquality%2F90"
+		 	},
+		 "userInfo":[{
+		 	"userImg":"http://n4-q.mafengwo.net/s9/M00/3D/9F/wKgBs1eMg2WAHooYAABs358-rbA52.jpeg?imageMogr2%2Fthumbnail%2F%2116x16r%2Fgravity%2FCenter%2Fcrop%2F%2116x16%2Fquality%2F90",
+		 	"userName":"hh*23112",
+		 	"userOrder":"十三陵"
+		 	}]
+	}
+}
