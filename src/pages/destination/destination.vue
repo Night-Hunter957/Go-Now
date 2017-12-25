@@ -1,22 +1,21 @@
 <template>
 	<div class="destination">
-		<div class="destination-header">
-			<img :src="headerInfo.viewImg" alt="" class="header-img">
-      <div class="search-con">
-        <div class="header-search">
-          <span class="iconfont search-history">&#xe60e;</span>
-          <span class="search-box">年终大促爆款清单</span>
-          <span class="iconfont search-position">&#xe600;</span>
-        </div>
-      </div>
-		</div>
+		<destination-header :headerInfo="headerInfo"></destination-header>
+    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
 	</div>
 </template>
 <script>
+  import destinationHeader from './destinationHeader'
+  import destinationIcons from './destinationIcons'
   export default {
+    components: {
+      destinationHeader,
+      destinationIcons
+    },
     data () {
       return {
-        headerInfo: {}
+        headerInfo: {},
+        iconsInfo: []
       }
     },
     methods: {
@@ -28,6 +27,8 @@
         const body = res.body
         if (body && body.data) {
           this.headerInfo = body.data.headerInfo
+          this.iconsInfo = body.data.icons
+          console.log(this.iconsInfo)
         }
       }
     },
@@ -41,28 +42,5 @@
     height:4.08rem;
     width: 100%;
   }
-  .destination-header {
-    height: 100%;
-    width: 100%;
-    position: relative;
-  }
-  .header-img {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-  }
-  .search-con {
-    height: 100%;
-    width: 100%;
-    z-index: 999;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding-top: .5rem;
-    color: #fff;
-    background: linear-gradient(to right top, rgba(215,69,90,1) , rgba(191,172,166,0));
-  }
+  
 </style>
