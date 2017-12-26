@@ -1,12 +1,9 @@
 <template>
-	<div class="destination-header">
-		<img :src="headerInfo.viewImg" alt="" class="header-img">
-    <div class="header-search">
-      <div class="search-con">
-        <span class="iconfont search-history">&#xe60e;</span>
-        <span class="search-box">年终大促爆款清单</span>
-        <span class="iconfont search-position">&#xe600;</span>
-      </div>
+	<div class="destination-header" ref="header">
+    <div class="search-con" ref="search">
+      <span class="iconfont search-history">&#xe60e;</span>
+      <span class="search-box" ref="searchBox">年终大促爆款清单</span>
+      <span class="iconfont search-position">&#xe626;</span>
     </div>
     <div class="header-position">
       <div class="position-addr">
@@ -48,6 +45,25 @@
           case 6 : return '星期六'
         }
       }
+    },
+    mounted () {
+      window.onscroll = function () {
+        let scrolltop = document.documentElement.scrollTop || document.body.scrollTop
+        if (scrolltop > 204) {
+          this.$refs.search.classList.add('search-con-top')
+          this.$refs.searchBox.classList.add('search-box-top')
+        } else {
+          this.$refs.search.classList.remove('search-con-top')
+          this.$refs.searchBox.classList.remove('search-box-top')
+        }
+      }.bind(this)
+    },
+    watch: {
+      headerInfo: function () {
+        this.$nextTick(() => {
+          this.$refs.header.style.backgroundImage = 'url(' + this.headerInfo.viewImg + ')'
+        })
+      }
     }
   }
 </script>
@@ -55,30 +71,24 @@
   .destination-header {
     height: 100%;
     width: 100%;
-    position: relative;
-  }
-  .header-img {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-  }
-  .header-search {
-    box-sizing:border-box;
-    height: 100%;
-    width: 100%;
-    z-index: 2;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding-top: .5rem;
-    color: #fff;
-    background: linear-gradient(to right top, rgba(215,69,90,1) , rgba(191,172,166,0));
+    background-size: 100% 100%;
   }
   .search-con {
+    width: 100%;
     display: flex;
+    padding-top: .5rem;
+    padding-bottom: .2rem;
+    color: #fff;
+    position: fixed;
+    top: 0;
+  }
+  .search-con-top {
+    background: #fff;
+    color: #000;
+  }
+  .search-box-top {
+    border: 1px solid #000!important;
+    color: #000!important;
   }
   .search-history,.search-position{
     display: inline-block;
@@ -96,14 +106,13 @@
     line-height: .54rem;
     border-radius: .1rem;
     text-align: center;
+    border: 1px solid #fff;
   }
   .header-position {
     display: flex;
-    position: absolute;
     height: 1.6rem;
     width: 100%;
-    top: 1.54rem;
-    z-index: 10;
+    padding-top: 1.54rem;
     color: #fff;
   }
   .position-addr {
@@ -144,16 +153,22 @@
   }
   .header-time {
     box-sizing:border-box;
-    position: absolute;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    z-index: 10;
-    bottom: .3rem;
     line-height: .4rem;
     font-size: .3rem;
     color: #fff;
-    padding: 0 .38rem;
+    padding: .3rem .38rem;
   }
-
+  .time-date,.time-week {
+    overflow: hidden;
+    width: 40%;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .time-week {
+    text-align: right;
+  }
 </style>

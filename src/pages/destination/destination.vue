@@ -2,6 +2,14 @@
 	<div class="destination">
 		<destination-header :headerInfo="headerInfo"></destination-header>
     <destination-icons :iconsInfo="iconsInfo"></destination-icons>
+    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
+    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
+    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
+    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
+    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
+    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
+    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
+    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
 	</div>
 </template>
 <script>
@@ -28,7 +36,6 @@
         if (body && body.data) {
           this.headerInfo = body.data.headerInfo
           this.iconsInfo = body.data.icons
-          console.log(this.iconsInfo)
         }
       }
     },
@@ -40,7 +47,7 @@
 <style scoped lang="stylus">
   .destination {
     height:4.08rem;
-    width: 100%;
+    width: 100%; 
   }
   
 </style>

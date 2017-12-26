@@ -5,7 +5,7 @@
 		 	"city":"北京",
 			 "area":"昌平",
 			 "temperature":"5°",
-			 "viewImg":"https://dimg08.c-ctrip.com/images/fd/tg/g3/M0A/07/3D/CggYGlaeCDaAQoagAAnBQ-n4YHs222_R_1600_10000_Mtg_7.jpg"
+			 "viewImg":"../../static/top.png"
 		},
     "icons": [{
       "id": "0001",
