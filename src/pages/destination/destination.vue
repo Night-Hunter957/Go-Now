@@ -2,28 +2,35 @@
 	<div class="destination">
 		<destination-header :headerInfo="headerInfo"></destination-header>
     <destination-icons :iconsInfo="iconsInfo"></destination-icons>
-    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
-    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
-    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
-    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
-    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
-    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
-    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
-    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
+    <destination-main 
+      :adds="adds" 
+      :views="views" 
+      :travels="travels"
+      :strategy="strategy">
+    </destination-main>
+    <destination-footer></destination-footer>
 	</div>
 </template>
 <script>
   import destinationHeader from './destinationHeader'
   import destinationIcons from './destinationIcons'
+  import destinationMain from './destinationMain'
+  import destinationFooter from './destinationFooter'
   export default {
     components: {
       destinationHeader,
-      destinationIcons
+      destinationIcons,
+      destinationMain,
+      destinationFooter
     },
     data () {
       return {
         headerInfo: {},
-        iconsInfo: []
+        iconsInfo: [],
+        views: [],
+        travels: [],
+        strategy: [],
+        adds: ''
       }
     },
     methods: {
@@ -36,6 +43,10 @@
         if (body && body.data) {
           this.headerInfo = body.data.headerInfo
           this.iconsInfo = body.data.icons
+          this.adds = body.data.adds
+          this.views = body.data.views
+          this.travels = body.data.travels
+          this.strategy = body.data.strategy
         }
       }
     },

@@ -48,8 +48,8 @@
     },
     mounted () {
       window.onscroll = function () {
-        let scrolltop = document.documentElement.scrollTop || document.body.scrollTop
-        if (scrolltop > 204) {
+        const scrolltop = document.documentElement.scrollTop || document.body.scrollTop
+        if (scrolltop > 150) {
           this.$refs.search.classList.add('search-con-top')
           this.$refs.searchBox.classList.add('search-box-top')
         } else {
@@ -84,10 +84,11 @@
   }
   .search-con-top {
     background: #fff;
-    color: #000;
+    color: #ea440f;
+    z-index: 99999;
   }
   .search-box-top {
-    border: 1px solid #000!important;
+    border: 1px solid #ea440f!important;
     color: #000!important;
   }
   .search-history,.search-position{
@@ -146,7 +147,7 @@
   .temp-num {
     position: absolute;
     right: .4rem;
-    bottom: .6rem;
+    bottom: .2rem;
   }
   .temp-icon {
     color: #fed375;

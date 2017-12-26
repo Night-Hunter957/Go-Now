@@ -20,6 +20,7 @@
     justify-content: space-around;
     height: 3.6rem;
     text-align: center;
+    background: #fff;
   }
   .icons-item {
     display: flex;
@@ -34,5 +35,9 @@
   }
   .icons-title {
     margin-top: .2rem;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 </style>
