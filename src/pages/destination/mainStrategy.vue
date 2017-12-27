@@ -54,7 +54,7 @@ export default {
   .strategy-info {
     overflow: hidden;
     width: 100%;
-    height: 12rem;
+    height: 8rem;
   }
   .strategy-info::before {
     border-color: #9e9e9e;
