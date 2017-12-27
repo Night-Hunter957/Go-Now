@@ -30,6 +30,7 @@ export default {
       this.scroll = new BScroll(this.$refs.hotscroll, {
         scrollX: true,
         scrollY: false,
+        eventPassthrough: 'vertical',
         click: true
       })
     },

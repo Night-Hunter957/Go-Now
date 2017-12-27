@@ -4,10 +4,9 @@
 			<img :src="adds" alt="">
 		</div>
 		<div class="main-hotviews">
-      <main-destination :views="views"></main-destination>
-      <main-travels :travels="travels"></main-travels>
-      <main-strategy :strategy="strategy"></main-strategy>
-      
+        <main-destination :views="views"></main-destination>
+        <main-travels :travels="travels"></main-travels>
+        <main-strategy :strategy="strategy"></main-strategy>
 		</div>
 	</div>
 </template>

@@ -15,9 +15,6 @@
         </li>
       </ul>
     </div> 
-    <div>
-        <p class="more-strategy">查看更多<i class="iconfont">&#xe601;</i></p>
-    </div>
   </div>
 </template>
 
@@ -95,11 +92,5 @@ export default {
   }
   .browse,.collect {
     margin-right: .1rem;
-  }
-  .more-strategy {
-  background: #fff;
-  line-height: .88rem;
-  color: #44c9e0;
-  text-align: center;
   }
 </style>

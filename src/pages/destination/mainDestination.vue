@@ -29,12 +29,15 @@ export default {
       this.scroll = new BScroll(this.$refs.hotscroll, {
         scrollX: true,
         scrollY: false,
+        eventPassthrough: 'vertical',
         click: true
       })
+      console.log(this.scroll)
     },
     watch: {
       views () {
         this.$nextTick(() => {
+          console.log('222222222222')
           this.scroll.refresh()
         })
       }
