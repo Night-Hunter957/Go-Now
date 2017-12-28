@@ -7,12 +7,17 @@
     </div>
     <div class="header-position">
       <div class="position-addr">
-        <span class="addr-province">{{headerInfo.province}}</span>
-        <span class="addr-city">
-          {{headerInfo.city}}
-          <i class="iconfont">&#xe620;</i>
-        </span>
+        
+          <span class="addr-province">{{headerInfo.province}}</span>
+          <span class="addr-city">
+          <router-link to="/city" tag="div" class="routerLink">
+            <em class="city">{{headerInfo.city}}</em>
+            <i class="iconfont cityicon">&#xe620;</i>
+          </router-link>
+          </span>
+        
       </div>
+      
       <div class="position-temp">
         <span class="temp-num">
           {{headerInfo.temperature}}
@@ -133,10 +138,25 @@
     font-weight: 400;
     margin-left: .1rem;  
   }
-  .addr-city,.addr-province {
+  .addr-province {
     overflow: hidden;
     width: 100%;
     display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .addr-city {
+    display: inline-block;
+
+  }
+  .routerLink {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .city {
+    overflow: hidden;
+    max-width: 2.6rem;
+    display: inline-block;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
@@ -144,6 +164,11 @@
     position: relative;
     width: 50%;
     margin-right: .38rem;
+  }
+  .cityicon {
+    display: inline-block;
+    line-height: .5rem;
+    margin-left: .1rem;
   }
   .position-temp,.position-addr {
     border-bottom: 1px solid #fff;

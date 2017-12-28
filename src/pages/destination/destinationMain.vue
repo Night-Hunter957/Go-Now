@@ -6,7 +6,7 @@
 		<div class="main-hotviews">
         <main-destination :views="views"></main-destination>
         <main-travels :travels="travels"></main-travels>
-        <main-strategy :strategy="strategy"></main-strategy>
+        <main-noscroll :strategy="strategy"></main-noscroll>
 		</div>
 	</div>
 </template>
@@ -15,11 +15,13 @@
   import mainDestination from './mainDestination'
   import mainTravels from './mainTravels'
   import mainStrategy from './mainStrategy'
+  import mainNoscroll from './mainNoscroll'
   export default {
     components: {
       mainDestination,
       mainTravels,
-      mainStrategy
+      mainStrategy,
+      mainNoscroll
     },
     props: ['adds', 'views', 'travels', 'strategy'],
     computed: {

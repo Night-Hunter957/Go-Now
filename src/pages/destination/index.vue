@@ -9,7 +9,6 @@
       :strategy="strategy">
     </destination-main>
     <destination-footer></destination-footer>
-    <!-- <div>{{changeCity}}</div> -->
 	</div>
 </template>
 <script>
@@ -41,7 +40,7 @@
     methods: {
       ...mapMutations(['getCity']),
       getDestData () {
-        this.$http.get('/api/destination.json')
+        this.$http.get('/static/destination.json')
           .then(this.handleGetDataSucc.bind(this))
       },
       handleGetDataSucc (res) {

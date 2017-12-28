@@ -1,22 +1,26 @@
 <template>
 	<div class="destination-footer">
-    <div class="footer-con border-top">
-      <div class="footer-items">
+    <div class="footer-con border-top" ref="footer">
+      <router-link to="/" tag="div" class="footer-items">
         <i class="iconfont items-icon">&#xe608;</i>
         <em class="items-name">首页</em>
-      </div>
-      <div class="footer-items">
+      </router-link>
+
+      <router-link to="/destination" tag="div" class="footer-items">
         <i class="iconfont items-icon">&#xede8;</i>
         <em class="items-name">目的地</em>
-      </div>
-      <div class="footer-items">
+      </router-link>
+
+      <router-link to="/destination" tag="div" class="footer-items">
         <i class="iconfont items-icon">&#xe604;</i>
         <em class="items-name">酒店</em>
-      </div>
-      <div class="footer-items">
+      </router-link>
+
+      <router-link to="/destination" tag="div" class="footer-items">
         <i class="iconfont items-icon">&#xe629;</i>
         <em class="items-name">我的</em>
-      </div>
+      </router-link>
+      
     </div> 
   </div>
 </template>
