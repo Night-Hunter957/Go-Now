@@ -9,6 +9,7 @@
       :strategy="strategy">
     </destination-main>
     <destination-footer></destination-footer>
+    <!-- <div>{{changeCity}}</div> -->
 	</div>
 </template>
 <script>
@@ -16,6 +17,7 @@
   import destinationIcons from './destinationIcons'
   import destinationMain from './destinationMain'
   import destinationFooter from './destinationFooter'
+  import { mapState, mapMutations } from 'vuex'
   export default {
     components: {
       destinationHeader,
@@ -33,20 +35,25 @@
         adds: ''
       }
     },
+    computed: {
+      ...mapState(['city'])
+    },
     methods: {
+      ...mapMutations(['getCity']),
       getDestData () {
-        this.$http.get('/static/destination.json')
+        this.$http.get('/api/destination.json')
           .then(this.handleGetDataSucc.bind(this))
       },
       handleGetDataSucc (res) {
-        const body = res.body
-        if (body && body.data) {
-          this.headerInfo = body.data.headerInfo
-          this.iconsInfo = body.data.icons
-          this.adds = body.data.adds
-          this.views = body.data.views
-          this.travels = body.data.travels
-          this.strategy = body.data.strategy
+        res = res ? res.body : null
+        if (res && res.data) {
+          res.data.headerInfo && (this.headerInfo = res.data.headerInfo)
+          res.data.icons && (this.iconsInfo = res.data.icons)
+          res.data.adds && (this.adds = res.data.adds)
+          res.data.views && (this.views = res.data.views)
+          res.data.travels && (this.travels = res.data.travels)
+          res.data.strategy && (this.strategy = res.data.strategy)
+          this.getCity(this.headerInfo.city)
         }
       }
     },
@@ -57,7 +64,7 @@
 </script>
 <style scoped lang="stylus">
   .destination {
-    height:4.08rem;
+    height:100%;
     width: 100%; 
   }
   

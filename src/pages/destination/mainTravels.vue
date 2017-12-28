@@ -7,7 +7,7 @@
           <img :src="item.imgUrl" alt="" class="item-img">
           <p class="item-title">{{item.title}}</p>
           <div class="item-user">
-            <img :src="item.userImg" alt="" class="item-userimg">
+            <img v-lazy="item.userImg" alt="" class="item-userimg">
             <p class="item-comment">
               <span class="browse">{{item.browseNum}}</span>浏览·
               <span class="reply">{{item.reply}}</span>评论
@@ -63,6 +63,7 @@ export default {
   .hottravel-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     width: 48.6rem;
   }
   .hottravel-item {

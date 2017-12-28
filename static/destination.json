@@ -2,10 +2,11 @@
 	"ret":true,
 	"data":{
 		"headerInfo":{
-		 	"city":"广东",
-			 "area":"广州",
-			 "temperature":"9°",
-			 "viewImg":"../../static/top.png"
+		 	"province":"广东",
+  		"city":"广州",
+  		"temperature":"9°",
+  		"viewImg":["./static/top.png"],
+      "searchtxt":"年终大促爆款清单"
 		},
     "icons": [{
       "id": "0001",
@@ -33,7 +34,7 @@
       "imgUrl": "http://img1.qunarzz.com/piao/fusion/1711/df/86cbcfc533330d02.png"
     }
     ],
-    "adds":"../../static/adds.jpg",
+    "adds":["./static/adds.jpg"],
     "views":[{
       "id":"hot0001",
       "address":"广东",

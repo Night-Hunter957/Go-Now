@@ -4,12 +4,12 @@
     <div class="hotviews-info border-bottom" ref="hotscroll">
       <ul class="hotviews-list">
         <li class="hotviews-item" v-for="item in views" :key="item.id">
-          <img :src="item.imgUrl" alt="" class="item-img">
+          <img v-lazy="item.imgUrl" alt="" class="item-img">
           <p class="item-txt">
             <span class="item-addr">{{item.address}}</span>
             <span class="item-visitors">
               <i class="number">{{item.visiterNum}}</i>
-              人去过
+              <em>人去过</em>
             </span>
           </p>
         </li>
@@ -32,12 +32,10 @@ export default {
         eventPassthrough: 'vertical',
         click: true
       })
-      console.log(this.scroll)
     },
     watch: {
       views () {
         this.$nextTick(() => {
-          console.log('222222222222')
           this.scroll.refresh()
         })
       }
@@ -64,11 +62,12 @@ export default {
   .hotviews-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 18rem;
   }
   .hotviews-item {
     display: flex;
-    width: 4rem;
+    width: 4.4rem;
   }
   .item-img {
     width: 1.88rem;
@@ -76,6 +75,7 @@ export default {
     margin-bottom: .3rem;
   }
   .item-txt {
+    flex: 1;
     padding: .2rem;
   }
   .item-addr {
@@ -89,7 +89,10 @@ export default {
     text-overflow: ellipsis;
   }
   .item-visitors {
+    display: flex;
+    justify-content: flex-start;
     font-size: .24rem;
+    line-height: .28rem;
   }
   .more-views {
     background: #fff;
@@ -99,7 +102,11 @@ export default {
   }
   .number {
     display: inline-block;
-    width: .8rem;
+    max-width: 1rem;
+    font-size: .24rem;
+    line-height: .28rem;
+    font-weight: 700;
+    text-align: right;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

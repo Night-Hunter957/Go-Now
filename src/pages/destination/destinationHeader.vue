@@ -2,14 +2,14 @@
 	<div class="destination-header" ref="header">
     <div class="search-con" ref="search">
       <span class="iconfont search-history">&#xe60e;</span>
-      <span class="search-box" ref="searchBox">年终大促爆款清单</span>
+      <span class="search-box" ref="searchBox">{{headerInfo.searchtxt}}</span>
       <span class="iconfont search-position">&#xe626;</span>
     </div>
     <div class="header-position">
       <div class="position-addr">
-        <span class="addr-city">{{headerInfo.city}}</span>
-        <span class="addr-area">
-          {{headerInfo.area}}
+        <span class="addr-province">{{headerInfo.province}}</span>
+        <span class="addr-city">
+          {{headerInfo.city}}
           <i class="iconfont">&#xe620;</i>
         </span>
       </div>
@@ -30,6 +30,10 @@
   export default {
     props: ['headerInfo'],
     computed: {
+      getRandBG () {
+        const maxIndex = this.headerInfo.viewImg.length - 1
+        return Math.round(Math.random() * maxIndex)
+      },
       getdate () {
         return new Date().toLocaleDateString()
       },
@@ -59,9 +63,9 @@
       }.bind(this)
     },
     watch: {
-      headerInfo: function () {
+      headerInfo () {
         this.$nextTick(() => {
-          this.$refs.header.style.backgroundImage = 'url(' + this.headerInfo.viewImg + ')'
+          this.$refs.header.style.backgroundImage = 'url(' + this.headerInfo.viewImg[this.getRandBG] + ')'
         })
       }
     }
@@ -69,9 +73,9 @@
 </script>
 <style scoped lang="stylus">
   .destination-header {
-    height: 100%;
     width: 100%;
     background-size: 100% 100%;
+    background-color:#000; 
   }
   .search-con {
     width: 100%;
@@ -120,16 +124,16 @@
     width: 50%;
     margin-left: .38rem;
   }
-  .addr-city {
+  .addr-province {
     font-size: .28rem;
     margin-bottom: .3rem;
   }
-  .addr-area { 
+  .addr-city { 
     font-size: .5rem;
     font-weight: 400;
     margin-left: .1rem;  
   }
-  .addr-city,.addr-area {
+  .addr-city,.addr-province {
     overflow: hidden;
     width: 100%;
     display: block;

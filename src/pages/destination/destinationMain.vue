@@ -1,7 +1,7 @@
 <template>
 	<div class="destination-main">
 		<div class="main-adds">
-			<img :src="adds" alt="">
+			<img :src="getRandBG" alt="">
 		</div>
 		<div class="main-hotviews">
         <main-destination :views="views"></main-destination>
@@ -21,7 +21,14 @@
       mainTravels,
       mainStrategy
     },
-    props: ['adds', 'views', 'travels', 'strategy']
+    props: ['adds', 'views', 'travels', 'strategy'],
+    computed: {
+      getRandBG () {
+        const maxIndex = this.adds.length - 1
+        const randomIndex = Math.round(Math.random() * maxIndex)
+        return this.adds[randomIndex]
+      }
+    }
   }
 </script>
 
