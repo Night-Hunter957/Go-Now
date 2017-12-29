@@ -1,14 +1,20 @@
 <template>
   <div class="header border-bottom">
   	<h1 class="title">目的地切换
-      <span class="iconfont back">&#xe662;</span>
+      <span class="iconfont back" @click="handleBack">&#xe662;</span>
     </h1>
     
   </div>
 </template>
 
 <script>
-  export default {}
+  export default {
+    methods: {
+      handleBack () {
+        this.$router.go(-1)
+      }
+    }
+  }
 </script>
 
 <style scoped>

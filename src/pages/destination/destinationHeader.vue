@@ -3,7 +3,9 @@
     <div class="search-con" ref="search">
       <span class="iconfont search-history">&#xe60e;</span>
       <span class="search-box" ref="searchBox">{{headerInfo.searchtxt}}</span>
-      <span class="iconfont search-position">&#xe626;</span>
+      <router-link to="/worldmap" tag="div">
+        <span class="iconfont search-position">&#xe626;</span>
+      </router-link>
     </div>
     <div class="header-position">
       <div class="position-addr">
