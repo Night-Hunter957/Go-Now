@@ -1,5 +1,5 @@
 <template>
-	<div class="amap-page-container">
+	<div class="amap-page-container" ref="map">
     <el-amap ref="map" vid="amapDemo" :amap-manager="amapManager" :center="center" :zoom="zoom" :plugin="plugin" class="amap-demo">
     </el-amap>
     </div>
@@ -28,6 +28,9 @@ export default {
         defaultType: 0
       }]
     }
+  },
+  mounted () {
+    this.$refs.map.style.height = window.screen.height + 'px'
   }
 
 }
@@ -41,11 +44,7 @@ export default {
       height: 100%;
   }
 </style>
-<style>
-  body{
-    height:100%;
-  }
-</style>
+
 
 
 
