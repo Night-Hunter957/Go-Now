@@ -42,9 +42,6 @@ export default {
       }
     },
     watch: {
-      city () {
-        this.list = []
-      },
       list () {
         this.isLoading = false
       }

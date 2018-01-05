@@ -4,15 +4,17 @@
     <div class="hottravel-info border-bottom" ref="hotscroll">
       <ul class="hottravel-list">
         <li class="hottravel-item" v-for="item in travels" :key="item.id">
-          <img :src="item.imgUrl" alt="" class="item-img">
-          <p class="item-title">{{item.title}}</p>
-          <div class="item-user">
-            <img v-lazy="item.userImg" alt="" class="item-userimg">
-            <p class="item-comment">
-              <span class="browse">{{item.browseNum}}</span>浏览·
-              <span class="reply">{{item.reply}}</span>评论
-            </p>
-          </div>
+          <router-link :to="'/travelInfo/' + item.id" tag="div">
+            <img :src="item.imgUrl" alt="" class="item-img">
+            <p class="item-title">{{item.title}}</p>
+            <div class="item-user">
+              <img v-lazy="item.userImg" alt="" class="item-userimg">
+              <p class="item-comment">
+                <span class="browse">{{item.browseNum}}</span>浏览·
+                <span class="reply">{{item.reply}}</span>评论
+              </p>
+            </div>
+          </router-link>  
         </li>
       </ul>
     </div> 

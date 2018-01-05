@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Destination from '@/pages/destination/index'
 import City from '@/pages/city/index'
 import Chinesemap from '@/pages/map/map.vue'
+import TravelInfo from '@/pages/destination/travel/travelInfo.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,10 @@ export default new Router({
       path: '/Chinesemap',
       name: 'Chinesemap',
       component: Chinesemap
+    }, {
+      path: '/travelInfo/:id',
+      name: 'travelInfo',
+      component: TravelInfo
     }
   ]
 })
