@@ -3,15 +3,17 @@
     <h2 class="hotviews-title">热门目的地</h2>
     <div class="hotviews-info border-bottom" ref="hotscroll">
       <ul class="hotviews-list">
-        <li class="hotviews-item" v-for="item in views" :key="item.id">
-          <img v-lazy="item.imgUrl" alt="" class="item-img">
-          <p class="item-txt">
-            <span class="item-addr">{{item.address}}</span>
-            <span class="item-visitors">
-              <i class="number">{{item.visiterNum}}</i>
-              <em>人去过</em>
-            </span>
-          </p>
+        <li class="hotviews-item" v-for="item in views" :key="item.id" @click="handlChangeCity(item.address)">
+          <router-link :to="'/destination/' + item.address" class="hotviews-item" tag="div">
+            <img v-lazy="item.imgUrl" alt="" class="item-img" >
+            <p class="item-txt">
+              <span class="item-addr">{{item.address}}</span>
+              <span class="item-visitors">
+                <i class="number">{{item.visiterNum}}</i>
+                <em>人去过</em>
+              </span>
+            </p>
+          </router-link>
         </li>
       </ul>
     </div> 
@@ -23,6 +25,7 @@
 
 <script>
   import BScroll from 'better-scroll'
+  import { mapState, mapMutations } from 'vuex'
 export default {
     props: ['views'],
     mounted () {
@@ -39,6 +42,15 @@ export default {
           this.scroll.refresh()
         })
       }
+    },
+    methods: {
+      handlChangeCity (city) {
+        this.getCity(city)
+      },
+      ...mapMutations(['getCity'])
+    },
+    computed: {
+      ...mapState(['city'])
     }
 }
 </script>

@@ -3,7 +3,7 @@
     <div>
       <div class="list-area" v-for="(area, key) of cityList">
           <div class="list-title">{{key}}</div>
-          <div class="list-item border-bottom" v-for="item in area">{{item.name}}</div>
+          <div class="list-item border-bottom" v-for="item in area" @click="handleChooseCity(item.name)">{{item.name}}</div>
       </div>
     </div>
   </div>
@@ -11,31 +11,26 @@
 
 <script>
   import BScroll from 'better-scroll'
+  import { mapState, mapMutations } from 'vuex'
   export default {
-    data () {
-      return {
-        cityList: {}
-      }
-    },
-    methods: {
-      getCityDate () {
-        this.$http.get('/static/city.json')
-          .then(this.handleGetDataSucc.bind(this))
-      },
-      handleGetDataSucc (res) {
-        res = res ? res.body : null
-        if (res && res.data) {
-          this.cityList = res.data.list
-        }
-      }
-    },
-    created () {
-      this.getCityDate()
-    },
+    props: ['cityList'],
     mounted () {
       this.scroll = new BScroll(this.$refs.scroller, {
         bounceTime: 300
       })
+    },
+    methods: {
+      handleChooseCity (city) {
+        this.getCity(city)
+        console.log(this.city)
+        this.$nextTick(() => {
+          this.$router.go(-1)
+        })
+      },
+      ...mapMutations(['getCity'])
+    },
+    computed: {
+      ...mapState(['city'])
     }
   }
 </script>

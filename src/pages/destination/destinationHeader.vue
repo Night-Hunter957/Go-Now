@@ -2,18 +2,22 @@
 	<div class="destination-header" ref="header">
     <div class="search-con" ref="search">
       <span class="iconfont search-history">&#xe60e;</span>
-      <span class="search-box" ref="searchBox">{{headerInfo.searchtxt}}</span>
-      <router-link to="/worldmap" tag="div">
+      <span class="search-box" ref="searchBox">
+        <router-link to="/city" tag="span" class="search-box">
+          {{headerInfo.searchtxt}}
+        </router-link>
+      </span>
+      <router-link to="/Chinesemap" tag="div">
         <span class="iconfont search-position">&#xe626;</span>
       </router-link>
     </div>
     <div class="header-position">
       <div class="position-addr">
         
-          <span class="addr-province">{{headerInfo.province}}</span>
+          <span class="addr-province">中国</span>
           <span class="addr-city">
           <router-link to="/city" tag="div" class="routerLink">
-            <em class="city">{{headerInfo.city}}</em>
+            <em class="city">{{city}}</em>
             <i class="iconfont cityicon">&#xe620;</i>
           </router-link>
           </span>
@@ -34,9 +38,11 @@
 	</div>
 </template>
 <script>
+  import { mapState } from 'vuex'
   export default {
     props: ['headerInfo'],
     computed: {
+      ...mapState(['city']),
       getRandBG () {
         const maxIndex = this.headerInfo.viewImg.length - 1
         return Math.round(Math.random() * maxIndex)
@@ -57,8 +63,22 @@
         }
       }
     },
-    mounted () {
-      window.onscroll = function () {
+    watch: {
+      headerInfo () {
+        this.$nextTick(() => {
+          this.$refs.header.style.backgroundImage = 'url(' + this.headerInfo.viewImg[this.getRandBG] + ')'
+        })
+      }
+    },
+    methods: {
+      bindScroll () {
+        this.proxyFn = this.handleScroll.bind(this)
+        window.addEventListener('scroll', this.proxyFn)
+      },
+      unbindScroll () {
+        window.removeEventListener('scroll', this.proxyFn)
+      },
+      handleScroll () {
         const scrolltop = document.documentElement.scrollTop || document.body.scrollTop
         if (scrolltop > 150) {
           this.$refs.search.classList.add('search-con-top')
@@ -67,14 +87,13 @@
           this.$refs.search.classList.remove('search-con-top')
           this.$refs.searchBox.classList.remove('search-box-top')
         }
-      }.bind(this)
-    },
-    watch: {
-      headerInfo () {
-        this.$nextTick(() => {
-          this.$refs.header.style.backgroundImage = 'url(' + this.headerInfo.viewImg[this.getRandBG] + ')'
-        })
       }
+    },
+    created () {
+      this.bindScroll()
+    },
+    destroyed () {
+      this.unbindScroll()
     }
   }
 </script>

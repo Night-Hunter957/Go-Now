@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Destination from '@/pages/destination/index'
 import City from '@/pages/city/index'
-import Worldmap from '@/pages/destination/map.vue'
+import Chinesemap from '@/pages/map/map.vue'
 
 Vue.use(Router)
 
@@ -14,7 +14,7 @@ export default new Router({
 // 按需加载          Webpack分片
       component: () => import('@/pages/home/index')
     }, {
-      path: '/destination',
+      path: '/destination/:city',
       name: 'destination',
       component: Destination
     }, {
@@ -22,9 +22,9 @@ export default new Router({
       name: 'city',
       component: City
     }, {
-      path: '/worldmap',
-      name: 'worldmap',
-      component: Worldmap
+      path: '/Chinesemap',
+      name: 'Chinesemap',
+      component: Chinesemap
     }
   ]
 })

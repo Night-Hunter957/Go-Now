@@ -1,8 +1,8 @@
 <template>
   <div class="main">
   	<city-header></city-header>
-    <city-search></city-search>
-    <city-list></city-list>
+    <city-search :cityList="cityList"></city-search>
+    <city-list :cityList="cityList"></city-list>
   </div>
 </template>
 
@@ -15,6 +15,26 @@
       cityHeader,
       citySearch,
       cityList
+    },
+    data () {
+      return {
+        cityList: {}
+      }
+    },
+    methods: {
+      getCityDate () {
+        this.$http.get('/static/city.json')
+          .then(this.handleGetDataSucc.bind(this))
+      },
+      handleGetDataSucc (res) {
+        res = res ? res.body : null
+        if (res && res.data) {
+          this.cityList = res.data.list
+        }
+      }
+    },
+    created () {
+      this.getCityDate()
     }
   }
 </script>

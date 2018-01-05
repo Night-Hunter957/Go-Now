@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="strategy-title">自行游攻略</h2>
-    <div class="strategy-info" ref="strategyscroll">
+    <div class="strategy-info">
       <ul class="strategy-list">
         <li class="strategy-item" v-for="item in list" :key="item.id">
           <div class="item-user">
@@ -42,6 +42,9 @@ export default {
       }
     },
     watch: {
+      city () {
+        this.list = []
+      },
       list () {
         this.isLoading = false
       }
@@ -96,10 +99,10 @@ export default {
         return this.strategy.concat(this.loadstrategy)
       }
     },
-    activated () {
+    created () {
       this.bindScroll()
     },
-    deactivated () {
+    destroyed () {
       this.unbindScroll()
     }
 }

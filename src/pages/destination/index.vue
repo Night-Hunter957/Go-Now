@@ -37,10 +37,15 @@
     computed: {
       ...mapState(['city'])
     },
+    watch: {
+      city () {
+        this.getDestData()
+      }
+    },
     methods: {
       ...mapMutations(['getCity']),
       getDestData () {
-        this.$http.get('/static/destination.json')
+        this.$http.get('/static/destination.json?' + this.city)
           .then(this.handleGetDataSucc.bind(this))
       },
       handleGetDataSucc (res) {
@@ -52,11 +57,16 @@
           res.data.views && (this.views = res.data.views)
           res.data.travels && (this.travels = res.data.travels)
           res.data.strategy && (this.strategy = res.data.strategy)
-          this.getCity(this.headerInfo.city)
+        }
+      },
+      changeCity () {
+        if (!this.city) {
+          this.getCity(this.$route.params.city)
         }
       }
     },
     created () {
+      this.changeCity()
       this.getDestData()
     }
   }
