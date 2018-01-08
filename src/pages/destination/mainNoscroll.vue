@@ -22,7 +22,7 @@
       </div>
     </transition>
     <div class="toTop" v-show="toTopShow" ref="toTop" @click="totopClick">
-      <span class="iconfont toTopicon">&#xe61b;</span>
+      <span class="toTopicon"></span>
     </div> 
   </div>
 </template>
@@ -173,13 +173,19 @@ export default {
   }
   .toTop{
     position: fixed;
+    left: 0;
     right: 0;
-    bottom: 1.6rem;
-    color: #0885f5;
-    background: #fff;
-    border-radius: 50%;
+    margin:0 auto;
+    bottom: .8rem;
+    height: .4rem;
+    width: .8rem;
+    z-index: 9999;
   }
   .toTopicon {
-    font-size: .8rem;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    background: url(../../../static/img/toTop.png);
+    background-size: 100% 100%; 
   }
 </style>

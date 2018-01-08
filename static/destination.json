@@ -2,8 +2,6 @@
 	"ret":true,
 	"data":{
 		"headerInfo":{
-		 	"province":"广东",
-  		"city":"广州",
   		"temperature":"9°",
   		"viewImg":["./static/top.png"],
       "searchtxt":"年终大促爆款清单"
@@ -11,27 +9,27 @@
     "icons": [{
       "id": "0001",
       "title": "攻略",
-      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png"
+      "imgUrl": "./static/img/攻略.png"
     },{
       "id": "0002",
       "title": "酒店",
-      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/35/2640cab202c41b02.png"
+      "imgUrl": "./static/img/酒店.png"
     },{
       "id": "0003",
-      "title": "景点",
-      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/45/676b67d7078abc02.png"
+      "title": "游记",
+      "imgUrl": "./static/img/游记.png"
     },{
       "id": "0004",
-      "title": "游记",
-      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/a9/ffc620dbda9b9c02.png"
+      "title": "目的地",
+      "imgUrl": "./static/img/目的地.png"
     },{
       "id": "0005",
-      "title": "美食",
-      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/59/569d3c096e542502.png"
+      "title": "车票",
+      "imgUrl": "./static/img/车票.png"
     },{
       "id": "0006",
-      "title": "定制行程",
-      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1711/df/86cbcfc533330d02.png"
+      "title": "摄影",
+      "imgUrl": "./static/img/摄影.png"
     }
     ],
     "adds":["./static/adds.jpg"],

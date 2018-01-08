@@ -2,22 +2,22 @@
 	<div class="destination-footer">
     <div class="footer-con border-top" ref="footer">
       <router-link to="/" tag="div" class="footer-items">
-        <i class="iconfont items-icon">&#xe608;</i>
+        <i class="items-icon item-index"></i>
         <em class="items-name">首页</em>
       </router-link>
 
       <router-link to="/destination" tag="div" class="footer-items">
-        <i class="iconfont items-icon">&#xede8;</i>
+        <i class="items-icon item-destination"></i>
         <em class="items-name">目的地</em>
       </router-link>
 
       <router-link to="/destination" tag="div" class="footer-items">
-        <i class="iconfont items-icon">&#xe604;</i>
+        <i class="items-icon item-hotel"></i>
         <em class="items-name">酒店</em>
       </router-link>
 
       <router-link to="/destination" tag="div" class="footer-items">
-        <i class="iconfont items-icon">&#xe629;</i>
+        <i class="items-icon item-mine"></i>
         <em class="items-name">我的</em>
       </router-link>
       
@@ -57,8 +57,25 @@
     text-align: center;
   }
   .items-icon {
-    font-size: .4rem;
-    color: #ea440f;
+    display: inline-block;
+    height: .4rem;
+    width: .4rem;
+  }
+  .item-index {
+    background: url(../../../static/img/首页icon.png);
+    background-size: 100% 100%;
+  }
+  .item-destination {
+    background: url(../../../static/img/目的地icon.png);
+    background-size: 100% 100%;
+  }
+  .item-hotel {
+    background: url(../../../static/img/酒店icon.png);
+    background-size: 100% 100%;
+  }
+  .item-mine {
+    background: url(../../../static/img/我的icon.png);
+    background-size: 100% 100%;
   }
   .items-name {
     margin-top: .1rem;

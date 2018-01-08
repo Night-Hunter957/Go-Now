@@ -1,9 +1,29 @@
 <template>
 	<div class="destination-icons">
-    <div class="icons-item" v-for="item of iconsInfo" :key="item.id">
-      <img :src="item.imgUrl" alt="" class="icons-img">
-      <p class="icons-title">{{item.title}}</p>
+    <div class="icons-item" >
+      <img src="../../../static/img/攻略.png" alt="" class="icons-img">
+      <p class="icons-title">攻略</p>
+    </div>
+    <div class="icons-item" >
+      <img src="../../../static/img/酒店.png" alt="" class="icons-img">
+      <p class="icons-title">酒店</p>
     </div> 
+    <div class="icons-item" >
+      <img src="../../../static/img/游记.png" alt="" class="icons-img">
+      <p class="icons-title">游记</p>
+    </div> 
+    <div class="icons-item" >
+      <img src="../../../static/img/目的地.png" alt="" class="icons-img">
+      <p class="icons-title">目的地</p>
+    </div> 
+    <div class="icons-item" >
+      <img src="../../../static/img/车票.png" alt="" class="icons-img">
+      <p class="icons-title">车票</p>
+    </div> 
+    <div class="icons-item" >
+      <img src="../../../static/img/摄影.png" alt="" class="icons-img">
+      <p class="icons-title">摄影</p>
+    </div>  
   </div>
 </template>
 
