@@ -6,7 +6,7 @@
         <em class="items-name">首页</em>
       </router-link>
 
-      <router-link :to="'/destination/' + '定位失败'" tag="div" class="footer-items">
+      <router-link :to="'/destination/' + city" tag="div" class="footer-items">
         <i class="items-icon item-destination"></i>
         <em class="items-name">目的地</em>
       </router-link>
@@ -26,9 +26,12 @@
 </template>
 
 <script>
-	export default {
-
-	}
+import { mapState } from 'vuex'
+export default {
+  computed: {
+    ...mapState(['city'])
+  }
+}
 </script>
 
 <style scoped>
