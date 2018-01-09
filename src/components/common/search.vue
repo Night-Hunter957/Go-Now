@@ -1,12 +1,12 @@
 <template>
   <div class="search">
-	<div class="logo">
-   <img class="logo-img" src="../../assets/logo.jpg"> 
-  </div>
-	<div class="search-input"><input  class="cont" type="text" placeholder="旅行年货大街正式开卖"></div>
-	<div class="mes">
-   <img class="mes-img" src="../../assets/message.png">  
-  </div>
+  	<div class="logo">
+     <img class="logo-img" src="../../assets/logo.jpg"> 
+    </div>
+  	<div class="search-input"><input  class="cont" type="text" placeholder="旅行年货大街正式开卖"></div>
+  	<div class="mes">
+     <img class="mes-img" src="../../assets/message.png">  
+    </div>
   </div>
 </template>
 <script>
@@ -16,6 +16,7 @@
 </script>
 <style scoped lang="stylus">
   .search 
+    display:flex;
     height:1.3rem
     background: white
     .logo 
@@ -30,7 +31,7 @@
     .search-input 
       position: relative
       float:left
-      width:4.7rem
+      flex:1
       height: .63rem
       line-height: 1.3rem
       background: yellow
