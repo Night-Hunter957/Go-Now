@@ -72,6 +72,7 @@ export default {
         if (scrollTop >= pageHeight - screenHeight - 40 && !this.isLoading) {
           this.getListInfo()
           this.isLoading = true
+        } else if (scrollTop > screenHeight) {
           this.toTopShow = true
         } else if (scrollTop <= 10) {
           this.toTopShow = false
