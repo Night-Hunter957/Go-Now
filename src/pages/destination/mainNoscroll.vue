@@ -174,12 +174,10 @@ export default {
   }
   .toTop{
     position: fixed;
-    left: 0;
-    right: 0;
-    margin:0 auto;
-    bottom: .8rem;
-    height: .4rem;
-    width: .8rem;
+    right: 0.4rem;
+    bottom: 1.5rem;
+    height: 1.04rem;
+    width: 1.04rem;
     z-index: 9999;
   }
   .toTopicon {

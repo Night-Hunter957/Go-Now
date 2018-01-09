@@ -2,23 +2,23 @@
 	<div class="common-footer">
     <div class="footer-con border-top" ref="footer">
       <router-link to="/" tag="div" class="footer-items">
-        <i class="items-icon item-index"></i>
-        <em class="items-name" ref="index">首页</em>
+        <i class="items-icon item-index" ref="index"></i>
+        <em class="items-name">首页</em>
       </router-link>
 
       <router-link :to="'/destination/' + city" tag="div" class="footer-items">
-        <i class="items-icon item-destination"></i>
-        <em class="items-name" ref="destination">目的地</em>
+        <i class="items-icon item-destination" ref="destination"></i>
+        <em class="items-name">目的地</em>
       </router-link>
 
       <router-link to="/" tag="div" class="footer-items">
-        <i class="items-icon item-hotel"></i>
-        <em class="items-name" ref="hotel">酒店</em>
+        <i class="items-icon item-hotel" ref="hotel"></i>
+        <em class="items-name">酒店</em>
       </router-link>
 
       <router-link to="/" tag="div" class="footer-items">
-        <i class="items-icon item-mine"></i>
-        <em class="items-name" ref="mine">我的</em>
+        <i class="items-icon item-mine" ref="mine"></i>
+        <em class="items-name">我的</em>
       </router-link>
       
     </div> 
@@ -33,15 +33,26 @@ export default {
   },
   mounted () {
     let title = this.$route.name
-    switch (title) {
-      case 'index' : this.$refs.index.style.fontWeight = 900
-        break
-      case 'destination' : this.$refs.destination.style.fontWeight = 900
-        break
-      case 'hotel' : this.$refs.hotel.style.fontWeight = 900
-        break
-      case 'mine' : this.$refs.mine.style.fontWeight = 900
-        break
+    if (title === 'index') {
+      this.$refs.index.style.background = 'url(../../../static/img/首页icon2.png)'
+      this.$refs.destination.style.background = 'url(../../../static/img/目的地icon1.png)'
+      this.$refs.hotel.style.background = 'url(../../../static/img/酒店icon1.png)'
+      this.$refs.mine.style.background = 'url(../../../static/img/我的icon1.png)'
+    } else if (title === 'destination') {
+      this.$refs.index.style.background = 'url(../../../static/img/首页icon1.png)'
+      this.$refs.destination.style.background = 'url(../../../static/img/目的地icon2.png)'
+      this.$refs.hotel.style.background = 'url(../../../static/img/酒店icon1.png)'
+      this.$refs.mine.style.background = 'url(../../../static/img/我的icon1.png)'
+    } else if (title === 'hotel') {
+      this.$refs.index.style.background = 'url(../../../static/img/首页icon1.png)'
+      this.$refs.destination.style.background = 'url(../../../static/img/目的地icon1.png)'
+      this.$refs.hotel.style.background = 'url(../../../static/img/酒店icon2.png)'
+      this.$refs.mine.style.background = 'url(../../../static/img/我的icon1.png)'
+    } else {
+      this.$refs.index.style.background = 'url(../../../static/img/首页icon1.png)'
+      this.$refs.destination.style.background = 'url(../../../static/img/目的地icon1.png)'
+      this.$refs.hotel.style.background = 'url(../../../static/img/酒店icon1.png)'
+      this.$refs.mine.style.background = 'url(../../../static/img/我的icon2.png)'
     }
   }
 }
@@ -80,23 +91,24 @@ export default {
     width: .4rem;
   }
   .item-index {
-    background: url(../../../static/img/首页icon.png);
-    background-size: 100% 100%;
+    background: url(../../../static/img/首页icon2.png);
+    background-size: 100% 100%!important;
   }
   .item-destination {
-    background: url(../../../static/img/目的地icon.png);
-    background-size: 100% 100%;
+    background: url(../../../static/img/目的地icon1.png);
+    background-size: 100% 100%!important;
   }
   .item-hotel {
-    background: url(../../../static/img/酒店icon.png);
-    background-size: 100% 100%;
+    background: url(../../../static/img/酒店icon1.png);
+    background-size: 100% 100%!important;
   }
   .item-mine {
-    background: url(../../../static/img/我的icon.png);
-    background-size: 100% 100%;
+    background: url(../../../static/img/我的icon1.png);
+    background-size: 100% 100%!important;
   }
   .items-name {
     margin-top: .1rem;
     font-size: .24rem;
+    font-weight: 900;
   }
 </style>

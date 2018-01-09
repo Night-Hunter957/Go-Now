@@ -6,10 +6,22 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  created () {
+    let phoneOS = navigator.userAgent
+    const IOS = new RegExp('iPhone', 'g')
+    console.log(IOS.test(phoneOS))
+    if (IOS.test(phoneOS)) {
+      document.body.style.fontFamily = 'iosfont'
+    }
+    
+  }
 }
 </script>
 
-<style scoped>
-
+<style>
+	@font-face {
+    font-family: 'iosfont';   /*字体名称*/
+    src: url('./assets/styles/fontStyle/PingFang Regular.ttf');       /*字体源文件*/
+  }
 </style>
