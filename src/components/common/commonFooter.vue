@@ -3,22 +3,22 @@
     <div class="footer-con border-top" ref="footer">
       <router-link to="/" tag="div" class="footer-items">
         <i class="items-icon item-index"></i>
-        <em class="items-name">首页</em>
+        <em class="items-name" ref="index">首页</em>
       </router-link>
 
       <router-link :to="'/destination/' + city" tag="div" class="footer-items">
         <i class="items-icon item-destination"></i>
-        <em class="items-name">目的地</em>
+        <em class="items-name" ref="destination">目的地</em>
       </router-link>
 
-      <router-link to="/destination" tag="div" class="footer-items">
+      <router-link to="/" tag="div" class="footer-items">
         <i class="items-icon item-hotel"></i>
-        <em class="items-name">酒店</em>
+        <em class="items-name" ref="hotel">酒店</em>
       </router-link>
 
-      <router-link to="/destination" tag="div" class="footer-items">
+      <router-link to="/" tag="div" class="footer-items">
         <i class="items-icon item-mine"></i>
-        <em class="items-name">我的</em>
+        <em class="items-name" ref="mine">我的</em>
       </router-link>
       
     </div> 
@@ -30,6 +30,15 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState(['city'])
+  },
+  mounted () {
+    let title = this.$route.name
+    switch (title) {
+      case 'index' : this.$refs.index.style.fontWeight = 900;break;
+      case 'destination' : this.$refs.destination.style.fontWeight = 900;break;
+      case 'hotel' : this.$refs.hotel.style.fontWeight = 900;break;
+      case 'mine' : this.$refs.mine.style.fontWeight = 900;break;
+    }
   }
 }
 </script>
