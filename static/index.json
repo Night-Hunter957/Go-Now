@@ -10,38 +10,6 @@
             "imgUrl":"http://",
             "linkUrl":""
         }],
-        "icons":[{
-          "id": "0001",
-          "link": "",
-          "imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png",
-          "title": "滑雪"
-        }, {
-          "id": "0002",
-          "link": "",
-          "imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/cd/07f33cc087f18d02.png",
-          "title": "旅行"
-        },{
-          "id": "0003",
-          "link": "",
-          "imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/1c/a8a8d9023a814c02.png",
-          "title": "旅行"
-        },{
-          "id": "0004",
-          "link": "",
-          "imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/a9/ffc620dbda9b9c02.png",
-          "title": "旅行"
-        },{
-          "id": "0005",
-          "link": "",
-          "imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/2d/2eec082b3a560602.png",
-          "title": "旅行"
-        },{
-          "id": "0006",
-          "link": "",
-          "imgUrl": "http://img1.qunarzz.com/piao/fusion/1611/1c/a8a8d9023a814c02.png",
-          "title": "旅行"
-        }
-    ],
         "addMid":[{
             "id":"0001",
             "imgUrl":"http://img1.qunarzz.com/piao/fusion/1711/5a/cb4a0ccffeb99b02.jpg_640x200_1b0b75b1.jpg"

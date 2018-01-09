@@ -4,7 +4,7 @@
       <img class="top-img" src="../../assets/banner_02.jpg">
     </div>
     <search></search>
-    <icons :iconsInfo="iconsInfo"></icons>
+    <common-icons></common-icons>
     <!-- <div class="banner-mid" >
       <img v-for="item of bannerInfo" :key="item.id" class="mid-img" :src="item.imgUrl">
     </div> -->
@@ -17,8 +17,8 @@
 </template>
 <script>
   import Search from 'components/common/search'
-  import destinationFooter from '../../components/destinationFooter'
-  import Icons from './icons'
+  import destinationFooter from '../../components/common/commonFooter'
+  import commonIcons from '../../components/common/commonIcons'
   import Selection from './selection'
   import Couple from './couple'
   import Babytrip from './babytrip'
@@ -28,7 +28,6 @@
     name: 'index',
     data () {
       return {
-        iconsInfo: [],
         bannerInfo: [],
         selectionInfo: [],
         coupleInfo: [],
@@ -44,7 +43,6 @@
       handleGetDataSucc (res) {
         const body = res.body
         if (body && body.data) {
-          this.iconsInfo = body.data.icons
           this.bannerInfo = body.data.addMid
           this.selectionInfo = body.data.selection
           this.coupleInfo = body.data.coupletrip
@@ -55,7 +53,7 @@
     },
     components: {
       Search,
-      Icons,
+      commonIcons,
       Selection,
       Couple,
       Babytrip,

@@ -6,32 +6,6 @@
   		"viewImg":["./static/img/top.png"],
       "searchtxt":"年终大促爆款清单"
 		},
-    "icons": [{
-      "id": "0001",
-      "title": "攻略",
-      "imgUrl": "./static/img/攻略.png"
-    },{
-      "id": "0002",
-      "title": "酒店",
-      "imgUrl": "./static/img/酒店.png"
-    },{
-      "id": "0003",
-      "title": "游记",
-      "imgUrl": "./static/img/游记.png"
-    },{
-      "id": "0004",
-      "title": "目的地",
-      "imgUrl": "./static/img/目的地.png"
-    },{
-      "id": "0005",
-      "title": "车票",
-      "imgUrl": "./static/img/车票.png"
-    },{
-      "id": "0006",
-      "title": "摄影",
-      "imgUrl": "./static/img/摄影.png"
-    }
-    ],
     "adds":["./static/img/adds.jpg"],
     "views":[{
       "id":"hot0001",

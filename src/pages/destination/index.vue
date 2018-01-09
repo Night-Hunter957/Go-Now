@@ -1,33 +1,32 @@
 <template>
 	<div class="destination">
 		<destination-header :headerInfo="headerInfo"></destination-header>
-    <destination-icons :iconsInfo="iconsInfo"></destination-icons>
+    <common-icons></common-icons>
     <destination-main 
       :adds="adds" 
       :views="views" 
       :travels="travels"
       :strategy="strategy">
     </destination-main>
-    <destination-footer></destination-footer>
+    <common-footer></common-footer>
 	</div>
 </template>
 <script>
   import destinationHeader from './destinationHeader'
-  import destinationIcons from './destinationIcons'
+  import commonIcons from '../../components/common/commonIcons'
   import destinationMain from './destinationMain'
-  import destinationFooter from '../../components/destinationFooter'
+  import commonFooter from '../../components/common/commonFooter'
   import { mapState, mapMutations } from 'vuex'
   export default {
     components: {
       destinationHeader,
-      destinationIcons,
+      commonIcons,
       destinationMain,
-      destinationFooter
+      commonFooter
     },
     data () {
       return {
         headerInfo: {},
-        iconsInfo: [],
         views: [],
         travels: [],
         strategy: [],
@@ -52,7 +51,6 @@
         res = res ? res.body : null
         if (res && res.data) {
           res.data.headerInfo && (this.headerInfo = res.data.headerInfo)
-          res.data.icons && (this.iconsInfo = res.data.icons)
           res.data.adds && (this.adds = res.data.adds)
           res.data.views && (this.views = res.data.views)
           res.data.travels && (this.travels = res.data.travels)

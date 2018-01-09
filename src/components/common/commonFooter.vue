@@ -1,5 +1,5 @@
 <template>
-	<div class="destination-footer">
+	<div class="common-footer">
     <div class="footer-con border-top" ref="footer">
       <router-link to="/" tag="div" class="footer-items">
         <i class="items-icon item-index"></i>
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped>
-	.destination-footer {
+	.common-footer {
     position: relative;
     height: 1rem;
     width: 100%;
@@ -67,19 +67,19 @@ export default {
     width: .4rem;
   }
   .item-index {
-    background: url(../../static/img/首页icon.png);
+    background: url(../../../static/img/首页icon.png);
     background-size: 100% 100%;
   }
   .item-destination {
-    background: url(../../static/img/目的地icon.png);
+    background: url(../../../static/img/目的地icon.png);
     background-size: 100% 100%;
   }
   .item-hotel {
-    background: url(../../static/img/酒店icon.png);
+    background: url(../../../static/img/酒店icon.png);
     background-size: 100% 100%;
   }
   .item-mine {
-    background: url(../../static/img/我的icon.png);
+    background: url(../../../static/img/我的icon.png);
     background-size: 100% 100%;
   }
   .items-name {
