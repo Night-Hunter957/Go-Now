@@ -12,10 +12,12 @@
     <couple :coupleInfo="coupleInfo"></couple>
     <babytrip :babytripInfo="babytripInfo"></babytrip>
     <movietrip :movietripInfo="movietripInfo"></movietrip>
+    <destination-footer></destination-footer>
   </div>
 </template>
 <script>
   import Search from 'components/common/search'
+  import destinationFooter from '../../components/destinationFooter'
   import Icons from './icons'
   import Selection from './selection'
   import Couple from './couple'
@@ -57,7 +59,8 @@
       Selection,
       Couple,
       Babytrip,
-      Movietrip
+      Movietrip,
+      destinationFooter
     },
     created () {
       this.getIndexData()
