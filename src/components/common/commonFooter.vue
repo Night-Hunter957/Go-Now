@@ -34,10 +34,14 @@ export default {
   mounted () {
     let title = this.$route.name
     switch (title) {
-      case 'index' : this.$refs.index.style.fontWeight = 900;break;
-      case 'destination' : this.$refs.destination.style.fontWeight = 900;break;
-      case 'hotel' : this.$refs.hotel.style.fontWeight = 900;break;
-      case 'mine' : this.$refs.mine.style.fontWeight = 900;break;
+      case 'index' : this.$refs.index.style.fontWeight = 900
+        break
+      case 'destination' : this.$refs.destination.style.fontWeight = 900
+        break
+      case 'hotel' : this.$refs.hotel.style.fontWeight = 900
+        break
+      case 'mine' : this.$refs.mine.style.fontWeight = 900
+        break
     }
   }
 }
