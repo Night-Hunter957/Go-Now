@@ -68,7 +68,7 @@ export default {
       handleScroll () {
         const pageHeight = document.body.clientHeight
         const screenHeight = window.screen.height
-        const scrollTop = document.documentElement.scrollTop
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
         if (scrollTop >= pageHeight - screenHeight - 40 && !this.isLoading) {
           this.getListInfo()
           this.isLoading = true
