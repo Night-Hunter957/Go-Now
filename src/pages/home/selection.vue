@@ -29,19 +29,19 @@
   import BScroll from 'better-scroll'
   export default{
     name: 'selection',
-    props: { 
+    props: {
       selectionInfo: Array
     },
     methods: {
 
     },
-    mounted() {
-     this.scroll = new BScroll(this.$refs.wrapper, {
-     	scrollX: true,
-     	scrollY: false,
-     	eventPassthrough: 'vertical',
-     	click: true
-     })
+    mounted () {
+      this.scroll = new BScroll(this.$refs.wrapper, {
+        scrollX: true,
+        scrollY: false,
+        eventPassthrough: 'vertical',
+        click: true
+      })
     }
 }
 </script>

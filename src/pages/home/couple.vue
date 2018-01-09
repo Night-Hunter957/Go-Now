@@ -29,16 +29,16 @@
   import BScroll from 'better-scroll'
   export default{
     name: 'couple',
-    props: { 
+    props: {
       coupleInfo: Array
     },
-    mounted() {
-     this.scroll = new BScroll(this.$refs.wrapper, {
-     	scrollX: true,
-     	scrollY: false,
-     	eventPassthrough: 'vertical',
-     	click: true
-     })
+    mounted () {
+      this.scroll = new BScroll(this.$refs.wrapper, {
+        scrollX: true,
+        scrollY: false,
+        eventPassthrough: 'vertical',
+        click: true
+      })
     }
 }
 </script>
