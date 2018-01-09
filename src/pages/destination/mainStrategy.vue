@@ -3,7 +3,7 @@
     <h2 class="strategy-title">自行游攻略</h2>
     <transition name="loading">  
       <div class="loadingBox" v-show="isLoading">
-        <img class="loadImg" src="../../../static/juhua.gif" alt="">
+        <img class="loadImg" src="../../../static/img/juhua.gif" alt="">
         <span>正在加载……</span>
       </div>
     </transition>

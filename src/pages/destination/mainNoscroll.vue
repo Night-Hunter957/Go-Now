@@ -17,7 +17,7 @@
     </div>
     <transition name="loading">  
       <div class="loadingBox" v-show="isLoading" ref="loadingBox">
-        <img class="loadImg" src="../../../static/juhua.gif" alt="">
+        <img class="loadImg" src="../../../static/img/juhua.gif" alt="">
         <span>正在加载……</span>
       </div>
     </transition>

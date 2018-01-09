@@ -62,19 +62,19 @@
     width: .4rem;
   }
   .item-index {
-    background: url(../../../static/img/首页icon.png);
+    background: url(../../static/img/首页icon.png);
     background-size: 100% 100%;
   }
   .item-destination {
-    background: url(../../../static/img/目的地icon.png);
+    background: url(../../static/img/目的地icon.png);
     background-size: 100% 100%;
   }
   .item-hotel {
-    background: url(../../../static/img/酒店icon.png);
+    background: url(../../static/img/酒店icon.png);
     background-size: 100% 100%;
   }
   .item-mine {
-    background: url(../../../static/img/我的icon.png);
+    background: url(../../static/img/我的icon.png);
     background-size: 100% 100%;
   }
   .items-name {

@@ -15,7 +15,7 @@
   import destinationHeader from './destinationHeader'
   import destinationIcons from './destinationIcons'
   import destinationMain from './destinationMain'
-  import destinationFooter from './destinationFooter'
+  import destinationFooter from '../../components/destinationFooter'
   import { mapState, mapMutations } from 'vuex'
   export default {
     components: {
