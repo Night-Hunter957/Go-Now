@@ -10,11 +10,9 @@ export default {
   created () {
     let phoneOS = navigator.userAgent
     const IOS = new RegExp('iPhone', 'g')
-    console.log(IOS.test(phoneOS))
     if (IOS.test(phoneOS)) {
       document.body.style.fontFamily = 'iosfont'
     }
-    
   }
 }
 </script>
