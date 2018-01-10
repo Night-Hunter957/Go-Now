@@ -16,7 +16,7 @@
         <em class="items-name">酒店</em>
       </router-link>
 
-      <router-link to="/" tag="div" class="footer-items">
+      <router-link to="/mine" tag="div" class="footer-items">
         <i class="items-icon item-mine" ref="mine"></i>
         <em class="items-name">我的</em>
       </router-link>
@@ -34,25 +34,25 @@ export default {
   mounted () {
     let title = this.$route.name
     if (title === 'index') {
-      this.$refs.index.style.background = 'url(../../../static/img/首页icon2.png)'
-      this.$refs.destination.style.background = 'url(../../../static/img/目的地icon1.png)'
-      this.$refs.hotel.style.background = 'url(../../../static/img/酒店icon1.png)'
-      this.$refs.mine.style.background = 'url(../../../static/img/我的icon1.png)'
+      this.$refs.index.style.backgroundImage = 'url(../../../static/img/indexicon2.png)'
+      this.$refs.destination.style.backgroundImage = 'url(../../../static/img/destinationicon1.png)'
+      this.$refs.hotel.style.backgroundImage = 'url(../../../static/img/hotelicon1.png)'
+      this.$refs.mine.style.backgroundImage = 'url(../../../static/img/mineicon1.png)'
     } else if (title === 'destination') {
-      this.$refs.index.style.background = 'url(../../../static/img/首页icon1.png)'
-      this.$refs.destination.style.background = 'url(../../../static/img/目的地icon2.png)'
-      this.$refs.hotel.style.background = 'url(../../../static/img/酒店icon1.png)'
-      this.$refs.mine.style.background = 'url(../../../static/img/我的icon1.png)'
+      this.$refs.index.style.backgroundImage = 'url(../../../static/img/indexicon1.png)'
+      this.$refs.destination.style.backgroundImage = 'url(../../../static/img/destinationicon2.png)'
+      this.$refs.hotel.style.backgroundImage = 'url(../../../static/img/hotelicon1.png)'
+      this.$refs.mine.style.backgroundImage = 'url(../../../static/img/mineicon1.png)'
     } else if (title === 'hotel') {
-      this.$refs.index.style.background = 'url(../../../static/img/首页icon1.png)'
-      this.$refs.destination.style.background = 'url(../../../static/img/目的地icon1.png)'
-      this.$refs.hotel.style.background = 'url(../../../static/img/酒店icon2.png)'
-      this.$refs.mine.style.background = 'url(../../../static/img/我的icon1.png)'
+      this.$refs.index.style.backgroundImage = 'url(../../../static/img/indexicon1.png)'
+      this.$refs.destination.style.backgroundImage = 'url(../../../static/img/destinationicon1.png)'
+      this.$refs.hotel.style.backgroundImage = 'url(../../../static/img/hotelicon2.png)'
+      this.$refs.mine.style.backgroundImage = 'url(../../../static/img/mineicon1.png)'
     } else {
-      this.$refs.index.style.background = 'url(../../../static/img/首页icon1.png)'
-      this.$refs.destination.style.background = 'url(../../../static/img/目的地icon1.png)'
-      this.$refs.hotel.style.background = 'url(../../../static/img/酒店icon1.png)'
-      this.$refs.mine.style.background = 'url(../../../static/img/我的icon2.png)'
+      this.$refs.index.style.backgroundImage = 'url(../../../static/img/indexicon1.png)'
+      this.$refs.destination.style.backgroundImage = 'url(../../../static/img/destinationicon1.png)'
+      this.$refs.hotel.style.backgroundImage = 'url(../../../static/img/hotelicon1.png)'
+      this.$refs.mine.style.backgroundImage = 'url(../../../static/img/mineicon2.png)'
     }
   }
 }
@@ -91,19 +91,19 @@ export default {
     width: .4rem;
   }
   .item-index {
-    background: url(../../../static/img/首页icon2.png);
+    background: url(../../../static/img/indexicon2.png);
     background-size: 100% 100%!important;
   }
   .item-destination {
-    background: url(../../../static/img/目的地icon1.png);
+    background: url(../../../static/img/destinationicon1.png);
     background-size: 100% 100%!important;
   }
   .item-hotel {
-    background: url(../../../static/img/酒店icon1.png);
+    background: url(../../../static/img/hotelicon1.png);
     background-size: 100% 100%!important;
   }
   .item-mine {
-    background: url(../../../static/img/我的icon1.png);
+    background: url(../../../static/img/mineicon1.png);
     background-size: 100% 100%!important;
   }
   .items-name {

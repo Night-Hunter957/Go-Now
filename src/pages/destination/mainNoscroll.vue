@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h2 class="strategy-title">自行游攻略</h2>
+    <h2 class="strategy-title">自行游攻略<span class="strategy-more">更多<i class="iconfont right-arr">&#xe601;</i></span></h2>
     <div class="strategy-info">
       <ul class="strategy-list">
         <li class="strategy-item" v-for="item in list" :key="item.id">
           <div class="item-user">
-            <p class="item-title">{{item.title + pageNum}}</p>
+            <p class="item-title">{{item.title}}</p>
             <p class="item-comment">
               <span class="browse">{{item.browseNum}}</span>浏览·
               <span class="collect">{{item.collect}}</span>收藏
@@ -18,7 +18,7 @@
     <transition name="loading">  
       <div class="loadingBox" v-show="isLoading" ref="loadingBox">
         <img class="loadImg" src="../../../static/img/juhua.gif" alt="">
-        <span>正在加载……</span>
+        <span ref="loadingstatus">正在加载……</span>
       </div>
     </transition>
     <div class="toTop" v-show="toTopShow" ref="toTop" @click="totopClick">
@@ -49,7 +49,7 @@ export default {
     methods: {
       getListInfo () {
         this.$http.get('/static/loadStrategy.json?city=' + this.city + '&page=' + this.pageNum)
-          .then(this.handleGetDataSucc.bind(this))
+          .then(this.handleGetDataSucc.bind(this), this.handleGetDataError.bind(this))
       },
       handleGetDataSucc (res) {
         res = res ? res.body : null
@@ -57,6 +57,10 @@ export default {
           this.loadstrategy = this.loadstrategy.concat(res.strategy)
           this.pageNum += 1
         }
+      },
+      handleGetDataError () {
+        this.isLoading = true
+        this.$refs.loadingstatus.innerHtml = '已经加载全部~~'
       },
       bindScroll () {
         this.proxyFn = this.handleScroll.bind(this)
@@ -108,12 +112,29 @@ export default {
 
 <style scoped>
   .strategy-title {
+    box-sizing:border-box;
+    padding-left: .2rem;
+    margin:.28rem 0;
     width: 100%;
     overflow: hidden;
-    line-height: .88rem;
-    font-size: .36rem;
+    line-height: .32rem;
+    font-size: .32rem;
+    font-weight: 900;
     white-space: nowrap;
     text-overflow: ellipsis;
+    border-left: .06rem solid #fdb92f;
+  }
+  .strategy-more {
+    position: absolute;
+    font-size: .2rem;
+    color: #808080;
+    right: .2rem;
+    line-height: .32rem;
+  }
+  .right-arr {
+    font-size: .4rem;
+    line-height: .32rem;
+    float: right;
   }
   .loadingBox {
     text-align: center;
@@ -156,7 +177,7 @@ export default {
     overflow: hidden;
     line-height: .38rem;
     font-weight: 600;
-    font-size: .32rem;
+    font-size: .28rem;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;

@@ -13,15 +13,12 @@
     </div>
     <div class="header-position">
       <div class="position-addr">
-        
-          <span class="addr-province">中国</span>
           <span class="addr-city">
           <router-link to="/city" tag="div" class="routerLink">
+            <i class="cityicon"></i>
             <em class="city">{{city}}</em>
-            <i class="iconfont cityicon">&#xe620;</i>
           </router-link>
           </span>
-        
       </div>
       
       <div class="position-temp">
@@ -99,6 +96,7 @@
 </script>
 <style scoped lang="stylus">
   .destination-header {
+    height: 4.6rem;
     width: 100%;
     background-size: 100% 100%;
     background-color:#000; 
@@ -113,12 +111,12 @@
     top: 0;
   }
   .search-con-top {
-    background: #fff;
-    color: #ea440f;
+    background: #f5f5f5;
+    color: #feb92f;
     z-index: 99999;
   }
   .search-box-top {
-    border: 1px solid #ea440f!important;
+    border: 1px solid #feb92f!important;
     color: #000!important;
   }
   .search-history,.search-position{
@@ -141,20 +139,17 @@
   }
   .header-position {
     display: flex;
-    height: 1.6rem;
+    height: 2rem;
     width: 100%;
-    padding-top: 1.54rem;
+    padding-top: 1.64rem;
     color: #fff;
   }
   .position-addr {
     width: 50%;
     margin-left: .38rem;
   }
-  .addr-province {
-    font-size: .28rem;
-    margin-bottom: .3rem;
-  }
   .addr-city { 
+    display: inline-block;
     font-size: .5rem;
     font-weight: 400;
     margin-left: .1rem;  
@@ -167,12 +162,17 @@
     text-overflow: ellipsis;
   }
   .addr-city {
-    display: inline-block;
+    
 
   }
   .routerLink {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    max-width: 4rem;
+    min-width: 2.2rem;
+    line-height: 1rem;
+    background: rgba(0,0,0,0.5);
+    border-radius: .2rem;
   }
   .city {
     overflow: hidden;
@@ -181,15 +181,17 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+  .cityicon {
+    height: .44rem;
+    width: .44rem;
+    background: url(../../../static/img/cityicon.png);
+    background-size: 100% 100%;
+    margin: .28rem .14rem;
+  }
   .position-temp {
     position: relative;
     width: 50%;
     margin-right: .38rem;
-  }
-  .cityicon {
-    display: inline-block;
-    line-height: .5rem;
-    margin-left: .1rem;
   }
   .position-temp,.position-addr {
     border-bottom: 1px solid #fff;

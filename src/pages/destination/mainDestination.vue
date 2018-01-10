@@ -1,6 +1,11 @@
 <template>
 	<div>
-    <h2 class="hotviews-title">热门目的地</h2>
+    <div class="title-box">
+      <h2 class="hotviews-title">
+        热门目的地
+        <span class="hotviews-more">更多<i class="iconfont right-arr">&#xe601;</i></span>
+      </h2>
+    </div>
     <div class="hotviews-info border-bottom" ref="hotscroll">
       <ul class="hotviews-list">
         <li class="hotviews-item" v-for="item in views" :key="item.id" @click="handlChangeCity(item.address)">
@@ -17,9 +22,6 @@
         </li>
       </ul>
     </div> 
-    <div>
-        <p class="more-views">查看更多<i class="iconfont">&#xe601;</i></p>
-    </div>
 	</div>
 </template>
 
@@ -56,13 +58,35 @@ export default {
 </script>
 
 <style scoped>
+  .title-box {
+    padding: .28rem 0;
+    box-shadow: 0 .04rem .04rem .04rem #000;
+    margin-bottom: .2rem;
+  }
   .hotviews-title {
+    box-sizing:border-box;
+    position: relative;
     width: 100%;
     overflow: hidden;
-    line-height: .88rem;
-    font-size: .36rem;
+    padding-left: .2rem;
+    line-height: .32rem;
+    font-size: .3rem;
+    font-weight: 900;
     white-space: nowrap;
     text-overflow: ellipsis;
+    border-left: .06rem solid #fdb92f;
+  }
+  .hotviews-more {
+    position: absolute;
+    font-size: .2rem;
+    color: #808080;
+    right: .2rem;
+    line-height: .32rem;
+  }
+  .right-arr {
+    font-size: .4rem;
+    line-height: .32rem;
+    float: right;
   }
   .hotviews-info {
     overflow: hidden;
@@ -105,12 +129,6 @@ export default {
     justify-content: flex-start;
     font-size: .24rem;
     line-height: .28rem;
-  }
-  .more-views {
-    background: #fff;
-    line-height: .88rem;
-    color: #44c9e0;
-    text-align: center;
   }
   .number {
     display: inline-block;

@@ -14,13 +14,11 @@
 <script>
   import mainDestination from './mainDestination'
   import mainTravels from './mainTravels'
-  import mainStrategy from './mainStrategy'
   import mainNoscroll from './mainNoscroll'
   export default {
     components: {
       mainDestination,
       mainTravels,
-      mainStrategy,
       mainNoscroll
     },
     props: ['adds', 'views', 'travels', 'strategy'],

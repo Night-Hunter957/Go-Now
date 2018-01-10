@@ -16,13 +16,13 @@
     props: ['cityList'],
     mounted () {
       this.scroll = new BScroll(this.$refs.scroller, {
-        bounceTime: 300
+        bounceTime: 300,
+        click: true
       })
     },
     methods: {
       handleChooseCity (city) {
         this.getCity(city)
-        console.log(this.city)
         this.$nextTick(() => {
           this.$router.go(-1)
         })
@@ -31,6 +31,13 @@
     },
     computed: {
       ...mapState(['city'])
+    },
+    watch: {
+      cityList () {
+        this.$nextTick(() => {
+          this.scroll.refresh()
+        })
+      }
     }
   }
 </script>

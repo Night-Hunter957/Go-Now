@@ -4,6 +4,7 @@ import Destination from '@/pages/destination/index'
 import City from '@/pages/city/index'
 import Chinesemap from '@/pages/map/map.vue'
 import TravelInfo from '@/pages/destination/travel/travelInfo.vue'
+import Mine from '@/pages/mine/index'
 
 Vue.use(Router)
 
@@ -30,6 +31,10 @@ export default new Router({
       path: '/travelInfo/:id',
       name: 'travelInfo',
       component: TravelInfo
+    }, {
+      path: '/mine',
+      name: 'mine',
+      component: Mine
     }
   ]
 })

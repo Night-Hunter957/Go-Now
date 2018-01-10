@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="hottravel-title">热门游记</h2>
+    <h2 class="hottravel-title">热门游记<span class="hottravel-more">更多<i class="iconfont right-arr">&#xe601;</i></span></h2>
     <div class="hottravel-info border-bottom" ref="hotscroll">
       <ul class="hottravel-list">
         <li class="hottravel-item" v-for="item in travels" :key="item.id">
@@ -18,9 +18,6 @@
         </li>
       </ul>
     </div> 
-    <div>
-        <p class="more-travel">查看更多<i class="iconfont">&#xe601;</i></p>
-    </div>
   </div>
 </template>
 
@@ -48,12 +45,29 @@ export default {
 
 <style scoped>
   .hottravel-title {
+    box-sizing:border-box;
     width: 100%;
+    padding-left: .2rem;
+    margin:.28rem 0;
     overflow: hidden;
-    line-height: .88rem;
-    font-size: .36rem;
+    line-height: .32rem;
+    font-size: .32rem;
+    font-weight: 900;
     white-space: nowrap;
     text-overflow: ellipsis;
+    border-left: .06rem solid #fdb92f;
+  }
+  .hottravel-more {
+    position: absolute;
+    font-size: .2rem;
+    color: #808080;
+    right: .2rem;
+    line-height: .32rem;
+  }
+  .right-arr {
+    font-size: .4rem;
+    line-height: .32rem;
+    float: right;
   }
   .hottravel-info {
     overflow: hidden;
@@ -89,12 +103,6 @@ export default {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-  }
-  .more-travel {
-    background: #fff;
-    line-height: .88rem;
-    color: #44c9e0;
-    text-align: center;
   }
   .item-user {
     width: 100%;
