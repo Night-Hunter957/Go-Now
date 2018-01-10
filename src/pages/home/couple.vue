@@ -2,7 +2,7 @@
   <div class="selection">
   	<h2 class="title">
   		<span class="tipL">情侣旅行</span>
-  		<span class="tipR">查看更多</span>
+  		<span class="tipR">更多  ></span>
   	</h2>
   	<div class="selBox" ref="wrapper">
   	  <ul class="selList">
@@ -39,6 +39,13 @@
         eventPassthrough: 'vertical',
         click: true
       })
+    },
+    watch: {
+      coupleInfo () {
+        this.$nextTick(() => {
+          this.scroll.refresh()
+        })
+      }
     }
 }
 </script>
@@ -53,8 +60,21 @@
       height:.8rem
       .tipL
         float:left
+        width:3rem
+        overflow: hidden;
+        font-weight: 600
+        font-size: .32rem
+        padding-left: .15rem
+        border-left:3px solid orange
+        white-space: nowrap;
+        text-overflow: ellipsis;
       .tipR
         float:right
+        width:2rem
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-align:right
         margin-right:.2rem
     .selBox
       width: 100%
@@ -73,6 +93,11 @@
             width:6.6rem
             height:3.7rem
           .sel-desc
+            font-weight:800
+            display:-webkit-box
+            -webkit-box-orient: vertical
+            -webkit-line-clamp:2
+            overflow: hidden
             margin-top:.2rem
             width: 6.6rem
             height: 1.09rem
@@ -86,8 +111,15 @@
             height:.47rem
             line-height:.47rem
             .res-left
+              width:3.5rem
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
               img
                 width:.5rem
                 height:.5rem
                 border-radius:50%
+            .res-right
+              span
+                font-weight:600
 </style>
