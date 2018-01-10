@@ -60,7 +60,7 @@ export default {
 <style scoped>
   .title-box {
     padding: .28rem 0;
-    box-shadow: 0 .04rem .04rem .04rem #000;
+    box-shadow: 0px 1px 2px 2px #999;
     margin-bottom: .2rem;
   }
   .hotviews-title {

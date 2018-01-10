@@ -3,7 +3,7 @@
     <h2 class="strategy-title">自行游攻略<span class="strategy-more">更多<i class="iconfont right-arr">&#xe601;</i></span></h2>
     <div class="strategy-info">
       <ul class="strategy-list">
-        <li class="strategy-item" v-for="item in list" :key="item.id">
+        <li class="strategy-item border-bottom" v-for="item in list" :key="item.id">
           <div class="item-user">
             <p class="item-title">{{item.title}}</p>
             <p class="item-comment">

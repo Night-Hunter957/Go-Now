@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2 class="hottravel-title">热门游记<span class="hottravel-more">更多<i class="iconfont right-arr">&#xe601;</i></span></h2>
+    <div class="title-box">
+      <h2 class="hottravel-title">热门游记<span class="hottravel-more">更多<i class="iconfont right-arr">&#xe601;</i></span></h2>
+    </div>
     <div class="hottravel-info border-bottom" ref="hotscroll">
       <ul class="hottravel-list">
         <li class="hottravel-item" v-for="item in travels" :key="item.id">
@@ -44,11 +46,15 @@ export default {
 </script>
 
 <style scoped>
+  .title-box {
+    padding: .28rem 0;
+    box-shadow: 0px 0px 2px 2px #999;
+    margin-bottom: .2rem;
+  }
   .hottravel-title {
     box-sizing:border-box;
     width: 100%;
-    padding-left: .2rem;
-    margin:.28rem 0;
+    padding-left: .2rem;;
     overflow: hidden;
     line-height: .32rem;
     font-size: .32rem;
