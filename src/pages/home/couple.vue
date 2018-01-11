@@ -39,6 +39,13 @@
         eventPassthrough: 'vertical',
         click: true
       })
+    },
+    watch: {
+      coupleInfo () {
+        this.$nextTick(() => {
+          this.scroll.refresh()
+        })
+      }
     }
 }
 </script>

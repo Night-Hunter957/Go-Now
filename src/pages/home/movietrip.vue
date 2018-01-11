@@ -39,6 +39,13 @@
         eventPassthrough: 'vertical',
         click: true
       })
+    },
+    watch: {
+      movietripInfo () {
+        this.$nextTick(() => {
+          this.scroll.refresh()
+        })
+      }
     }
 }
 </script>

@@ -42,6 +42,13 @@
         eventPassthrough: 'vertical',
         click: true
       })
+    },
+    watch: {
+      selectionInfo () {
+        this.$nextTick(() => {
+          this.scroll.refresh()
+        })
+      }
     }
 }
 </script>
