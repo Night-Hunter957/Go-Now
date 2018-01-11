@@ -1,10 +1,13 @@
 <template>
   <div>
-    <h2 class="strategy-title">自行游攻略<span class="strategy-more">更多<i class="iconfont right-arr">&#xe601;</i></span></h2>
+    <div class="title-box">
+      <h2 class="strategy-title">攻略<span class="strategy-more">更多<i class="iconfont right-arr">&#xe610;</i></span></h2>
+    </div>
     <div class="strategy-info">
       <ul class="strategy-list">
-        <li class="strategy-item border-bottom" v-for="item in list" :key="item.id">
+        <li class="strategy-item border-bottom" v-for="(item, index) in list" :key="index">
           <div class="item-user">
+            <p class="item-name">云南小镇</p>
             <p class="item-title">{{item.title}}</p>
             <p class="item-comment">
               <span class="browse">{{item.browseNum}}</span>浏览·
@@ -111,14 +114,19 @@ export default {
 </script>
 
 <style scoped>
+  .title-box {
+    padding: .28rem 0;
+    padding-left: .2rem;
+    box-shadow: 0px 1px 2px 2px #eaeaea;
+    margin-bottom: .2rem;
+  }
   .strategy-title {
     box-sizing:border-box;
     padding-left: .2rem;
-    margin:.28rem 0;
     width: 100%;
     overflow: hidden;
     line-height: .32rem;
-    font-size: .32rem;
+    font-size: .3rem;
     font-weight: 900;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -129,11 +137,12 @@ export default {
     font-size: .2rem;
     color: #808080;
     right: .2rem;
-    line-height: .32rem;
+    margin-top: .05rem;
+    line-height: .22rem;
   }
   .right-arr {
-    font-size: .4rem;
-    line-height: .32rem;
+    font-size: .22rem;
+    line-height: .22rem;
     float: right;
   }
   .loadingBox {
@@ -160,28 +169,35 @@ export default {
     width: 100%;
   }
   .strategy-item {
+    box-sizing:border-box;
     display: flex;
     justify-content: space-between;
     box-sizing:border-box;
     width: 100%;
     padding: .2rem;
-    padding-left: 0;
   }
   .item-img {
     display: block;
-    width: 2.3rem;
-    height: 1.64rem;
+    width: 2.6rem;
+    height: 1.9rem;
   }
   .item-title {
     height: .76rem;
     overflow: hidden;
     line-height: .38rem;
-    font-weight: 600;
+    font-weight: 400;
     font-size: .28rem;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+  }
+  .item-name {
+    font-size: .28rem;
+    font-weight: 900;
+  }
+  .item-comment {
+    font-size: .24rem;
   }
   .item-user {
     flex: 1;
@@ -192,6 +208,7 @@ export default {
   }
   .browse,.collect {
     margin-right: .1rem;
+    font-weight: 900;
   }
   .toTop{
     position: fixed;

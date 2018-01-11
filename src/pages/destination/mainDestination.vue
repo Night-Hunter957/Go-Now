@@ -3,7 +3,7 @@
     <div class="title-box">
       <h2 class="hotviews-title">
         热门目的地
-        <span class="hotviews-more">更多<i class="iconfont right-arr">&#xe601;</i></span>
+        <span class="hotviews-more">更多<i class="iconfont right-arr">&#xe610;</i></span>
       </h2>
     </div>
     <div class="hotviews-info border-bottom" ref="hotscroll">
@@ -60,7 +60,8 @@ export default {
 <style scoped>
   .title-box {
     padding: .28rem 0;
-    box-shadow: 0px 1px 2px 2px #999;
+    padding-left: .2rem;
+    box-shadow: 0px 1px 2px 2px #eaeaea;
     margin-bottom: .2rem;
   }
   .hotviews-title {
@@ -78,19 +79,21 @@ export default {
   }
   .hotviews-more {
     position: absolute;
-    font-size: .2rem;
+    font-size: .22rem;
     color: #808080;
     right: .2rem;
-    line-height: .32rem;
+    margin-top: .05rem;
+    line-height: .22rem;
   }
   .right-arr {
-    font-size: .4rem;
-    line-height: .32rem;
+    font-size: .22rem;
+    line-height: .22rem;
     float: right;
   }
   .hotviews-info {
     overflow: hidden;
     width: 100%;
+    padding-left: .2rem;
   }
   .hotviews-info::before {
     border-color: #9e9e9e;
@@ -98,19 +101,23 @@ export default {
   .hotviews-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    width: 18rem;
+    justify-content: flex-start;
+    width: 26.4rem;
   }
   .hotviews-item {
     display: flex;
+    white-space: nowrap;
     width: 4.4rem;
   }
   .item-img {
-    width: 1.88rem;
-    height: 1.34rem;
-    margin-bottom: .3rem;
+    width: 2rem;
+    height: 1.4rem;
+    margin-bottom: .2rem;
   }
   .item-txt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     flex: 1;
     padding: .2rem;
   }
@@ -118,9 +125,9 @@ export default {
     display: block;
     width: 100%;
     overflow: hidden;
-    font-size: .4rem;
+    font-size: .3rem;
     font-weight: 900;
-    margin-bottom: .2rem;
+    margin-bottom: .3rem;
     white-space: nowrap;
     text-overflow: ellipsis;
   }

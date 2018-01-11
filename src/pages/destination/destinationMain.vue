@@ -40,7 +40,6 @@
     width: 100%;
   }
   .main-hotviews {
-    padding-left: .4rem;
     overflow: hidden;
     background: #fff;
   }
