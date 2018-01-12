@@ -70,7 +70,7 @@
           scrollTop = scrollTop - speed
           window.scrollTo(0, scrollTop)
           if (scrollTop <= 5) { clearInterval(timer) }
-        }, 20)
+        }, 30)
       }
     },
     mounted () {
