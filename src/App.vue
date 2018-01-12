@@ -20,6 +20,6 @@ export default {
 <style>
 	@font-face {
     font-family: 'iosfont';   /*字体名称*/
-    src: url('./assets/styles/fontStyle/PingFang Regular.ttf');       /*字体源文件*/
+    src: url('./assets/styles/fontStyle/PingFang Medium.ttf');       /*字体源文件*/
   }
 </style>

@@ -26,7 +26,7 @@
       </span>
       <span class="more-img">
         339万张图片
-        <i class="iconfont">&#xe610;</i>
+        <i class="iconfont right-arr">&#xe610;</i>
       </span>
     </div>    
 
@@ -196,6 +196,14 @@
   .more-img {
     position: absolute;
     bottom: .3rem;
+    left: .2rem;
+    color: #fff;
+    font-size: .28rem;
+    line-height: .3rem;
+  }
+  .right-arr {
+    font-size: .24rem;
+    line-height: .3rem;
   }
   .temp-icon {
     display: inline-block;
