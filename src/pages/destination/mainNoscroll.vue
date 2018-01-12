@@ -1,11 +1,14 @@
 <template>
   <div>
-    <h2 class="strategy-title">自行游攻略</h2>
+    <div class="title-box">
+      <h2 class="strategy-title">攻略<span class="strategy-more">更多<i class="iconfont right-arr">&#xe610;</i></span></h2>
+    </div>
     <div class="strategy-info">
       <ul class="strategy-list">
-        <li class="strategy-item" v-for="item in list" :key="item.id">
+        <li class="strategy-item border-bottom" v-for="(item, index) in list" :key="index">
           <div class="item-user">
-            <p class="item-title">{{item.title + pageNum}}</p>
+            <p class="item-name">云南小镇</p>
+            <p class="item-title">{{item.title}}</p>
             <p class="item-comment">
               <span class="browse">{{item.browseNum}}</span>浏览·
               <span class="collect">{{item.collect}}</span>收藏
@@ -18,7 +21,7 @@
     <transition name="loading">  
       <div class="loadingBox" v-show="isLoading" ref="loadingBox">
         <img class="loadImg" src="../../../static/img/juhua.gif" alt="">
-        <span>正在加载……</span>
+        <span ref="loadingstatus">正在加载……</span>
       </div>
     </transition>
     <div class="toTop" v-show="toTopShow" ref="toTop" @click="totopClick">
@@ -49,7 +52,7 @@ export default {
     methods: {
       getListInfo () {
         this.$http.get('/static/loadStrategy.json?city=' + this.city + '&page=' + this.pageNum)
-          .then(this.handleGetDataSucc.bind(this))
+          .then(this.handleGetDataSucc.bind(this), this.handleGetDataError.bind(this))
       },
       handleGetDataSucc (res) {
         res = res ? res.body : null
@@ -57,6 +60,10 @@ export default {
           this.loadstrategy = this.loadstrategy.concat(res.strategy)
           this.pageNum += 1
         }
+      },
+      handleGetDataError () {
+        this.isLoading = true
+        this.$refs.loadingstatus.innerHtml = '已经加载全部~~'
       },
       bindScroll () {
         this.proxyFn = this.handleScroll.bind(this)
@@ -68,10 +75,11 @@ export default {
       handleScroll () {
         const pageHeight = document.body.clientHeight
         const screenHeight = window.screen.height
-        const scrollTop = document.documentElement.scrollTop
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
         if (scrollTop >= pageHeight - screenHeight - 40 && !this.isLoading) {
           this.getListInfo()
           this.isLoading = true
+        } else if (scrollTop > screenHeight) {
           this.toTopShow = true
         } else if (scrollTop <= 10) {
           this.toTopShow = false
@@ -106,13 +114,36 @@ export default {
 </script>
 
 <style scoped>
+  .title-box {
+    padding: .28rem 0;
+    padding-left: .2rem;
+    box-shadow: 0px 1px 2px 2px #eaeaea;
+    margin-bottom: .2rem;
+  }
   .strategy-title {
+    box-sizing:border-box;
+    padding-left: .2rem;
     width: 100%;
     overflow: hidden;
-    line-height: .88rem;
-    font-size: .36rem;
+    line-height: .32rem;
+    font-size: .3rem;
+    font-weight: 900;
     white-space: nowrap;
     text-overflow: ellipsis;
+    border-left: .06rem solid #fdb92f;
+  }
+  .strategy-more {
+    position: absolute;
+    font-size: .2rem;
+    color: #808080;
+    right: .2rem;
+    margin-top: .05rem;
+    line-height: .22rem;
+  }
+  .right-arr {
+    font-size: .22rem;
+    line-height: .22rem;
+    float: right;
   }
   .loadingBox {
     text-align: center;
@@ -138,28 +169,35 @@ export default {
     width: 100%;
   }
   .strategy-item {
+    box-sizing:border-box;
     display: flex;
     justify-content: space-between;
     box-sizing:border-box;
     width: 100%;
     padding: .2rem;
-    padding-left: 0;
   }
   .item-img {
     display: block;
-    width: 2.3rem;
-    height: 1.64rem;
+    width: 2.6rem;
+    height: 1.9rem;
   }
   .item-title {
     height: .76rem;
     overflow: hidden;
     line-height: .38rem;
-    font-weight: 600;
-    font-size: .32rem;
+    font-weight: 400;
+    font-size: .28rem;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+  }
+  .item-name {
+    font-size: .28rem;
+    font-weight: 900;
+  }
+  .item-comment {
+    font-size: .24rem;
   }
   .item-user {
     flex: 1;
@@ -170,15 +208,14 @@ export default {
   }
   .browse,.collect {
     margin-right: .1rem;
+    font-weight: 900;
   }
   .toTop{
     position: fixed;
-    left: 0;
-    right: 0;
-    margin:0 auto;
-    bottom: .8rem;
-    height: .4rem;
-    width: .8rem;
+    right: 0.4rem;
+    bottom: 1.5rem;
+    height: 1.04rem;
+    width: 1.04rem;
     z-index: 9999;
   }
   .toTopicon {

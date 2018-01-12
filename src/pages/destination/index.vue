@@ -1,7 +1,7 @@
 <template>
 	<div class="destination">
 		<destination-header :headerInfo="headerInfo"></destination-header>
-    <common-icons></common-icons>
+    <destination-icons></destination-icons>
     <destination-main 
       :adds="adds" 
       :views="views" 
@@ -13,14 +13,14 @@
 </template>
 <script>
   import destinationHeader from './destinationHeader'
-  import commonIcons from '../../components/common/commonIcons'
+  import destinationIcons from './destinationIcons'
   import destinationMain from './destinationMain'
   import commonFooter from '../../components/common/commonFooter'
   import { mapState, mapMutations } from 'vuex'
   export default {
     components: {
       destinationHeader,
-      commonIcons,
+      destinationIcons,
       destinationMain,
       commonFooter
     },
@@ -38,6 +38,7 @@
     },
     watch: {
       city () {
+        window.scrollTo(0, 0)
         this.getDestData()
       }
     },

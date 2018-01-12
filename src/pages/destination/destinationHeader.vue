@@ -1,40 +1,35 @@
 <template>
 	<div class="destination-header" ref="header">
     <div class="search-con" ref="search">
-      <span class="iconfont search-history">&#xe60e;</span>
+      <span class="search-history" ref="history"></span>
       <span class="search-box" ref="searchBox">
-        <router-link to="/city" tag="span" class="search-box">
+        <router-link to="/city" tag="span" class="searchrouter">
+          <em class="searchicon" ref="searchicon"></em>
           {{headerInfo.searchtxt}}
         </router-link>
       </span>
       <router-link to="/Chinesemap" tag="div">
-        <span class="iconfont search-position">&#xe626;</span>
+        <span class="search-position" ref="map"></span>
       </router-link>
     </div>
-    <div class="header-position">
-      <div class="position-addr">
-        
-          <span class="addr-province">中国</span>
-          <span class="addr-city">
-          <router-link to="/city" tag="div" class="routerLink">
-            <em class="city">{{city}}</em>
-            <i class="iconfont cityicon">&#xe620;</i>
-          </router-link>
-          </span>
-        
-      </div>
-      
-      <div class="position-temp">
-        <span class="temp-num">
-          {{headerInfo.temperature}}
-          <i class="iconfont temp-icon">&#xe61a;</i>
-        </span>
-      </div>
-    </div>
-    <div class="header-time">
-      <span class="time-date">{{getdate}}</span>
-      <span class="time-week">{{getweek}}</span>
-    </div>
+
+    <div class="city-temp">
+      <span class="addr-city">
+        <router-link to="/city" tag="div" class="routerLink">
+          <i class="cityicon"></i>
+          <em class="city">{{city}}</em>
+        </router-link>
+      </span>
+      <span class="temp-num">
+        {{headerInfo.temperature}}
+        <i class="temp-icon"></i>
+      </span>
+      <span class="more-img">
+        339万张图片
+        <i class="iconfont right-arr">&#xe610;</i>
+      </span>
+    </div>    
+
 	</div>
 </template>
 <script>
@@ -46,21 +41,6 @@
       getRandBG () {
         const maxIndex = this.headerInfo.viewImg.length - 1
         return Math.round(Math.random() * maxIndex)
-      },
-      getdate () {
-        return new Date().toLocaleDateString()
-      },
-      getweek () {
-        const week = new Date().getDay()
-        switch (week) {
-          case 0 : return '星期日'
-          case 1 : return '星期一'
-          case 2 : return '星期二'
-          case 3 : return '星期三'
-          case 4 : return '星期四'
-          case 5 : return '星期五'
-          case 6 : return '星期六'
-        }
       }
     },
     watch: {
@@ -81,11 +61,19 @@
       handleScroll () {
         const scrolltop = document.documentElement.scrollTop || document.body.scrollTop
         if (scrolltop > 150) {
-          this.$refs.search.classList.add('search-con-top')
-          this.$refs.searchBox.classList.add('search-box-top')
+          this.$refs.history.style.backgroundImage = 'url(../../../static/img/historyicon2.png)'
+          this.$refs.map.style.backgroundImage = 'url(../../../static/img/mapicon2.png)'
+          this.$refs.searchicon.style.backgroundImage = 'url(../../../static/img/searchicon2.png)'
+          this.$refs.search.style.background = 'rgba(255,255,255,1)'
+          this.$refs.searchBox.style.background = 'rgba(0,0,0,.1)'
+          this.$refs.searchBox.style.color = 'rgba(0,0,0,1)'
         } else {
-          this.$refs.search.classList.remove('search-con-top')
-          this.$refs.searchBox.classList.remove('search-box-top')
+          this.$refs.history.style.backgroundImage = 'url(../../../static/img/historyicon1.png)'
+          this.$refs.map.style.backgroundImage = 'url(../../../static/img/mapicon1.png)'
+          this.$refs.searchicon.style.backgroundImage = 'url(../../../static/img/searchicon1.png)'
+          this.$refs.search.style.background = 'rgba(255,255,255,0)'
+          this.$refs.searchBox.style.background = 'rgba(255,255,255,.3)'
+          this.$refs.searchBox.style.color = 'rgba(255,255,255,1)'
         }
       }
     },
@@ -99,65 +87,74 @@
 </script>
 <style scoped lang="stylus">
   .destination-header {
+    height: 4.6rem;
     width: 100%;
     background-size: 100% 100%;
     background-color:#000; 
   }
   .search-con {
     width: 100%;
+    height: .88rem;
     display: flex;
-    padding-top: .5rem;
-    padding-bottom: .2rem;
     color: #fff;
     position: fixed;
     top: 0;
+    z-index: 9999;
   }
-  .search-con-top {
-    background: #fff;
-    color: #ea440f;
-    z-index: 99999;
-  }
-  .search-box-top {
-    border: 1px solid #ea440f!important;
-    color: #000!important;
-  }
-  .search-history,.search-position{
+  .search-history{
     display: inline-block;
-    width: .38rem;
-    padding: 0 .36rem;
-    font-size: .38rem;
-    line-height: .54rem;
-    font-weight: 900;
+    width: .34rem;
+    height: .34rem;
+    background: url(../../../static/img/historyicon1.png);
+    background-size: 100% 100%;
+    margin:.28rem .46rem .1rem .4rem;
+  }
+  .search-position {
+    display: inline-block;
+    width: .34rem;
+    height: .34rem;
+    background: url(../../../static/img/mapicon1.png);
+    background-size: 100% 100%;
+    margin:.28rem .4rem .1rem .46rem;
   }
   .search-box {
     flex: 1;
-    background: #fff;
-    opacity: .7;
-    color: #666;
-    line-height: .54rem;
+    height: .6rem;
+    margin-top: .14rem;
+    background:rgba(255,255,255,.3);
+    color: #fff;
+    line-height: .6rem;
     border-radius: .1rem;
     text-align: center;
-    border: 1px solid #fff;
   }
-  .header-position {
-    display: flex;
-    height: 1.6rem;
-    width: 100%;
-    padding-top: 1.54rem;
-    color: #fff;
+  .searchrouter {
+    position: relative;
   }
-  .position-addr {
-    width: 50%;
-    margin-left: .38rem;
+  .searchicon {
+    position: absolute;
+    display: inline-block;
+    width: .34rem;
+    height: .34rem;
+    margin-top: .13rem;
+    left: -0.54rem;
+    background: url(../../../static/img/searchicon1.png);
+    background-size: 100% 100%;
   }
-  .addr-province {
-    font-size: .28rem;
-    margin-bottom: .3rem;
+  .city-temp {
+    box-sizing:border-box;
+    height: 100%;
+    padding-top: 1.24rem;
+    position: relative;
   }
-  .addr-city { 
-    font-size: .5rem;
+  .addr-city {
+    position:absolute;
+    top: 1.5rem;
+    left: .2rem;  
+    display: inline-block;
+    font-size: .38rem;
     font-weight: 400;
     margin-left: .1rem;  
+    color: #fff;
   }
   .addr-province {
     overflow: hidden;
@@ -166,13 +163,14 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-  .addr-city {
-    display: inline-block;
-
-  }
   .routerLink {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    max-width: 4rem;
+    min-width: 1.76rem;
+    line-height: 1rem;
+    background: rgba(0,0,0,0.5);
+    border-radius: .2rem;
   }
   .city {
     overflow: hidden;
@@ -181,26 +179,39 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-  .position-temp {
-    position: relative;
-    width: 50%;
-    margin-right: .38rem;
-  }
   .cityicon {
-    display: inline-block;
-    line-height: .5rem;
-    margin-left: .1rem;
-  }
-  .position-temp,.position-addr {
-    border-bottom: 1px solid #fff;
+    height: .44rem;
+    width: .44rem;
+    background: url(../../../static/img/cityicon.png);
+    background-size: 100% 100%;
+    margin: .28rem .16rem .28rem .2rem;
   }
   .temp-num {
     position: absolute;
-    right: .4rem;
-    bottom: .2rem;
+    right: .2rem;
+    bottom: .3rem;
+    color:#fff;
+    font-size: .3rem;
+  }
+  .more-img {
+    position: absolute;
+    bottom: .3rem;
+    left: .2rem;
+    color: #fff;
+    font-size: .28rem;
+    line-height: .3rem;
+  }
+  .right-arr {
+    font-size: .24rem;
+    line-height: .3rem;
   }
   .temp-icon {
-    color: #fed375;
+    display: inline-block;
+    width: .34rem;
+    height: .3rem;
+    margin-left: .16rem;
+    background: url(../../../static/img/wether.png);
+    background-size: 100% 100%;
   }
   .header-time {
     box-sizing:border-box;
