@@ -93,4 +93,6 @@
       width:100%
       height:100%
       transform:translateX(-50%)
+  .selection
+    background:#fff
 </style>
