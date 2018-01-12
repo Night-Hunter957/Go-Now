@@ -13,7 +13,6 @@
     <babytrip :babytripInfo="babytripInfo"></babytrip>
     <movietrip :movietripInfo="movietripInfo"></movietrip>
     <destination-footer></destination-footer>
-    <div v-show="isTop" class="toTop" @click="handleScrollBack"><img src="static/img/toTop.png"></div>
   </div>
 </template>
 <script>
@@ -51,30 +50,7 @@
           this.babytripInfo = body.data.babyTrip
           this.movietripInfo = body.data.movietrip
         }
-      },
-      bindScroll () {
-        window.addEventListener('scroll', this.handleScroll.bind(this))
-      },
-      handleScroll () {
-        this.scrolltop = document.documentElement.scrollTop || document.body.scrollTop
-        if (this.scrolltop > 400) {
-          this.isTop = true
-        } else {
-          this.isTop = false
-        }
-      },
-      handleScrollBack () {
-        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-        var speed = Math.floor(scrollTop / 5)
-        var timer = setInterval(function () {
-          scrollTop = scrollTop - speed
-          window.scrollTo(0, scrollTop)
-          if (scrollTop <= 5) { clearInterval(timer) }
-        }, 20)
       }
-    },
-    mounted () {
-      this.bindScroll()
     },
     components: {
       Search,
