@@ -56,8 +56,8 @@
         text-overflow: ellipsis;
     .mes 
       float:left
-      width:.36rem
-      height:.4rem
+      width:.44rem
+      height:.51rem
       line-height: 1.3rem
       margin-top:.45rem
       margin-left: .3rem
