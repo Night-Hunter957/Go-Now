@@ -58,5 +58,8 @@
     font-size: .24rem;
     text-align: center;
     width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 </style>

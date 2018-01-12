@@ -1,7 +1,7 @@
 <template>
   <div>
   	<div class="header">
-  	  <img class="back" src="/static/img/back.png">
+  	  <img class="back" src="/static/img/back.png" @click="tolastrouter">
   	  <h1 class="title">注册</h1>
     </div>
     <div class="phone">
@@ -40,6 +40,9 @@
           this.$refs.passtype.type = 'password'
         }
         this.passShow = !this.passShow
+      },
+      tolastrouter () {
+        this.$router.go(-1)
       }
     }
   }

@@ -1,7 +1,8 @@
 <template>
   <header class="header">
     <span class="icon setting"></span>
-    <span class="icon message"></span>
+    <router-link to="/message" tag="span" class="icon message">
+    </router-link>
   </header>
 </template>
 

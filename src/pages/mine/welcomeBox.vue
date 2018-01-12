@@ -50,17 +50,24 @@
   .login-txt {
     flex: 1;
     font-size: .4rem;
+    overflow: hidden;
     line-height: 2.6rem;
     font-weight: bold;
     text-indent: 1rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .welcome-word {
     flex: 1;
+    width: 100%;
+    overflow: hidden;
     background: #ffbf1c;
     color: #fff;
     font-size: .32rem;
     font-weight: 400;
     text-align: center;
     line-height: .82rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 </style>

@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="login-box">
     <div class="header">
-  	  <img class="back" src="/static/img/back.png">
+  	  <img class="back" src="/static/img/back.png" @click="tolastrouter">
   	  <h1 class="title">即刻出发欢迎您</h1>
     </div>
     <div class="login">
   	  <div class="way">
-  		<div @click="handleAcount" :class="{border:emailFlag}" class="account">账号登陆</div>
-  		<div @click="handleMes" :class="{border:phoneFlag}" class="sms">短信验证登录</div>
+  		<div @click="handleAcount" :class="{borderbtm:emailFlag}" class="account">账号登陆</div>
+  		<div @click="handleMes" :class="{borderbtm:phoneFlag}" class="sms">短信验证登录</div>
   	  </div>
   	  <div class="login-cont">
   	  	<div v-show="emailFlag" class="user">
@@ -75,180 +75,186 @@
       handleMes () {
         this.phoneFlag = true
         this.emailFlag = false
+      },
+      tolastrouter () {
+        this.$router.go(-1)
       }
     }
 }
 </script>
 <style scoped lang="stylus">
-  .header
-    position: relative
-    height: .93rem
-    line-height: .93rem
-    width:100%
-    .back
-      position:absolute
-      left:.17rem
-      top:.25rem
-      width:.25rem
-      height:.41rem
-    .title
-      font-size:.32rem
-      width:2.4rem
-      margin:0 auto
-  .login
-    height:2.87rem
-    .way
-      display:flex
-      height:.84rem
-      flex-direction: row
-      justify-content: space-around
-      line-height:.84rem
-      border-bottom:1px solid #ccc
-      margin-bottom:.2rem
-      .account
-        font-size:.30rem
-        display:inline-block
-      .sms
-        font-size:.30rem
-        display:inline-block
-  .login-cont
-    height:2.03rem
-    box-sizing:border-box
-    padding:0 0.2rem
-    width:100%
-    .user
-      position:relative
-      height:1.01rem
-      line-height:1.01rem
+  .login-box
+    background: #fff
+    height: 100vh
+    .header
+      position: relative
+      height: .93rem
+      line-height: .93rem
       width:100%
-      border-bottom:1px solid #ccc
-      span
-        margin-left:.2rem
-        font-size:.28rem
-        font-weight:600
-      input
+      .back
         position:absolute
-        width:6.1rem
-        height:1rem
-        left:1rem
-        border:none
-    .mes
-      display:flex
-      flex-dirction:row
-      justify-content:space-around
+        left:.17rem
+        top:.25rem
+        width:.25rem
+        height:.41rem
+      .title
+        font-size:.32rem
+        width:2.4rem
+        margin:0 auto
+    .login
+      height:2.87rem
+      .way
+        display:flex
+        height:.84rem
+        flex-direction: row
+        justify-content: space-around
+        line-height:.84rem
+        border-bottom:1px solid #ccc
+        margin-bottom:.2rem
+        .account
+          font-size:.30rem
+          display:inline-block
+        .sms
+          font-size:.30rem
+          display:inline-block
+    .login-cont
+      height:2.03rem
       box-sizing:border-box
-      height:1.01rem
+      padding:0 0.2rem
       width:100%
-      border-bottom:1px solid #ccc
-      select
-        width:1.65rem
-        border:none
-        color:blue
-        margin-right:.2rem
-      input
-        flex:1
-        border:none
-    .password
-      position:relative
-      height:1.01rem
-      line-height:1.01rem
+      .user
+        position:relative
+        height:1.01rem
+        line-height:1.01rem
+        width:100%
+        border-bottom:1px solid #ccc
+        span
+          margin-left:.2rem
+          font-size:.28rem
+          font-weight:600
+        input
+          position:absolute
+          width:6.1rem
+          height:1rem
+          left:1rem
+          border:none
+      .mes
+        display:flex
+        flex-dirction:row
+        justify-content:space-around
+        box-sizing:border-box
+        height:1.01rem
+        width:100%
+        border-bottom:1px solid #ccc
+        select
+          width:1.65rem
+          border:none
+          color:blue
+          margin-right:.2rem
+        input
+          flex:1
+          border:none
+      .password
+        position:relative
+        height:1.01rem
+        line-height:1.01rem
+        width:100%
+        border-bottom:1px solid #ccc
+        span
+          margin-left:.2rem
+          font-size:.28rem
+          font-weight:600
+        input
+          position:absolute
+          width:6.1rem
+          height:1rem
+          left:1rem
+          border:none
+        img
+          position:absolute
+          right:0.2rem
+          top:.4rem
+          width:.32rem
+          height:.2rem
+        p
+          position:absolute
+          right:0
+          top:1rem;
+          width:1.2rem
+          height:.34rem
+          font-size:.28rem
+      .mes-confirm
+        display:flex
+        flex-direction:row
+        justify-content:space-around
+        width:100%
+        height:1.01rem
+        line-height:1.01rem
+        border-bottom:1px solid #ccc
+        span
+          font-weight:600
+        input
+          border:none
+          flex:1
+        button
+          width:2.19rem
+          height:.64rem
+          margin-top:.2rem
+          background:yellow
+          border:none
+    .login-btn
+      display:flex
+      justify-content:center
+      width:95%;
+      box-sizing:border-box
+      margin:0 auto 
+      margin-top:1rem
+      height:1rem
+      background:orange
+      color:#fff
+      font-size:.32rem
+      border:none
+      border-radius:.2rem
+    .third
       width:100%
-      border-bottom:1px solid #ccc
-      span
-        margin-left:.2rem
-        font-size:.28rem
-        font-weight:600
-      input
-        position:absolute
-        width:6.1rem
-        height:1rem
-        left:1rem
-        border:none
+      margin-top:2.7rem
+      height:.33rem
+      box-sizing:border-box
+      padding:0 .4rem
+      color:#000
+      text-align:center
       img
-        position:absolute
-        right:0.2rem
-        top:.4rem
-        width:.32rem
-        height:.2rem
-      p
-        position:absolute
-        right:0
-        top:1rem;
-        width:1.2rem
-        height:.34rem
-        font-size:.28rem
-    .mes-confirm
+        width:36%
+    .icons
       display:flex
       flex-direction:row
       justify-content:space-around
-      width:100%
-      height:1.01rem
-      line-height:1.01rem
-      border-bottom:1px solid #ccc
-      span
-        font-weight:600
-      input
-        border:none
-        flex:1
-      button
-        width:2.19rem
-        height:.64rem
-        margin-top:.2rem
-        background:yellow
-        border:none
-  .login-btn
-    display:flex
-    justify-content:center
-    width:95%;
-    box-sizing:border-box
-    margin:0 auto 
-    margin-top:1rem
-    height:1rem
-    background:orange
-    color:#fff
-    font-size:.32rem
-    border:none
-    border-radius:.2rem
-  .third
-    width:100%
-    margin-top:2.7rem
-    height:.33rem
-    box-sizing:border-box
-    padding:0 .4rem
-    color:#000
-    text-align:center
-    img
-      width:36%
-  .icons
-    display:flex
-    flex-direction:row
-    justify-content:space-around
-    height:1.24rem
-    margin-top:1.06rem
-    div
-      width:2.3rem
+      height:1.24rem
+      margin-top:1.06rem
+      div
+        width:2.3rem
+        box-sizing:border-box
+        padding:0 .6rem
+        text-align:center
+      img
+        width:100%
+        height: 1rem
+        margin-bottom:.3rem
+    .reg-now
+      background: #fff
+      display:flex
+      justify-content:center
+      width:96%
+      position:absolute
+      bottom:.8rem
+      height:1rem
+      left:2%
+      line-height:1rem
+      border:1px solid #ccc
       box-sizing:border-box
-      padding:0 .6rem
       text-align:center
-    img
-      width:100%
-      height: 1rem
-      margin-bottom:.3rem
-  .reg-now
-    display:flex
-    justify-content:center
-    width:96%
-    position:absolute
-    bottom:.8rem
-    height:1rem
-    left:2%
-    line-height:1rem
-    border:1px solid #ccc
-    box-sizing:border-box
-    background:#f2f2f2
-    text-align:center
-  .border
-    border:none
-    font-weight:600
-    border-bottom:2px solid orange
+    .borderbtm
+      border:none
+      font-weight:600
+      border-bottom:2px solid orange
 </style>
