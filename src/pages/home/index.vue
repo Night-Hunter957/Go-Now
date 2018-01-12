@@ -57,19 +57,19 @@
       },
       handleScroll () {
         this.scrolltop = document.documentElement.scrollTop || document.body.scrollTop
-         if(this.scrolltop > 400) {
+        if (this.scrolltop > 400) {
           this.isTop = true
-         } else {
+        } else {
           this.isTop = false
-         }
+        }
       },
       handleScrollBack () {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-        var speed = Math.floor(scrollTop / 5);
-        var timer = setInterval(function() {
+        var speed = Math.floor(scrollTop / 5)
+        var timer = setInterval(function () {
           scrollTop = scrollTop - speed
           window.scrollTo(0, scrollTop)
-          if(scrollTop <= 5) {clearInterval(timer)}
+          if (scrollTop <= 5) { clearInterval(timer) }
         }, 20)
       }
     },
