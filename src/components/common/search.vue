@@ -1,9 +1,12 @@
 <template>
   <div class="search">
   	<div class="logo">
-     <img class="logo-img" src="../../assets/logo.jpg"> 
+     <img class="logo-img" src="static/img/logo.png"> 
     </div>
-  	<div class="search-input"><input  class="cont" type="text" placeholder="旅行年货大街正式开卖"></div>
+  	<div class="search-input">
+      <i class="searchicon"></i>
+      <span class="searchtxt"> 搜索目的地/景点/酒店等</span>
+    </div>
   	<div class="mes">
      <img class="mes-img" src="../../assets/message.png">  
     </div>
@@ -20,7 +23,6 @@
     height:1.3rem
     background: white
     .logo 
-      float:left
       width: 1.6rem
       margin-top:.42rem
       height: .52rem
@@ -29,25 +31,37 @@
         width: 100%
         height: 100%
     .search-input 
-      position: relative
-      float:left
       flex:1
+      display:flex
+      box-sizing:border-box
+      padding-left:.2rem
+      align-items:center
+      justify-content: center
       height: .63rem
-      line-height: 1.3rem
-      background: yellow
-      margin:0.34rem .47rem 0 .25rem
-      .cont
-        position: absolute
-        text-align: center
-        width:100%
-        height:100%
+      border-radius: .1rem
+      border:0.01rem solid #999
+      margin:0.34rem 0 0 .25rem
+      .searchicon
+        display:inline-block
+        width:.34rem
+        height:.34rem
+        background:url(../../../static/img/searchicon2.png)
+        background-size:100% 100%
+      .searchtxt
+        flex:1
+        display:inline-block
+        line-height: .63rem
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     .mes 
       float:left
       width:.36rem
       height:.4rem
       line-height: 1.3rem
-      margin-right:.47rem
       margin-top:.45rem
+      margin-left: .3rem
+      margin-right: .3rem
       .mes-img
         float:right
         width:100%

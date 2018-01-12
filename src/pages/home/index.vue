@@ -32,7 +32,8 @@
         selectionInfo: [],
         coupleInfo: [],
         babytripInfo: [],
-        movietripInfo: []
+        movietripInfo: [],
+        isTop: false
       }
     },
     methods: {
@@ -81,4 +82,15 @@
     padding-bottom:31.25%
     .mid-img
       width:100%
+  .toTop
+    z-index:666
+    position:fixed
+    left:50%
+    bottom:.8rem
+    width:.8rem
+    height:.4rem
+    img
+      width:100%
+      height:100%
+      transform:translateX(-50%)
 </style>

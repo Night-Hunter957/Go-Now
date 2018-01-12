@@ -4,7 +4,8 @@ import Destination from '@/pages/destination/index'
 import City from '@/pages/city/index'
 import Chinesemap from '@/pages/map/map.vue'
 import TravelInfo from '@/pages/destination/travel/travelInfo.vue'
-import Mine from '@/pages/mine/index'
+import Login from '@/pages/login/login.vue'
+import Register from '@/pages/login/register.vue'
 
 Vue.use(Router)
 
@@ -32,9 +33,13 @@ export default new Router({
       name: 'travelInfo',
       component: TravelInfo
     }, {
-      path: '/mine',
-      name: 'mine',
-      component: Mine
+      path: '/login',
+      name: 'login',
+      component: Login
+    }, {
+      path: '/register',
+      name: 'register',
+      component: Register
     }
   ]
 })

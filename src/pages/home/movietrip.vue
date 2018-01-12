@@ -2,7 +2,7 @@
   <div class="selection">
   	<h2 class="title">
   		<span class="tipL">影视地游</span>
-  		<span class="tipR">查看更多</span>
+  		<span class="tipR">更多  ></span>
   	</h2>
   	<div class="selBox" ref="wrapper">
   	  <ul class="selList">
@@ -13,11 +13,11 @@
   	  	  <p class="sel-desc" v-text="item.title"></p>
   	  	  <div class="sel-res">
   	  	  	<div class="res-left">
-  	  	  	  <img src="https://n3-q.mafengwo.net/s10/M00/AE/EF/wKgBZ1lkcRiAXs8iAALY5sXyY7s27.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90">隔壁老赵
+  	  	  	  <img src="https://n3-q.mafengwo.net/s10/M00/AE/EF/wKgBZ1lkcRiAXs8iAALY5sXyY7s27.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90">聚聚<span>在重庆</span>
   	  	  	</div>
   	  	  	<div class="res-right">
-  	  	  	  <span>6666</span>浏览
-  	  	  	  <span>42</span>评论
+  	  	  	  <span>1468</span>浏览
+  	  	  	  <span>318</span>回复
   	  	  	</div>
   	  	  </div>
   	  	</li>
@@ -39,6 +39,13 @@
         eventPassthrough: 'vertical',
         click: true
       })
+    },
+    watch: {
+      movietripInfo () {
+        this.$nextTick(() => {
+          this.scroll.refresh()
+        })
+      }
     }
 }
 </script>
@@ -53,9 +60,23 @@
       height:.8rem
       .tipL
         float:left
+        width:3rem
+        font-weight: 600
+        font-size: .32rem
+        padding-left: .15rem
+        border-left:3px solid orange
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       .tipR
         float:right
+        width:2rem
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-align:right
         margin-right:.2rem
+        color:#808080
     .selBox
       width: 100%
       overflow: hidden
@@ -63,18 +84,22 @@
       .selList
         display:flex
         flex-wrap: nowrap
-        justify-content:space-between
-        width:44rem;
+        width:41.2rem;
         .selCont
-          width:6.6rem
+          width:6.68rem
           height:5.35rem
-          margin-right:.4rem
+          margin-right:.2rem
           .sel-img
-            width:6.6rem
+            width:6.68rem
             height:3.7rem
           .sel-desc
+            font-weight:800
+            display:-webkit-box
+            -webkit-box-orient: vertical
+            -webkit-line-clamp:2
+            overflow: hidden
             margin-top:.2rem
-            width: 6.6rem
+            width: 6.68rem
             height: 1.09rem
             line-height:.38rem
             font-size: .32rem
@@ -86,8 +111,15 @@
             height:.47rem
             line-height:.47rem
             .res-left
+              width:3.5rem
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
               img
                 width:.5rem
                 height:.5rem
                 border-radius:50%
+            .res-right
+              span
+                font-weight:600
 </style>

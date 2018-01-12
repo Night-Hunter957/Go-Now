@@ -16,7 +16,7 @@
         <em class="items-name">酒店</em>
       </router-link>
 
-      <router-link to="/mine" tag="div" class="footer-items">
+      <router-link to="/login" tag="div" class="footer-items">
         <i class="items-icon item-mine" ref="mine"></i>
         <em class="items-name">我的</em>
       </router-link>
