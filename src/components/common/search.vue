@@ -1,7 +1,7 @@
 <template>
   <div class="search">
   	<div class="logo">
-     <img class="logo-img" src="../../assets/logo.jpg"> 
+     <img class="logo-img" src="static/img/logo.png"> 
     </div>
   	<div class="search-input"><input  class="cont" type="text" placeholder="旅行年货大街正式开卖"></div>
   	<div class="mes">

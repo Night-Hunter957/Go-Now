@@ -13,11 +13,11 @@
   	  	  <p class="sel-desc" v-text="item.title"></p>
   	  	  <div class="sel-res">
   	  	  	<div class="res-left">
-  	  	  	  <img src="https://n3-q.mafengwo.net/s10/M00/AE/EF/wKgBZ1lkcRiAXs8iAALY5sXyY7s27.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90">隔壁老赵
+  	  	  	  <img src="https://n3-q.mafengwo.net/s10/M00/AE/EF/wKgBZ1lkcRiAXs8iAALY5sXyY7s27.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90">聚聚<span>在重庆</span>
   	  	  	</div>
   	  	  	<div class="res-right">
-  	  	  	  <span>6666</span>浏览
-  	  	  	  <span>42</span>评论
+  	  	  	  <span>1468</span>浏览
+  	  	  	  <span>318</span>回复
   	  	  	</div>
   	  	  </div>
   	  	</li>
@@ -76,6 +76,7 @@
         text-overflow: ellipsis;
         text-align:right
         margin-right:.2rem
+        color:#808080
     .selBox
       width: 100%
       overflow: hidden
@@ -83,14 +84,13 @@
       .selList
         display:flex
         flex-wrap: nowrap
-        justify-content:space-between
-        width:44rem;
+        width:41.2rem;
         .selCont
-          width:6.6rem
+          width:6.68rem
           height:5.35rem
-          margin-right:.4rem
+          margin-right:.2rem
           .sel-img
-            width:6.6rem
+            width:6.68rem
             height:3.7rem
           .sel-desc
             font-weight:800
@@ -99,7 +99,7 @@
             -webkit-line-clamp:2
             overflow: hidden
             margin-top:.2rem
-            width: 6.6rem
+            width: 6.68rem
             height: 1.09rem
             line-height:.38rem
             font-size: .32rem
