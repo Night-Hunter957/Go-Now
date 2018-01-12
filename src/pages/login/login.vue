@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header">
-  	  <img class="back" src="/static/img/back.png">
+  	  <img class="back" @click="handleBack" src="/static/img/back.png">
   	  <h1 class="title">即刻出发欢迎您</h1>
     </div>
     <div class="login">
@@ -75,6 +75,9 @@
       handleMes () {
         this.phoneFlag = true
         this.emailFlag = false
+      },
+      handleBack () {
+        this.$router.go(-1)
       }
     }
 }

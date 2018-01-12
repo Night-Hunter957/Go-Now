@@ -1,37 +1,43 @@
 <template>
   <div>
   	<div class="header">
-  	  <img class="back" src="/static/img/back.png">
+  	  <img @click="handleBack" class="back" src="/static/img/back.png">
   	  <h1 class="title">注册</h1>
     </div>
     <div class="phone">
       <span>账号</span>
-      <input type="text" placeholder="请输入手机号 ">
+      <input type="text" ref="conPhone" placeholder="请输入手机号 ">
     </div>
     <div class="mes">
       <span class="text">短信验证码</span>
       <input type="text" >
-      <span class="validation">获取验证码</span>
+      <span @click="getValidation" class="validation">获取验证码</span>
     </div>
     <div class="nickname">
       <span>昵称</span>
-      <input type="text" placeholder="6-15位数字或字母">
+      <input @blur="nameConfirm" ref="conName" type="text" placeholder="6-15位数字或字母">
     </div>
     <div class="setpass">
       <span>设置密码</span>
-      <input type="password" ref="passtype" placeholder="6-15位数字或字母" >
+      <input @blur="passConfirm" type="password" ref="passtype" placeholder="6-15位数字或字母" >
       <img @click="handlePassSee" src="/static/img/eye.png">
     </div>
-    <input class="read" type="checkbox" name="">我已阅读<<即刻出发用户注册条例>>
-    <div class="regsucc">完成注册</div>
+    <div class="read" >点击完成注册即同意<<即刻出发用户注册协议>></div>
+    <div @click="handleComplete" class="regsucc">完成注册</div>
+    <transition name="fade">
+    <div class="tips1" v-if="phoneConfirm"><span>! </span>请输入正确的手机格式</div>
+    </transition>
   </div>
 </template>
 <script>
   export default {
     name: 'register',
-    // data: {
-
-    // },
+    data () {
+      return {
+        phoneConfirm: false,
+        Confirm: 0
+      }
+    },
     methods: {
       handlePassSee () {
         if (this.passShow) {
@@ -40,6 +46,46 @@
           this.$refs.passtype.type = 'password'
         }
         this.passShow = !this.passShow
+      },
+      handleBack () {
+        this.$router.go(-1)
+      },
+      getValidation () {
+        // this.phoneConfirm = true
+        // setTimeout(() => {
+        //   this.phoneConfirm = false
+        // },2000)
+        const regPhone = /1(3|5|7|8|4)[\d]{9}/g
+        const str = this.$refs.conPhone.value
+        console.log(str)
+        if (regPhone.test(str)) {
+          this.phoneConfirm = false
+          this.Confirm++
+        } else {
+          this.phoneConfirm = true
+          setTimeout(() => {
+            this.phoneConfirm = false
+          }, 2000)
+        }
+      },
+      nameConfirm () {
+        const regName = /^[0-9a-z]{6,15}/
+        const str = this.$refs.conName.value
+        if (regName.test(str)) {
+          this.Confirm++
+        }
+      },
+      passConfirm () {
+        const regPass = /^[0-9a-z]{6,15}/
+        const str = this.$refs.passtype.value
+        if (regPass.test(str)) {
+          this.Confirm++
+        }
+      },
+      handleComplete () {
+        if (this.Confirm >= 3) {
+          this.$router.push({path: '/login'})
+        }
       }
     }
   }
@@ -153,6 +199,7 @@
     margin-left:.3rem
     margin-right:.2rem
     height:1.3rem
+    line-height:1.3rem
   .regsucc
     width:94%;
     height:.98rem
@@ -163,4 +210,24 @@
     font-size:.34rem
     font-weight:600
     color:#fff
+  .tips1
+    position:absolute
+    top:0
+    left:0
+    width:100%
+    height:.93rem
+    line-height:.93rem
+    background:red
+    text-align:center
+    span
+      font-weight:600
+      font-size:.32rem
+      color:#fff
+      line-height:.93rem
+  .fade-enter-active, .fade-leave-active {
+      transition: opacity 1s;
+    }
+  .fade-enter, .fade-leave-to {
+      opacity: 0;
+    }
 </style>
