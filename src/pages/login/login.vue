@@ -71,7 +71,7 @@ export default {
     handleLogin () {
       if (emailFlag) {
         if (this.acount && this.password) {
-          this.$http.post('../../../static/login.json',
+          this.$http.get('/static/login.json',
             {
               username: this.acount,
               password: this.password
@@ -80,8 +80,8 @@ export default {
           console.log('账号或密码为空')
         }
       } else {
-        if (this.acount && this.password) {
-          this.$http.post('../../../static/login.json',
+        if (this.phone && this.mes) {
+          this.$http.get('/static/login.json',
             {
               phone: this.phone,
               mes: this.mes
