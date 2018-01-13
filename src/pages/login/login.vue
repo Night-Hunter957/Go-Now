@@ -69,13 +69,27 @@ export default {
       this.mes = mes
     },
     handleLogin () {
-      this.$http.post('/static/login.json',
-        {
-          username: this.acount,
-          password: this.password,
-          phone: this.phone,
-          mes: this.mes
-        }, {emulateJSON: true}).then(this.handleLoginSucc.bind(this))
+      if (emailFlag) {
+        if (this.acount && this.password) {
+          this.$http.post('../../../static/login.json',
+            {
+              username: this.acount,
+              password: this.password
+            }).then(this.handleLoginSucc.bind(this))
+        } else {
+          console.log('账号或密码为空')
+        }
+      } else {
+        if (this.acount && this.password) {
+          this.$http.post('../../../static/login.json',
+            {
+              phone: this.phone,
+              mes: this.mes
+            }).then(this.handleLoginSucc.bind(this))
+        } else {
+          console.log('账号或密码为空')
+        }
+      }
     },
     handleLoginSucc (res) {
       console.log(res)
