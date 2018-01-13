@@ -3,7 +3,7 @@
     <ul class="system-list">
       <li class="system-item border-bottom" v-for="item in letter" :key="item.id">
         <div class="item-imgbox">
-          <img src="../../../static/img/systemimg.png" alt="" class="item-img">
+          <img v-lazy="item.userimg" alt="" class="item-img">
         </div>
         <div class="item-txt">
           <span class="txt-name">{{item.name}}</span>
@@ -25,6 +25,7 @@ export default {
   watch: {
     letter () {
       this.$nextTick(() => {
+        console.log(this.letter)
         this.scroll.refresh()
       })
     }
