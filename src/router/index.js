@@ -6,7 +6,6 @@ import Chinesemap from '@/pages/map/map.vue'
 import TravelInfo from '@/pages/destination/travel/travelInfo.vue'
 import Login from '@/pages/login/login.vue'
 import Register from '@/pages/login/register.vue'
-
 Vue.use(Router)
 
 export default new Router({

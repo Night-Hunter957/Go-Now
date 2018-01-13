@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2 class="hottravel-title">热门游记</h2>
+    <div class="title-box">
+      <h2 class="hottravel-title">热门游记<span class="hottravel-more">更多<i class="iconfont right-arr">&#xe610;</i></span></h2>
+    </div>
     <div class="hottravel-info border-bottom" ref="hotscroll">
       <ul class="hottravel-list">
         <li class="hottravel-item" v-for="item in travels" :key="item.id">
@@ -10,7 +12,7 @@
             <div class="item-user">
               <img v-lazy="item.userImg" alt="" class="item-userimg">
               <p class="item-comment">
-                <span class="browse">{{item.browseNum}}</span>浏览·
+                <span class="browse">{{item.browseNum}}</span>浏览 
                 <span class="reply">{{item.reply}}</span>评论
               </p>
             </div>
@@ -18,9 +20,6 @@
         </li>
       </ul>
     </div> 
-    <div>
-        <p class="more-travel">查看更多<i class="iconfont">&#xe601;</i></p>
-    </div>
   </div>
 </template>
 
@@ -47,17 +46,41 @@ export default {
 </script>
 
 <style scoped>
+  .title-box {
+    padding: .28rem 0;
+    padding-left: .2rem;
+    box-shadow: 0px 1px 2px 2px #eaeaea;
+    margin-bottom: .2rem;
+  }
   .hottravel-title {
+    box-sizing:border-box;
     width: 100%;
+    padding-left: .2rem;;
     overflow: hidden;
-    line-height: .88rem;
-    font-size: .36rem;
+    line-height: .32rem;
+    font-size: .3rem;
+    font-weight: 900;
     white-space: nowrap;
     text-overflow: ellipsis;
+    border-left: .06rem solid #fdb92f;
+  }
+  .hottravel-more {
+    position: absolute;
+    font-size: .22rem;
+    color: #808080;
+    right: .2rem;
+    margin-top: .05rem;
+    line-height: .22rem;
+  }
+  .right-arr {
+    font-size: .22rem;
+    line-height: .22rem;
+    float: right;
   }
   .hottravel-info {
     overflow: hidden;
     width: 100%;
+    padding-left: .2rem;
   }
   .hottravel-info::before {
     border-color: #9e9e9e;
@@ -65,36 +88,29 @@ export default {
   .hottravel-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    width: 48.6rem;
+    justify-content: flex-start;
+    width: 39rem;
   }
   .hottravel-item {
-    width: 5rem;
-    margin-right: .28rem;
+    width: 4rem;
+    margin-right:.3rem;
   }
   .item-img {
     display: block;
     width: 100%;
-    margin-bottom: .28rem;
+    height: 2.8rem;
+    margin-bottom: .2rem;
   }
   .item-title {
     width: 100%;
-    height: .76rem;
+    line-height: .26rem;
     overflow: hidden;
-    margin-bottom: .1rem;
+    margin-bottom: .2rem;
     line-height: .38rem;
-    font-weight: 600;
-    font-size: .32rem;
+    font-weight: 900;
+    font-size: .26rem;
+    white-space: nowrap;
     text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  }
-  .more-travel {
-    background: #fff;
-    line-height: .88rem;
-    color: #44c9e0;
-    text-align: center;
   }
   .item-user {
     width: 100%;
@@ -108,6 +124,10 @@ export default {
     border-radius: 50%;
   }
   .browse,.reply {
-    margin-right: .1rem;
+    font-weight: 900;
+  }
+  .item-comment {
+    line-height: .4rem;
+    font-size: .18rem;
   }
 </style>
