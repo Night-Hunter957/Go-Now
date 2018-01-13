@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="banner-top">
-      <img class="top-img" src="../../assets/banner_02.jpg">
+      <img class="top-img" src="../../assets/banner_02.jpg" >
     </div>
     <search></search>
     <common-icons></common-icons>
@@ -40,6 +40,7 @@
       },
       handleGetDataSucc (res) {
         const body = res.body
+        console.log(res)
         if (body && body.data) {
           this.bannerInfo = body.data.addMid
           this.selectionInfo = body.data.selection
@@ -90,4 +91,6 @@
       width:100%
       height:100%
       transform:translateX(-50%)
+  .selection
+    background:#fff
 </style>

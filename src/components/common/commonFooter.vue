@@ -3,22 +3,22 @@
     <div class="footer-con border-top" ref="footer">
       <router-link to="/" tag="div" class="footer-items">
         <i class="items-icon item-index" ref="index"></i>
-        <em class="items-name">首页</em>
+        <em class="items-name" ref="indextxt">首页</em>
       </router-link>
 
       <router-link :to="'/destination/' + city" tag="div" class="footer-items">
         <i class="items-icon item-destination" ref="destination"></i>
-        <em class="items-name">目的地</em>
+        <em class="items-name" ref="destinationtxt">目的地</em>
       </router-link>
 
-      <router-link to="/" tag="div" class="footer-items">
+      <router-link to="/hotel" tag="div" class="footer-items">
         <i class="items-icon item-hotel" ref="hotel"></i>
-        <em class="items-name">酒店</em>
+        <em class="items-name" ref="hoteltxt">酒店</em>
       </router-link>
 
-      <router-link to="/login" tag="div" class="footer-items">
+      <router-link to="/mine" tag="div" class="footer-items">
         <i class="items-icon item-mine" ref="mine"></i>
-        <em class="items-name">我的</em>
+        <em class="items-name" ref="minetxt">我的</em>
       </router-link>
       
     </div> 
@@ -60,7 +60,8 @@ export default {
 
 <style scoped>
 	.common-footer {
-    position: relative;
+    position: fixed;
+    bottom:0;
     height: 1rem;
     width: 100%;
   }
@@ -109,6 +110,8 @@ export default {
   .items-name {
     margin-top: .1rem;
     font-size: .24rem;
+  }
+  .router-link-exact-active {
     font-weight: 900;
   }
 </style>
