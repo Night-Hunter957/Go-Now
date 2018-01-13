@@ -83,9 +83,21 @@
         }
       },
       handleComplete () {
+        var username = this.$refs.conPhone.value
+        var nickname = this.$refs.conName.value
+        var password = this.$refs.passtype.value
         if (this.Confirm >= 3) {
+          this.$http.post('/static/register.json',
+            {
+              username: username,
+              nickname: nickname,
+              password: password
+            }, {emulateJSON: true}).then(this.handleRegisterSucc.bind(this))
           this.$router.push({path: '/login'})
         }
+      },
+      handleRegisterSucc (res) {
+        console.log(res)
       }
     }
   }

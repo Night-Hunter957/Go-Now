@@ -12,7 +12,7 @@
   	  <div class="login-cont">
   	  	<div v-show="emailFlag" class="user">
   	  	  <span>账号</span>
-  	  	  <input type="text" placeholder="手机/邮箱">
+  	  	  <input ref="acount" type="text" placeholder="手机/邮箱">
   	  	</div>
   	  	<div v-show="phoneFlag" class="mes">
   	  	  <select class="sel-phone">
@@ -21,21 +21,21 @@
   	  	  	<option>澳门 +853</option>
   	  	  	<option>台湾 +886</option>
   	  	  </select>
-  	  	  <input type="text" placeholder="输入手机号">
+  	  	  <input ref="phone" type="text" placeholder="输入手机号">
   	  	</div>
   	  	<div v-show="emailFlag" class="password">
           <span>密码</span>
-          <input ref="passtype" type="password" >
+          <input  ref="passtype" type="password" >
           <img @click="handlePassClick" src="/static/img/eye.png">
           <p>忘记密码</p>
   	  	</div>
         <div v-show="phoneFlag" class="mes-confirm">
           <span>短信验证码</span>
-          <input type="text">
+          <input ref="mes" type="text">
           <button>获取验证码</button>
         </div> 
   	  </div>
-  	  <button class="login-btn">登录</button>
+  	  <button @click="handleLogin" class="login-btn">登录</button>
     </div>
     <div class="third">
       <img src="static/img/line-left.png">
@@ -78,6 +78,22 @@
       },
       handleBack () {
         this.$router.go(-1)
+      },
+      handleLogin () {
+        var acount = this.$refs.acount.value
+        var password = this.$refs.passtype.value
+        var phone = this.$refs.phone.value
+        var mes = this.$refs.mes.value
+        this.$http.post('/static/login.json',
+          {
+            username: acount,
+            password: password,
+            phone: phone,
+            mes: mes
+          }, {emulateJSON: true}).then(this.handleLoginSucc.bind(this))
+      },
+      handleLoginSucc (res) {
+        console.log(res)
       }
     }
 }
