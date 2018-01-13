@@ -7,7 +7,7 @@ import TravelInfo from '@/pages/destination/travel/travelInfo.vue'
 import Mine from '@/pages/mine/index.vue'
 import Hotel from '@/pages/hotel/index'
 import Login from '@/pages/login/login.vue'
-import Register from '@/pages/login/register.vue'
+import Register from '@/pages/register/register.vue'
 import Message from '@/pages/message/index.vue'
 Vue.use(Router)
 

@@ -4,98 +4,83 @@
   	  <img class="back" @click="handleBack" src="/static/img/back.png">
   	  <h1 class="title">即刻出发欢迎您</h1>
     </div>
+
+
     <div class="login">
   	  <div class="way">
-  		<div @click="handleAcount" :class="{borderbtm:emailFlag}" class="account">账号登陆</div>
-  		<div @click="handleMes" :class="{borderbtm:phoneFlag}" class="sms">短信验证登录</div>
+    		<div @click="handleAcount" :class="{borderbtm:emailFlag}" class="account">账号登陆</div>
+    		<div @click="handleMes" :class="{borderbtm:phoneFlag}" class="sms">短信验证登录</div>
   	  </div>
   	  <div class="login-cont">
-  	  	<div v-show="emailFlag" class="user">
-  	  	  <span>账号</span>
-  	  	  <input ref="acount" type="text" placeholder="手机/邮箱">
-  	  	</div>
-  	  	<div v-show="phoneFlag" class="mes">
-  	  	  <select class="sel-phone">
-  	  	  	<option>中国 +86</option>
-  	  	  	<option>香港 +852</option>
-  	  	  	<option>澳门 +853</option>
-  	  	  	<option>台湾 +886</option>
-  	  	  </select>
-  	  	  <input ref="phone" type="text" placeholder="输入手机号">
-  	  	</div>
-  	  	<div v-show="emailFlag" class="password">
-          <span>密码</span>
-          <input  ref="passtype" type="password" >
-          <img @click="handlePassClick" src="/static/img/eye.png">
-          <p>忘记密码</p>
-  	  	</div>
-        <div v-show="phoneFlag" class="mes-confirm">
-          <span>短信验证码</span>
-          <input ref="mes" type="text">
-          <button>获取验证码</button>
-        </div> 
+        <email-flag v-show="emailFlag" @getUser="getUserSucc" @getpassword="getpasswordSucc"></email-flag>
+        <phone-flag v-show="phoneFlag" @getPhone="getPhoneSucc" @getMes="getMesSucc"></phone-flag>
   	  </div>
   	  <button @click="handleLogin" class="login-btn">登录</button>
     </div>
-    <div class="third">
-      <img src="static/img/line-left.png">
-      第三方账号
-      <img src="static/img/line-right.png">
-	  </div>
-    <div class="icons">
-      <div><img src="static/img/qq.png">QQ</div>
-      <div><img src="static/img/wechat.png">微信</div>
-      <div><img src="static/img/sina.png">微博</div>
-    </div> 
+
+
+    <third-path v-show="emailFlag"></third-path>
+
     <router-link to="/register" tag="div" class="reg-now">立即注册</router-link>
   </div>
 </template>
 <script>
-  export default {
-    name: 'login',
-    data () {
-      return {
-        phoneFlag: false,
-        emailFlag: true
-      }
-    },
-    methods: {
-      handlePassClick () {
-        if (this.passShow) {
-          this.$refs.passtype.type = 'text'
-        } else {
-          this.$refs.passtype.type = 'password'
-        }
-        this.passShow = !this.passShow
-      },
-      handleAcount () {
-        this.phoneFlag = false
-        this.emailFlag = true
-      },
-      handleMes () {
-        this.phoneFlag = true
-        this.emailFlag = false
-      },
-      handleBack () {
-        this.$router.go(-1)
-      },
-      handleLogin () {
-        var acount = this.$refs.acount.value
-        var password = this.$refs.passtype.value
-        var phone = this.$refs.phone.value
-        var mes = this.$refs.mes.value
-        this.$http.post('/static/login.json',
-          {
-            username: acount,
-            password: password,
-            phone: phone,
-            mes: mes
-          }, {emulateJSON: true}).then(this.handleLoginSucc.bind(this))
-      },
-      handleLoginSucc (res) {
-        console.log(res)
-      }
+import emailFlag from './emailFlag'
+import thirdPath from './thirdPath'
+import phoneFlag from './phoneFlag'
+export default {
+  components: {
+    emailFlag,
+    phoneFlag,
+    thirdPath
+  },
+  name: 'login',
+  data () {
+    return {
+      acount: '',
+      password: '',
+      phone: '',
+      phoneFlag: false,
+      emailFlag: true
     }
+  },
+  methods: {
+    handleAcount () {
+      this.phoneFlag = false
+      this.emailFlag = true
+    },
+    handleMes () {
+      this.phoneFlag = true
+      this.emailFlag = false
+    },
+    handleBack () {
+      this.$router.go(-1)
+    },
+    getUserSucc (user) {
+      this.acount = user
+    },
+    getpasswordSucc (password) {
+      this.password = password
+    },
+    getPhoneSucc (phone) {
+      this.phone = phone
+    },
+    getMesSucc (mes) {
+      this.mes = mes
+    },
+    handleLogin () {
+      this.$http.post('/static/login.json',
+        {
+          username: this.acount,
+          password: this.password,
+          phone: this.phone,
+          mes: this.mes
+        }, {emulateJSON: true}).then(this.handleLoginSucc.bind(this))
+    },
+    handleLoginSucc (res) {
+      console.log(res)
+    }
+  }
 }
 </script>
 <style scoped lang="stylus">
@@ -118,7 +103,7 @@
         width:2.4rem
         margin:0 auto
     .login
-      height:2.87rem
+      min-height:2.87rem
       .way
         display:flex
         height:.84rem
@@ -126,7 +111,6 @@
         justify-content: space-around
         line-height:.84rem
         border-bottom:1px solid #ccc
-        margin-bottom:.2rem
         .account
           font-size:.30rem
           display:inline-block
@@ -136,24 +120,8 @@
     .login-cont
       height:2.03rem
       box-sizing:border-box
-      padding:0 0.2rem
+      padding:0 .2rem
       width:100%
-      .user
-        position:relative
-        height:1.01rem
-        line-height:1.01rem
-        width:100%
-        border-bottom:1px solid #ccc
-        span
-          margin-left:.2rem
-          font-size:.28rem
-          font-weight:600
-        input
-          position:absolute
-          width:6.1rem
-          height:1rem
-          left:1rem
-          border:none
       .mes
         display:flex
         flex-dirction:row
@@ -170,54 +138,6 @@
         input
           flex:1
           border:none
-      .password
-        position:relative
-        height:1.01rem
-        line-height:1.01rem
-        width:100%
-        border-bottom:1px solid #ccc
-        span
-          margin-left:.2rem
-          font-size:.28rem
-          font-weight:600
-        input
-          position:absolute
-          width:6.1rem
-          height:1rem
-          left:1rem
-          border:none
-        img
-          position:absolute
-          right:0.2rem
-          top:.4rem
-          width:.32rem
-          height:.2rem
-        p
-          position:absolute
-          right:0
-          top:1rem;
-          width:1.2rem
-          height:.34rem
-          font-size:.28rem
-      .mes-confirm
-        display:flex
-        flex-direction:row
-        justify-content:space-around
-        width:100%
-        height:1.01rem
-        line-height:1.01rem
-        border-bottom:1px solid #ccc
-        span
-          font-weight:600
-        input
-          border:none
-          flex:1
-        button
-          width:2.19rem
-          height:.64rem
-          margin-top:.2rem
-          background:yellow
-          border:none
     .login-btn
       display:flex
       justify-content:center
@@ -230,32 +150,9 @@
       color:#fff
       font-size:.32rem
       border:none
-      border-radius:.2rem
-    .third
-      width:100%
-      margin-top:2.7rem
-      height:.33rem
-      box-sizing:border-box
-      padding:0 .4rem
-      color:#000
-      text-align:center
-      img
-        width:36%
-    .icons
-      display:flex
-      flex-direction:row
-      justify-content:space-around
-      height:1.24rem
-      margin-top:1.06rem
-      div
-        width:2.3rem
-        box-sizing:border-box
-        padding:0 .6rem
-        text-align:center
-      img
-        width:100%
-        height: 1rem
-        margin-bottom:.3rem
+      border-radius:.1rem
+      font-size:.36rem
+      font-weight:900
     .reg-now
       background: #fff
       display:flex
@@ -269,6 +166,8 @@
       border:1px solid #ccc
       box-sizing:border-box
       text-align:center
+      font-size:.34rem
+      font-weight:900
     .borderbtm
       border:none
       font-weight:600

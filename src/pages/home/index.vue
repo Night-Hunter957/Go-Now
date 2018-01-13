@@ -40,7 +40,6 @@
       },
       handleGetDataSucc (res) {
         const body = res.body
-        console.log(res)
         if (body && body.data) {
           this.bannerInfo = body.data.addMid
           this.selectionInfo = body.data.selection

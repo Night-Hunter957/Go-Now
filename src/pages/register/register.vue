@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="registerBox">
   	<div class="header">
   	  <img @click="handleBack" class="back" src="/static/img/back.png">
   	  <h1 class="title">注册</h1>
@@ -103,6 +103,9 @@
   }
 </script>
 <style scoped lang="stylus">
+.registerBox
+  background: #fff
+  height: 100vh
   .header
     position: relative
     height: .93rem
@@ -157,8 +160,7 @@
       border:none
     .validation
       width:30%
-      font-size:.3rem
-      font-weight:600
+      font-size:.26rem
       height:.6rem
       line-height:.6rem
       text-align:center
@@ -222,6 +224,7 @@
     font-size:.34rem
     font-weight:600
     color:#fff
+    border-radius:.1rem
   .tips1
     position:absolute
     top:0
