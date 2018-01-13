@@ -22,7 +22,7 @@
       <input @blur="passConfirm" type="password" ref="passtype" placeholder="6-15位数字或字母" >
       <img @click="handlePassSee" src="/static/img/eye.png">
     </div>
-    <div class="read" >点击完成注册即同意<<即刻出发用户注册协议>></div>
+    <div class="read" >点击完成注册即同意《即刻出发用户注册协议》</div>
     <div @click="handleComplete" class="regsucc">完成注册</div>
     <transition name="fade">
     <div class="tips1" v-if="phoneConfirm"><span>! </span>请输入正确的手机格式</div>
@@ -150,13 +150,14 @@
     height:1rem
     border-bottom:1px solid #ccc
     .text
-      width:40%
+      width:30%
       margin-left:.2rem
       font-size:.3rem
       font-weight:600
       height:.3rem
     input
       flex:1
+      width:40%
       border:none
     .validation
       width:30%

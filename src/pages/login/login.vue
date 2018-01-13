@@ -5,7 +5,7 @@
   	  <h1 class="title">即刻出发欢迎您</h1>
     </div>
 
-
+   
     <div class="login">
   	  <div class="way">
     		<div @click="handleAcount" :class="{borderbtm:emailFlag}" class="account">账号登陆</div>
@@ -17,10 +17,9 @@
   	  </div>
   	  <button @click="handleLogin" class="login-btn">登录</button>
     </div>
-
-
     <third-path v-show="emailFlag"></third-path>
-
+    <div class="blank"></div>
+    
     <router-link to="/register" tag="div" class="reg-now">立即注册</router-link>
   </div>
 </template>
@@ -101,6 +100,8 @@ export default {
   .login-box
     background: #fff
     height: 100vh
+    display:flex
+    flex-direction: column
     .header
       position: relative
       height: .93rem
@@ -116,6 +117,8 @@ export default {
         font-size:.32rem
         width:2.4rem
         margin:0 auto
+    .blank
+      flex:1
     .login
       min-height:2.87rem
       .way
