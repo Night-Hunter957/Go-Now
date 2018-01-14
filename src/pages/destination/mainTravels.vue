@@ -12,8 +12,8 @@
             <div class="item-user">
               <img v-lazy="item.userImg" alt="" class="item-userimg">
               <p class="item-comment">
-                <span class="browse">{{item.browseNum}}</span>浏览 
-                <span class="reply">{{item.reply}}</span>评论
+                <span class="browse mr1">{{item.browseNum}}</span>浏览·
+                <span class="reply mr1">{{item.reply}}</span>评论
               </p>
             </div>
           </router-link>  
@@ -49,8 +49,10 @@ export default {
   .title-box {
     padding: .28rem 0;
     padding-left: .2rem;
-    box-shadow: 0px 1px 2px 2px #eaeaea;
     margin-bottom: .2rem;
+  }
+  .mr1{
+    margin-right:.1rem;
   }
   .hottravel-title {
     box-sizing:border-box;

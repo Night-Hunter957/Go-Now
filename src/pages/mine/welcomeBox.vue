@@ -33,7 +33,6 @@
     border:.01rem solid #ffbf1c;
     border-radius: .2rem;
     box-sizing:border-box;
-    box-shadow: 0 .1rem .1rem 0 #b9b2b2;
   }
   .login-entrance {
     display: flex;

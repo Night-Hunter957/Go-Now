@@ -16,8 +16,8 @@
   	  	  	  <img src="https://n3-q.mafengwo.net/s10/M00/AE/EF/wKgBZ1lkcRiAXs8iAALY5sXyY7s27.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90">聚聚<span>在重庆</span>
   	  	  	</div>
   	  	  	<div class="res-right">
-  	  	  	  <span>1468</span>浏览
-  	  	  	  <span>318</span>回复
+  	  	  	  <span class="mr1">1468</span>浏览·
+  	  	  	  <span class="mr1">318</span>回复
   	  	  	</div>
   	  	  </div>
   	  	</li>
@@ -50,6 +50,8 @@
 }
 </script>
 <style scoped lang="stylus">
+  .mr1
+    margin-right:.1rem
   .selection
     box-sizing:border-box
     height:7rem

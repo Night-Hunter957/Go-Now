@@ -6,9 +6,14 @@
         <span class="hotviews-more">更多<i class="iconfont right-arr">&#xe610;</i></span>
       </h2>
     </div>
+    <div class="btn_hotel">
+        <ul>
+          <li v-for='(item,index) in datas' v-text="item.name" :class="{active:index == num}" @click="tab(index)"></li>
+        </ul>
+    </div>
     <div class="hotviews-info border-bottom" ref="hotscroll">
       <ul class="hotviews-list">
-        <li class="hotviews-item" v-for="item in views" :key="item.id" @click="handlChangeCity(item.address)">
+        <li class="hotviews-item" v-for="item in recommend" :key="item.id" @click="handlChangeCity(item.address)">
           <router-link :to="'/destination/' + item.address" class="hotviews-item" tag="div">
             <img v-lazy="item.imgUrl" alt="" class="item-img" >
           </router-link>
@@ -22,7 +27,25 @@
   import BScroll from 'better-scroll'
   import { mapState, mapMutations } from 'vuex'
 export default {
-    props: ['views'],
+    props: ['recommend'],
+    data () {
+      return {
+        datas: [{
+          name: '特色酒店'
+        }, {
+          name: '超值酒店'
+        }, {
+          name: '吃货根据地'
+        }, {
+          name: '私人海滩'
+        }, {
+          name: '血拼购物'
+        }, {
+          name: '朝拜历史'
+        }],
+        num: '0'
+      }
+    },
     mounted () {
       this.scroll = new BScroll(this.$refs.hotscroll, {
         scrollX: true,
@@ -32,13 +55,16 @@ export default {
       })
     },
     watch: {
-      views () {
+      recommend () {
         this.$nextTick(() => {
           this.scroll.refresh()
         })
       }
     },
     methods: {
+      tab (index) {
+        this.num = index
+      },
       handlChangeCity (city) {
         this.getCity(city)
       },
@@ -54,8 +80,21 @@ export default {
   .title-box {
     padding: .28rem 0;
     padding-left: .2rem;
-    box-shadow: 0px 1px 2px 2px #eaeaea;
     margin-bottom: .2rem;
+  }
+  .btn_hotel{
+      height:2rem;
+      padding: 0 .4rem 0 .7rem;
+  }
+  .btn_hotel li{
+    float:left;  
+    width: 28%;
+    margin-right: 4%;
+    margin-bottom:15px;
+    border:1px solid #333;
+    height:.6rem;
+    line-height:.6rem;
+    text-align:center;
   }
   .hotviews-title {
     box-sizing:border-box;
@@ -95,16 +134,16 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    width: 26.4rem;
+    width: 26.7rem;
   }
   .hotviews-item {
     display: flex;
     white-space: nowrap;
-    width: 2.4rem;
+    width: 3.3rem;
   }
   .item-img {
-    width: 2rem;
-    height: 1.4rem;
+    width: 3rem;
+    height:2rem;
     margin-bottom: .2rem;
   }
   .item-txt {
@@ -140,5 +179,9 @@ export default {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+  .active{
+    background:#feb92e;
+    border-color:#feb92e!important;
   }
 </style>

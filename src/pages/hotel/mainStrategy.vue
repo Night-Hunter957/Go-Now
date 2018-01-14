@@ -1,19 +1,20 @@
 <template>
-  <div>
+  <div class="h6">
     <div class="title-box">
-      <h2 class="hottravel-title">热门游记<span class="hottravel-more">更多<i class="iconfont right-arr">&#xe610;</i></span></h2>
+      <h2 class="hottravel-title">酒店攻略<span class="hottravel-more">更多<i class="iconfont right-arr">&#xe610;</i></span></h2>
     </div>
-    <div class="hottravel-info border-bottom" ref="hotscroll">
+    <div class="hottravel-info" ref="hotscroll">
       <ul class="hottravel-list">
-        <li class="hottravel-item" v-for="item in travels" :key="item.id">
+        <li class="hottravel-item" v-for="item in strategy" :key="item.id">
           <router-link :to="'/travelInfo/' + item.id" tag="div">
             <img :src="item.imgUrl" alt="" class="item-img">
             <p class="item-title">{{item.title}}</p>
             <div class="item-user">
               <img v-lazy="item.userImg" alt="" class="item-userimg">
               <p class="item-comment">
-                <span class="browse">{{item.browseNum}}</span>浏览 
-                <span class="reply">{{item.reply}}</span>评论
+               <!--修改-->
+                <span class="browse mr1">{{item.browseNum}}</span>评论· 
+                <span class="reply mr1">{{item.reply}}</span>收藏
               </p>
             </div>
           </router-link>  
@@ -26,7 +27,7 @@
 <script>
   import BScroll from 'better-scroll'
 export default {
-    props: ['travels'],
+    props: ['strategy'],
     mounted () {
       this.scroll = new BScroll(this.$refs.hotscroll, {
         scrollX: true,
@@ -36,7 +37,7 @@ export default {
       })
     },
     watch: {
-      travels () {
+      strategy () {
         this.$nextTick(() => {
           this.scroll.refresh()
         })
@@ -49,8 +50,10 @@ export default {
   .title-box {
     padding: .28rem 0;
     padding-left: .2rem;
-    box-shadow: 0px 1px 2px 2px #eaeaea;
     margin-bottom: .2rem;
+  }
+  .mr1{
+    margin-right:.1rem;
   }
   .hottravel-title {
     box-sizing:border-box;
@@ -128,6 +131,9 @@ export default {
   }
   .item-comment {
     line-height: .4rem;
-    font-size: .18rem;
+    font-size: .24rem;
+  }
+  .h6{
+  height:6.3rem;
   }
 </style>

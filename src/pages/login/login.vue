@@ -2,13 +2,13 @@
   <div class="login-box">
     <div class="header">
   	  <img class="back" @click="handleBack" src="/static/img/back.png">
-  	  <h1 class="title">即刻出发欢迎您</h1>
+  	  <h1 class="title">即刻出发</h1>
     </div>
 
    
     <div class="login">
   	  <div class="way">
-    		<div @click="handleAcount" :class="{borderbtm:emailFlag}" class="account">账号登陆</div>
+    		<div @click="handleAcount" :class="{borderbtm:emailFlag}" class="account">账号登录</div>
     		<div @click="handleMes" :class="{borderbtm:phoneFlag}" class="sms">短信验证登录</div>
   	  </div>
   	  <div class="login-cont">

@@ -61,7 +61,6 @@ export default {
   .title-box {
     padding: .28rem 0;
     padding-left: .2rem;
-    box-shadow: 0px 1px 2px 2px #eaeaea;
     margin-bottom: .2rem;
   }
   .hotviews-title {

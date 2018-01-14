@@ -117,7 +117,6 @@ export default {
   .title-box {
     padding: .28rem 0;
     padding-left: .2rem;
-    box-shadow: 0px 1px 2px 2px #eaeaea;
     margin-bottom: .2rem;
   }
   .strategy-title {
@@ -200,6 +199,7 @@ export default {
     font-size: .24rem;
   }
   .item-user {
+    padding-right:30px;
     flex: 1;
     display: flex;
     flex-direction: column;

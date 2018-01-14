@@ -8,7 +8,8 @@
         <div class="hotel-tent">
           <div class="whither">
               <router-link to="/city" tag="div" class="routerLink">
-               <em class="city">{{city}}</em>
+                <em class="city">{{city}}</em>
+                <router-link tag="div" to="/Chinesemap" class="geoloc iconfont">&#xe771;我的位置</router-link>
               </router-link>
           </div>
           <div class="hotel_date">
@@ -17,9 +18,8 @@
                   <span class="dyas">共住几晚</span>
               </p>
           </div>
-          <div @click = "getLoction" class="geoloc">我的位置</div>
           <div class="hotel_btn">
-            <p class="geoL">地图</p>
+            <p class="geoL iconfont">&#xe609; 地图</p>
             <p class="hotel_search">开始搜索</p>
           </div>
         </div> 
@@ -42,19 +42,12 @@
     watch: {
     },
     methods: {
-      getLoction () {
-       // 获取当前坐标位置城市
-      },
       setDate () {
         this.$calendar.show({
-          year: [2018, 2018], // 年份的范围,如果初始化的年份不在这个范围，会自动选最小的年份
+          year: [2018, 2018],
           date: '2018-1-1', // 初始化的日期
           onOk: (date) => {
             this.data1 = date
-            console.log(date)
-          },
-          onCancel: () => {
-            console.log('关闭')
           }
         })
       },
@@ -76,20 +69,22 @@
   }
 </script>
 <style scoped lang="stylus">
-.hotel_btn{
-  margin-top:20px;
-}
+  .hotel_btn{
+    width: 100%;
+    margin-top:20px;
+  }
   .geoL{
+    box-sizing:border-box;
     display:inline-block;
-    padding-left:1.4rem;
-    width:15%;
-    height:.7rem;
+    padding:0 .36rem;
+    max-width:40%;
+    height:.72rem;
     line-height:.7rem;
     border:1px solid #dadada;
     font-size:.4rem;    font-weight: bold;
   }
   .hotel_search{
-    width:58%;
+    width:50%;
     float:right;
     line-height:.7rem;
     height:.7rem;
@@ -100,8 +95,9 @@
   }
   .geoloc{
     position:absolute;
-    right: .4rem;
-    top: 1.0rem;
+    right: 0rem;
+    bottom: .2rem;
+    font-size: .3rem; 
   }
   .hotviews-more {
     position: absolute;
@@ -142,7 +138,6 @@
     padding-right:.2rem;
     margin-top:0rem;
     background:#fff;
-    box-shadow: 0 2px 5px #ccc;
     border-radius: 5px;
   }
   .city-temp {
@@ -156,7 +151,7 @@
     text-overflow: ellipsis;
   }
   .whither,.hotel_date{
-    width:75%;
+    width:80%;
     border-bottom: 1px solid #333;
   }
   .hotel_date{
@@ -170,6 +165,7 @@
     font-size: .28rem;
   }
   .routerLink{
+    position: relative;
     width:100%;
     font-size: .4rem;
     padding:.2rem 0rem;
