@@ -70,7 +70,7 @@ export default {
     handleLogin () {
       if (emailFlag) {
         if (this.acount && this.password) {
-          this.$http.get('/static/login.json',
+          this.$http.get('/api/login.json',
             {
               username: this.acount,
               password: this.password
@@ -80,7 +80,7 @@ export default {
         }
       } else {
         if (this.phone && this.mes) {
-          this.$http.get('/static/login.json',
+          this.$http.get('/api/login.json',
             {
               phone: this.phone,
               mes: this.mes
@@ -176,7 +176,7 @@ export default {
       justify-content:center
       width:96%
       position:absolute
-      bottom:.8rem
+      bottom:.2rem
       height:1rem
       left:2%
       line-height:1rem

@@ -51,7 +51,7 @@ export default {
     },
     methods: {
       getListInfo () {
-        this.$http.get('/static/loadStrategy.json?city=' + this.city + '&page=' + this.pageNum)
+        this.$http.get('/api/loadStrategy.json?city=' + this.city + '&page=' + this.pageNum)
           .then(this.handleGetDataSucc.bind(this), this.handleGetDataError.bind(this))
       },
       handleGetDataSucc (res) {

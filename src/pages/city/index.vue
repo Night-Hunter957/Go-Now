@@ -23,7 +23,7 @@
     },
     methods: {
       getCityDate () {
-        this.$http.get('/static/city.json')
+        this.$http.get('/api/city.json')
           .then(this.handleGetDataSucc.bind(this))
       },
       handleGetDataSucc (res) {

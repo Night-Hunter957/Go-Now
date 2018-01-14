@@ -37,7 +37,7 @@
     methods: {
       ...mapMutations(['getCity']),
       getDestData () {
-        this.$http.get('/static/hotel.json?' + this.city)
+        this.$http.get('/api/hotel.json?' + this.city)
           .then(this.handleGetDataSucc.bind(this))
       },
       handleGetDataSucc (res) {

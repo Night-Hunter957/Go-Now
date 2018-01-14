@@ -1,7 +1,7 @@
 <template>
 	<div>
     <div class="phoneuser">
-      <input ref="phone" type="text" placeholder="请输入手机号码" @change="phonechange">
+      <input ref="phone" type="text" placeholder="请输入手机号码" @change="phonechange" autofocus>
     </div>
     <div class="mes-confirm">
       <input ref="mes" type="text" placeholder="短信验证码" @change="meschange">

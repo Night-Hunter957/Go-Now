@@ -1,31 +1,31 @@
 <template>
   <div class="registerBox">
   	<div class="header">
-  	  <img @click="handleBack" class="back" src="/static/img/back.png">
+  	  <img @click="handleBack" class="back" src="/api/img/back.png">
   	  <h1 class="title">注册</h1>
     </div>
     <div class="phone">
       <span>账号</span>
-      <input type="text" ref="conPhone" placeholder="请输入手机号 ">
+      <input type="text" ref="conPhone" placeholder="请输入手机号" autofocus>
     </div>
     <div class="mes">
       <span class="text">短信验证码</span>
-      <input type="text" >
-      <span @click="getValidation" class="validation">获取验证码</span>
+      <input type="text" ref="vali">
+      <span @click="getValidation" @blur="validationConfirm" class="validation">获取验证码</span>
     </div>
     <div class="nickname">
       <span>昵称</span>
-      <input @blur="nameConfirm" ref="conName" type="text" placeholder="6-15位数字或字母">
+      <input @blur="nameConfirm" ref="conName" type="text" placeholder="昵称为6-15位">
     </div>
     <div class="setpass">
       <span>设置密码</span>
       <input @blur="passConfirm" type="password" ref="passtype" placeholder="6-15位数字或字母" >
-      <img @click="handlePassSee" src="/static/img/eye.png">
+      <img @click="handlePassSee" src="/api/img/eye.png">
     </div>
     <div class="read" >点击完成注册即同意《即刻出发用户注册协议》</div>
     <div @click="handleComplete" class="regsucc">完成注册</div>
     <transition name="fade">
-    <div class="tips1" v-if="phoneConfirm"><span>! </span>请输入正确的手机格式</div>
+    <div class="tips1" v-show="tipsBox">{{tips}}</div>
     </transition>
   </div>
 </template>
@@ -34,7 +34,8 @@
     name: 'register',
     data () {
       return {
-        phoneConfirm: false,
+        tips: '请输入正确的手机格式!',
+        tipsBox: false,
         Confirm: 0
       }
     },
@@ -51,43 +52,66 @@
         this.$router.go(-1)
       },
       getValidation () {
-        // this.phoneConfirm = true
-        // setTimeout(() => {
-        //   this.phoneConfirm = false
-        // },2000)
-        const regPhone = /1(3|5|7|8|4)[\d]{9}/g
+        const regPhone = /1(3|5|7|8)[\d]{9}/g
         const str = this.$refs.conPhone.value
+        let hasPhone = false
         console.log(str)
         if (regPhone.test(str)) {
-          this.phoneConfirm = false
-          this.Confirm++
+          this.tipsBox = false
+          hasPhone = true
         } else {
-          this.phoneConfirm = true
+          this.tipsBox = true
           setTimeout(() => {
-            this.phoneConfirm = false
+            this.tipsBox = false
           }, 2000)
         }
+        return hasPhone
+      },
+      validationConfirm () {
+        let hasValidation = false
+        if (this.$refs.vali.value) {
+          hasValidation = true
+        } else {
+          hasValidation = false
+        }
+        return hasValidation
       },
       nameConfirm () {
-        const regName = /^[0-9a-z]{6,15}/
+        const regName = /^.{6,15}/
         const str = this.$refs.conName.value
+        let hasNickname = false
         if (regName.test(str)) {
-          this.Confirm++
+          hasNickname = true
+        } else {
+          this.tipsBox = true
+          this.tips = '昵称至少6-15位'
+          setTimeout(() => {
+            this.tipsBox = false
+          }, 2000)
         }
+        return hasNickname
       },
       passConfirm () {
         const regPass = /^[0-9a-z]{6,15}/
         const str = this.$refs.passtype.value
+        let hasPassword = false
         if (regPass.test(str)) {
-          this.Confirm++
+          hasPassword = true
+        } else {
+          this.tipsBox = true
+          this.tips = '密码至少6-15位'
+          setTimeout(() => {
+            this.tipsBox = false
+          }, 2000)
         }
+        return hasPassword
       },
       handleComplete () {
         var username = this.$refs.conPhone.value
         var nickname = this.$refs.conName.value
         var password = this.$refs.passtype.value
-        if (this.Confirm >= 3) {
-          this.$http.post('/static/register.json',
+        if (this.getValidation && this.validationConfirm && this.nameConfirm && this.passConfirm) {
+          this.$http.post('/api/register.json',
             {
               username: username,
               nickname: nickname,
@@ -174,12 +198,12 @@
     height:1rem
     line-height:1rem
     width:96%
-    padding:0 0.2rem
     margin:0 auto
     box-sizing:border-box
     border-bottom:1px solid #ccc
     span
       width:.6rem
+      padding-left: .2rem
       text-align:center
       font-size:.3rem
       font-weight:600
@@ -195,11 +219,11 @@
     height:1rem
     line-height:1rem
     width:96%
-    padding:0 0.2rem
     margin:0 auto
     box-sizing:border-box
     border-bottom:1px solid #ccc
     span
+      padding-left: .2rem
       width:1.2rem
       font-size:.3rem
       font-weight:600
@@ -233,8 +257,10 @@
     width:100%
     height:.93rem
     line-height:.93rem
-    background:red
+    background:#ffa500
     text-align:center
+    font-weight:900
+    font-size:.36rem
     span
       font-weight:600
       font-size:.32rem

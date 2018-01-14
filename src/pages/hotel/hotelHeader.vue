@@ -19,7 +19,7 @@
               </p>
           </div>
           <div class="hotel_btn">
-            <p class="geoL iconfont">&#xe609; 地图</p>
+            <router-link to="/Chinesemap" tag="p" class="geoL iconfont">&#xe609; 地图</router-link>
             <p class="hotel_search">开始搜索</p>
           </div>
         </div> 

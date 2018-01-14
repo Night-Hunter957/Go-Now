@@ -37,11 +37,11 @@ export default {
       this.$router.go(-1)
     },
     getSystemData () {
-      this.$http.get('/static/sysmessage.json')
+      this.$http.get('/api/sysmessage.json')
           .then(this.handleGetSysSucc.bind(this), this.handleGetSysError.bind(this))
     },
     getPrivateDate () {
-      this.$http.get('/static/primessage.json')
+      this.$http.get('/api/primessage.json')
           .then(this.handleGetPriSucc.bind(this), this.handleGetPriError.bind(this))
     },
     handleGetSysSucc (res) {
