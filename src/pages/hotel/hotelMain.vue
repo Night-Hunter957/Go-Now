@@ -1,24 +1,21 @@
 <template>
 	<div class="destination-main">
 		<div class="main-hotviews">
-        <main-destination :views="views"></main-destination>
-        <main-travels :travels="travels"></main-travels>
-        <main-noscroll :strategy="strategy"></main-noscroll>
+        <hotel-destination :recommend="recommend"></hotel-destination>
+        <main-strategy :strategy="strategy"></main-strategy>
 		</div>
 	</div>
 </template>
 
 <script>
-  import mainDestination from './mainDestination'
-  import mainTravels from './mainTravels'
-  import mainNoscroll from './mainNoscroll'
+  import hotelDestination from './hotelDestination'
+  import mainStrategy from './mainStrategy'
   export default {
     components: {
-      mainDestination,
-      mainTravels,
-      mainNoscroll
+      hotelDestination,
+      mainStrategy
     },
-    props: ['adds', 'views', 'travels', 'strategy'],
+    props: ['recommend', 'strategy'],
     computed: {
       getRandBG () {
         const maxIndex = this.adds.length - 1

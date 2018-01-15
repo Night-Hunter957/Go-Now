@@ -2,7 +2,7 @@
 	<div>
   	<div class="emailuser">
   	  <span>账号</span>
-  	  <input ref="acount" type="text" placeholder="手机/邮箱" @change="userchange">
+  	  <input ref="acount" type="text" placeholder="手机/邮箱" @change="userchange" autofocus>
   	</div>
   	<div class="password">
       <span>密码</span>

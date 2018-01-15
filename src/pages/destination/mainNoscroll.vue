@@ -5,7 +5,7 @@
     </div>
     <div class="strategy-info">
       <ul class="strategy-list">
-        <li class="strategy-item border-bottom" v-for="(item, index) in list" :key="index">
+        <li class="strategy-item border-bottom" v-for="(item, index) in list" :key="item.id">
           <div class="item-user">
             <p class="item-name">云南小镇</p>
             <p class="item-title">{{item.title}}</p>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import { mapState } from 'vuex'
 export default {
     props: ['strategy'],
@@ -51,13 +52,14 @@ export default {
     },
     methods: {
       getListInfo () {
-        this.$http.get('/static/loadStrategy.json?city=' + this.city + '&page=' + this.pageNum)
-          .then(this.handleGetDataSucc.bind(this), this.handleGetDataError.bind(this))
+        axios.get('/static/loadStrategy.json?city=' + this.city + '&page=' + this.pageNum)
+          .then(this.handleGetDataSucc.bind(this))
+          .catch(this.handleGetDataError.bind(this))
       },
       handleGetDataSucc (res) {
-        res = res ? res.body : null
-        if (res && res.strategy) {
-          this.loadstrategy = this.loadstrategy.concat(res.strategy)
+        res = res ? res.data : null
+        if (res && res.data && res.data.strategy) {
+          this.loadstrategy = this.loadstrategy.concat(res.data.strategy)
           this.pageNum += 1
         }
       },
@@ -117,7 +119,6 @@ export default {
   .title-box {
     padding: .28rem 0;
     padding-left: .2rem;
-    box-shadow: 0px 1px 2px 2px #eaeaea;
     margin-bottom: .2rem;
   }
   .strategy-title {
@@ -200,6 +201,7 @@ export default {
     font-size: .24rem;
   }
   .item-user {
+    padding-right:30px;
     flex: 1;
     display: flex;
     flex-direction: column;

@@ -164,6 +164,7 @@
     text-overflow: ellipsis;
   }
   .routerLink {
+    padding-right:10px;
     display: flex;
     justify-content: center;
     max-width: 4rem;

@@ -1,22 +1,7 @@
 {
     "ret":true,
     "data":{
-        "add-top":[{
-            "id":"0001",
-            "imgUrl":"http://",
-            "linkUrl":""
-        },{
-            "id":"0002",
-            "imgUrl":"http://",
-            "linkUrl":""
-        }],
-        "addMid":[{
-            "id":"0001",
-            "imgUrl":"http://img1.qunarzz.com/piao/fusion/1711/5a/cb4a0ccffeb99b02.jpg_640x200_1b0b75b1.jpg"
-        },{
-            "id":"0002",
-            "imgUrl":"http://img1.qunarzz.com/piao/fusion/1711/5a/cb4a0ccffeb99b02.jpg_640x200_1b0b75b1.jpg"
-        }],
+        "banner":"./static/img/banner.jpg",
         "selection":[{
             "id":"00001",
             "imgUrl":"/static/img/recom.png",

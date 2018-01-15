@@ -7,6 +7,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import cityHeader from './cityHeader'
   import citySearch from './citySearch'
   import cityList from './cityList'
@@ -23,14 +24,18 @@
     },
     methods: {
       getCityDate () {
-        this.$http.get('/static/city.json')
+        axios.get('/static/city.json')
           .then(this.handleGetDataSucc.bind(this))
+          .catch(this.handleGetDataErr.bind(this))
       },
       handleGetDataSucc (res) {
-        res = res ? res.body : null
+        res = res ? res.data : null
         if (res && res.data) {
           this.cityList = res.data.list
         }
+      },
+      handleGetDataErr () {
+        alert('获取城市列表失败！')
       }
     },
     created () {

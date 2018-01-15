@@ -1,21 +1,22 @@
 <template>
   <div>
     <div class="banner-top">
-      <img class="top-img" src="../../assets/banner_02.jpg" >
+      <img class="top-img" :src="bannerInfo" >
     </div>
     <search></search>
-    <common-icons></common-icons>
+    <icons></icons>
     <selection :selectionInfo="selectionInfo"></selection>
     <couple :coupleInfo="coupleInfo"></couple>
     <babytrip :babytripInfo="babytripInfo"></babytrip>
     <movietrip :movietripInfo="movietripInfo"></movietrip>
-    <destination-footer></destination-footer>
+    <common-footer></common-footer>
   </div>
 </template>
 <script>
-  import Search from 'components/common/search'
-  import destinationFooter from '../../components/common/commonFooter'
-  import commonIcons from '../../components/common/commonIcons'
+  import axios from 'axios'
+  import Search from './search'
+  import commonFooter from '../../components/common/commonFooter'
+  import Icons from './icons'
   import Selection from './selection'
   import Couple from './couple'
   import Babytrip from './babytrip'
@@ -25,7 +26,7 @@
     name: 'index',
     data () {
       return {
-        bannerInfo: [],
+        bannerInfo: '',
         selectionInfo: [],
         coupleInfo: [],
         babytripInfo: [],
@@ -35,28 +36,32 @@
     },
     methods: {
       getIndexData () {
-        this.$http.get('/static/index.json')
+        axios.get('/static/index.json')
         .then(this.handleGetDataSucc.bind(this))
+        .catch(this.handleGetDataErr.bind(this))
       },
       handleGetDataSucc (res) {
-        const body = res.body
-        if (body && body.data) {
-          this.bannerInfo = body.data.addMid
-          this.selectionInfo = body.data.selection
-          this.coupleInfo = body.data.coupletrip
-          this.babytripInfo = body.data.babyTrip
-          this.movietripInfo = body.data.movietrip
+        res = res ? res.data : null
+        if (res && res.data) {
+          this.bannerInfo = res.data.banner
+          this.selectionInfo = res.data.selection
+          this.coupleInfo = res.data.coupletrip
+          this.babytripInfo = res.data.babyTrip
+          this.movietripInfo = res.data.movietrip
         }
+      },
+      handleGetDataErr () {
+        console.log('获取数据失败')
       }
     },
     components: {
       Search,
-      commonIcons,
+      Icons,
       Selection,
       Couple,
       Babytrip,
       Movietrip,
-      destinationFooter
+      commonFooter
     },
     created () {
       this.getIndexData()

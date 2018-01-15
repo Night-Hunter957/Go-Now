@@ -1,5 +1,7 @@
 {
-	"strategy":[{
+  "ret":true,
+  "data":{
+    "strategy":[{
       "id":"ls0001",
       "name":"云南的小众古镇",
       "title":"加载Loading111111 ",
@@ -63,4 +65,5 @@
       "browseNum":"183443",
       "collect":"7834"
     }]
+  }
 }

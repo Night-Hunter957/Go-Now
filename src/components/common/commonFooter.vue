@@ -88,7 +88,7 @@ export default {
   }
   .items-icon {
     display: inline-block;
-    height: .4rem;
+    height: .45rem;
     width: .4rem;
   }
   .item-index {

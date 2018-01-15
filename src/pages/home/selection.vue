@@ -1,7 +1,7 @@
 <template>
   <div class="selection">
   	<h2 class="title">
-  		<span class="tipL">精选路线</span>
+  		<span class="tipL">精选</span>
   		<span class="tipR">更多  ></span>
   	</h2>
   	<div class="selBox" ref="wrapper">
@@ -16,8 +16,8 @@
   	  	  	  <img src="https://n3-q.mafengwo.net/s10/M00/AE/EF/wKgBZ1lkcRiAXs8iAALY5sXyY7s27.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90">聚聚<span>在重庆</span>
   	  	  	</div>
   	  	  	<div class="res-right">
-  	  	  	  <span>1468</span>浏览
-  	  	  	  <span>312</span>回复
+  	  	  	  <span class="mr1">1468</span>浏览·
+  	  	  	  <span class="mr1">312</span>回复
   	  	  	</div>
   	  	  </div>
   	  	</li>
@@ -53,6 +53,8 @@
 }
 </script>
 <style scoped lang="stylus">
+  .mr1
+    margin-right:.1rem
   .selection
     box-sizing:border-box
     height:7rem
@@ -83,14 +85,13 @@
     .selBox
       width: 100%
       overflow: hidden
-      height:7rem
+      height:100%
       .selList
         display:flex
         flex-wrap: nowrap
         width:41.2rem;
         .selCont
           width:6.68rem
-          height:5.35rem
           margin-right:.2rem
           .sel-img
             width:6.68rem

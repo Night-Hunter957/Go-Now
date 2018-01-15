@@ -1,7 +1,7 @@
 <template>
   <div class="selection">
   	<h2 class="title">
-  		<span class="tipL">带娃旅行</span>
+  		<span class="tipL">亲子旅行</span>
   		<span class="tipR">更多  ></span>
   	</h2>
   	<div class="selBox" ref="wrapper">
@@ -16,8 +16,8 @@
   	  	  	  <img src="https://n3-q.mafengwo.net/s10/M00/AE/EF/wKgBZ1lkcRiAXs8iAALY5sXyY7s27.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90">聚聚<span>在重庆</span>
   	  	  	</div>
   	  	  	<div class="res-right">
-  	  	  	  <span>1468</span>浏览
-  	  	  	  <span>312</span>回复
+  	  	  	  <span class="mr1">1468</span>浏览·
+  	  	  	  <span class="mar1">312</span>回复
   	  	  	</div>
   	  	  </div>
   	  	</li>
@@ -50,6 +50,8 @@
 }
 </script>
 <style scoped lang="stylus">
+  .mr1
+    margin-right:.1rem
   .selection
     box-sizing:border-box
     height:7rem

@@ -2,15 +2,14 @@
 	<div class="destination">
 		<hotel-header></hotel-header>
     <hotel-main 
-      :adds="adds" 
-      :views="views" 
-      :travels="travels"
+      :recommend="recommend" 
       :strategy="strategy">
     </hotel-main>
     <common-footer></common-footer>
 	</div>
 </template>
 <script>
+  import axios from 'axios'
   import hotelHeader from './hotelHeader'
   import hotelMain from './hotelMain'
   import commonFooter from '../../components/common/commonFooter'
@@ -23,11 +22,8 @@
     },
     data () {
       return {
-        headerInfo: {},
-        views: [],
-        travels: [],
-        strategy: [],
-        adds: ''
+        recommend: [],
+        strategy: []
       }
     },
     computed: {
@@ -42,17 +38,20 @@
     methods: {
       ...mapMutations(['getCity']),
       getDestData () {
-        this.$http.get('/static/destination.json?' + this.city)
+        axios.get('/static/hotel.json?' + this.city)
           .then(this.handleGetDataSucc.bind(this))
+          .catch(this.handleGetDataErr.bind(this))
       },
       handleGetDataSucc (res) {
-        res = res ? res.body : null
+        res = res ? res.data : null
         if (res && res.data) {
           res.data.adds && (this.adds = res.data.adds)
-          res.data.views && (this.views = res.data.views)
-          res.data.travels && (this.travels = res.data.travels)
+          res.data.recommend && (this.recommend = res.data.recommend)
           res.data.strategy && (this.strategy = res.data.strategy)
         }
+      },
+      handleGetDataErr () {
+        console.log('获取信息失败')
       },
       changeCity () {
         if (!this.city) {
