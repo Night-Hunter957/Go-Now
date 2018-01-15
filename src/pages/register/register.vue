@@ -10,8 +10,8 @@
     </div>
     <div class="mes">
       <span class="text">短信验证码</span>
-      <input type="text" ref="vali">
-      <span @click="getValidation" @blur="validationConfirm" class="validation">获取验证码</span>
+      <input type="text" ref="vali" @blur="validationConfirm">
+      <span @click="getValidation" class="validation">获取验证码</span>
     </div>
     <div class="nickname">
       <span>昵称</span>
@@ -35,9 +35,9 @@
     name: 'register',
     data () {
       return {
-        tips: '请输入正确的手机格式!',
+        tips: '',
         tipsBox: false,
-        Confirm: 0
+        identifying: ''
       }
     },
     methods: {
@@ -60,8 +60,14 @@
         if (regPhone.test(str)) {
           this.tipsBox = false
           hasPhone = true
+          axios.get('/static/send_register_code.json',
+            {
+              phone: str
+            }).then(this.handleIdentifyingSucc.bind(this))
+              .catch(this.handleIdentifyingSucc.bind(this))
         } else {
           this.tipsBox = true
+          this.tips = '请输入正确的手机格式'
           setTimeout(() => {
             this.tipsBox = false
           }, 2000)
@@ -70,10 +76,15 @@
       },
       validationConfirm () {
         let hasValidation = false
-        if (this.$refs.vali.value) {
+        if (this.$refs.vali.value && this.$refs.vali.value === this.identifying) {
           hasValidation = true
+          console.log(this.identifying)
         } else {
-          hasValidation = false
+          this.tipsBox = true
+          this.tips = '请填写验证码'
+          setTimeout(() => {
+            this.tipsBox = false
+          }, 2000)
         }
         return hasValidation
       },
@@ -108,17 +119,30 @@
         return hasPassword
       },
       handleComplete () {
+        console.log(this.getValidation())
+        console.log(this.validationConfirm())
+        console.log(this.nameConfirm())
+        console.log(this.passConfirm())
+
         var username = this.$refs.conPhone.value
+        var identifying = this.$refs.vali.value
         var nickname = this.$refs.conName.value
         var password = this.$refs.passtype.value
-        if (this.getValidation && this.validationConfirm && this.nameConfirm && this.passConfirm) {
+        if (this.getValidation() && this.validationConfirm() && this.nameConfirm() && this.passConfirm()) {
           axios.post('/static/register.json',
             {
-              username: username,
-              nickname: nickname,
-              password: password
+              phone: username,
+              nick: nickname,
+              code: identifying,
+              pwd: password
             }).then(this.handleRegisterSucc.bind(this))
               .catch(this.handleRegisterErr.bind(this))
+        } else {
+          this.tipsBox = true
+          this.tips = '请填写完整！'
+          setTimeout(() => {
+            this.tipsBox = false
+          }, 2000)
         }
       },
       handleRegisterSucc (res) {
@@ -134,6 +158,14 @@
         }
       },
       handleRegisterErr () {
+        alert('服务器错误！')
+      },
+      handleIdentifyingSucc (res) {
+        if (res && res.data) {
+          this.identifying = res.data.number
+        }
+      },
+      handleIdentifyingErr () {
         alert('服务器错误！')
       }
     }
