@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="hotviews">
     <div class="title-box">
       <h2 class="hotviews-title">
         热门目的地
@@ -8,7 +8,7 @@
     </div>
     <div class="hotviews-info border-bottom" ref="hotscroll">
       <ul class="hotviews-list">
-        <li class="hotviews-item" v-for="item in views" :key="item.id" @click="handlChangeCity(item.address)">
+        <li class="hotviews-li" v-for="item in views" :key="item.id" @click="handlChangeCity(item.address)">
           <router-link :to="'/destination/' + item.address" class="hotviews-item" tag="div">
             <img v-lazy="item.imgUrl" alt="" class="item-img" >
             <p class="item-txt">
@@ -58,6 +58,9 @@ export default {
 </script>
 
 <style scoped>
+  .hotviews {
+    width: 100%;
+  }
   .title-box {
     padding: .28rem 0;
     padding-left: .2rem;

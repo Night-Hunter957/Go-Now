@@ -12,6 +12,7 @@
 	</div>
 </template>
 <script>
+  import axios from 'axios'
   import destinationHeader from './destinationHeader'
   import destinationIcons from './destinationIcons'
   import destinationMain from './destinationMain'
@@ -45,11 +46,12 @@
     methods: {
       ...mapMutations(['getCity']),
       getDestData () {
-        this.$http.get('/api/destination.json?' + this.city)
+        axios.get('/static/destination.json?city=' + this.city)
           .then(this.handleGetDataSucc.bind(this))
+          .catch(this.handleGetDataErr.bind(this))
       },
       handleGetDataSucc (res) {
-        res = res ? res.body : null
+        res = res ? res.data : null
         if (res && res.data) {
           res.data.headerInfo && (this.headerInfo = res.data.headerInfo)
           res.data.adds && (this.adds = res.data.adds)
@@ -57,6 +59,9 @@
           res.data.travels && (this.travels = res.data.travels)
           res.data.strategy && (this.strategy = res.data.strategy)
         }
+      },
+      handleGetDataErr () {
+        console.log('获取数据失败')
       },
       changeCity () {
         if (!this.city) {

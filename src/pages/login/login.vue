@@ -18,12 +18,13 @@
   	  <button @click="handleLogin" class="login-btn">登录</button>
     </div>
     <third-path v-show="emailFlag"></third-path>
-    <div class="blank"></div>
+    <!-- <div class="blank"></div> -->
     
     <router-link to="/register" tag="div" class="reg-now">立即注册</router-link>
   </div>
 </template>
 <script>
+import axios from 'axios'
 import emailFlag from './emailFlag'
 import thirdPath from './thirdPath'
 import phoneFlag from './phoneFlag'
@@ -68,30 +69,50 @@ export default {
       this.mes = mes
     },
     handleLogin () {
-      if (emailFlag) {
+      if (this.emailFlag) {
         if (this.acount && this.password) {
-          this.$http.get('/api/login.json',
+          axios.post('/static/login.json',
             {
               username: this.acount,
               password: this.password
             }).then(this.handleLoginSucc.bind(this))
+          .catch(this.handleLoginErr.bind(this))
         } else {
-          console.log('账号或密码为空')
+          alert('账号或密码为空')
         }
-      } else {
+      }
+      if (this.phoneFlag) {
         if (this.phone && this.mes) {
-          this.$http.get('/api/login.json',
+          axios.post('/static/login.json',
             {
               phone: this.phone,
               mes: this.mes
             }).then(this.handleLoginSucc.bind(this))
+            .catch(this.handleLoginErr.bind(this))
         } else {
           console.log('账号或密码为空')
         }
       }
     },
     handleLoginSucc (res) {
-      console.log(res)
+      const status = res.data.data.login
+      //      "state": 0,
+      //      "desc": "账号不存在"
+
+      //      "state": 1,
+      //      "desc": "登录成功"
+
+      //      "state": 2,
+      //      "desc": "账号密码错误"
+
+      //      "state": 3,
+      //      "desc": "服务器错误"
+      if (status === 1) {
+        this.$router.push({path: '/'})
+      }
+    },
+    handleLoginErr () {
+      console.log('服务器错误！')
     }
   }
 }
@@ -99,9 +120,8 @@ export default {
 <style scoped lang="stylus">
   .login-box
     background: #fff
+    position: relative
     height: 100vh
-    display:flex
-    flex-direction: column
     .header
       position: relative
       height: .93rem
@@ -117,8 +137,6 @@ export default {
         font-size:.32rem
         width:2.4rem
         margin:0 auto
-    .blank
-      flex:1
     .login
       min-height:2.87rem
       .way
@@ -175,7 +193,7 @@ export default {
       display:flex
       justify-content:center
       width:96%
-      position:absolute
+      position:fixed
       bottom:.2rem
       height:1rem
       left:2%

@@ -85,14 +85,13 @@
     .selBox
       width: 100%
       overflow: hidden
-      height:7rem
+      height:100%
       .selList
         display:flex
         flex-wrap: nowrap
         width:41.2rem;
         .selCont
           width:6.68rem
-          height:5.35rem
           margin-right:.2rem
           .sel-img
             width:6.68rem

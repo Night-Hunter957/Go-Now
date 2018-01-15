@@ -25,7 +25,6 @@ export default {
   watch: {
     letter () {
       this.$nextTick(() => {
-        console.log(this.letter)
         this.scroll.refresh()
       })
     }

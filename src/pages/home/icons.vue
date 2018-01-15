@@ -1,36 +1,63 @@
 <template>
-  <div class="icon">
-	<div class="icon-list" v-for="item of iconsInfo" :key="item.id">
-	  <img class="icon-img" :src="item.imgUrl">
-	  <p class="icon-title">{{item.title}}</p>
-	</div>
+	<div class="destination-icons">
+    <div class="icons-item" >
+      <img src="../../../static/img/攻略.png" alt="" class="icons-img">
+      <p class="icons-title">攻略</p>
+    </div>
+    <div class="icons-item" >
+      <img src="../../../static/img/酒店.png" alt="" class="icons-img">
+      <p class="icons-title">酒店</p>
+    </div> 
+    <div class="icons-item" >
+      <img src="../../../static/img/游记.png" alt="" class="icons-img">
+      <p class="icons-title">游记</p>
+    </div> 
+    <div class="icons-item" >
+      <img src="../../../static/img/目的地.png" alt="" class="icons-img">
+      <p class="icons-title">目的地</p>
+    </div> 
+    <div class="icons-item" >
+      <img src="../../../static/img/车票.png" alt="" class="icons-img">
+      <p class="icons-title">车票</p>
+    </div> 
+    <div class="icons-item" >
+      <img src="../../../static/img/摄影.png" alt="" class="icons-img">
+      <p class="icons-title">摄影</p>
+    </div>  
   </div>
 </template>
+
 <script>
-  export default {
-    name: 'icons',
-    props: {
-      iconsInfo: Array
-    }
-  }
+	export default {
+  props: ['iconsInfo']
+	}
 </script>
-<style scoped lang="stylus">
-  .icon 
-    overflow: hidden
-    display: flex
-    flex-wrap: wrap
-    height: 0
-    width: 100%
-    padding-bottom: 2.9rem
-    .icon-list 
-      width:33.3%
-      padding-top: .3rem
-      text-align: center
-      .icon-img 
-        width: .66rem
-        height: .66rem
-        .icon-title 
-          margin-top: .16rem
-          font-size: .28rem
-          color: #333 
+
+<style scoped>
+	.destination-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 3.6rem;
+    text-align: center;
+    background: #fff;
+  }
+  .icons-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 33.3%;
+  }
+  .icons-img {
+    height: 1rem;
+    width: 1rem;
+  }
+  .icons-title {
+    margin-top: .2rem;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 </style>

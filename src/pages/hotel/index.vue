@@ -9,6 +9,7 @@
 	</div>
 </template>
 <script>
+  import axios from 'axios'
   import hotelHeader from './hotelHeader'
   import hotelMain from './hotelMain'
   import commonFooter from '../../components/common/commonFooter'
@@ -37,16 +38,20 @@
     methods: {
       ...mapMutations(['getCity']),
       getDestData () {
-        this.$http.get('/api/hotel.json?' + this.city)
+        axios.get('/static/hotel.json?' + this.city)
           .then(this.handleGetDataSucc.bind(this))
+          .catch(this.handleGetDataErr.bind(this))
       },
       handleGetDataSucc (res) {
-        res = res ? res.body : null
+        res = res ? res.data : null
         if (res && res.data) {
           res.data.adds && (this.adds = res.data.adds)
           res.data.recommend && (this.recommend = res.data.recommend)
           res.data.strategy && (this.strategy = res.data.strategy)
         }
+      },
+      handleGetDataErr () {
+        console.log('获取信息失败')
       },
       changeCity () {
         if (!this.city) {

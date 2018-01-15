@@ -7,9 +7,9 @@
       <i class="searchicon"></i>
       <span class="searchtxt"> 搜索目的地/景点/酒店等</span>
     </div>
-  	<div class="mes">
-     <img class="mes-img" src="../../assets/message.png">  
-    </div>
+  	<router-link to="/message" tag="div" class="mes">
+     <img class="mes-img" src="../../../static/img/message.png">  
+    </router-link>
   </div>
 </template>
 <script>
@@ -55,13 +55,10 @@
         white-space: nowrap;
         text-overflow: ellipsis;
     .mes 
-      float:left
       width:.44rem
       height:.51rem
       line-height: 1.3rem
-      margin-top:.45rem
-      margin-left: .3rem
-      margin-right: .3rem
+      padding:.45rem .2rem 0 .2rem
       .mes-img
         float:right
         width:100%

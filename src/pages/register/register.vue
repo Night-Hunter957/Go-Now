@@ -1,7 +1,7 @@
 <template>
   <div class="registerBox">
   	<div class="header">
-  	  <img @click="handleBack" class="back" src="/api/img/back.png">
+  	  <img @click="handleBack" class="back" src="/static/img/back.png">
   	  <h1 class="title">注册</h1>
     </div>
     <div class="phone">
@@ -20,7 +20,7 @@
     <div class="setpass">
       <span>设置密码</span>
       <input @blur="passConfirm" type="password" ref="passtype" placeholder="6-15位数字或字母" >
-      <img @click="handlePassSee" src="/api/img/eye.png">
+      <img @click="handlePassSee" src="/static/img/eye.png">
     </div>
     <div class="read" >点击完成注册即同意《即刻出发用户注册协议》</div>
     <div @click="handleComplete" class="regsucc">完成注册</div>
@@ -30,6 +30,7 @@
   </div>
 </template>
 <script>
+  import axios from 'axios'
   export default {
     name: 'register',
     data () {
@@ -111,17 +112,29 @@
         var nickname = this.$refs.conName.value
         var password = this.$refs.passtype.value
         if (this.getValidation && this.validationConfirm && this.nameConfirm && this.passConfirm) {
-          this.$http.post('/api/register.json',
+          axios.post('/static/register.json',
             {
               username: username,
               nickname: nickname,
               password: password
-            }, {emulateJSON: true}).then(this.handleRegisterSucc.bind(this))
-          this.$router.push({path: '/login'})
+            }).then(this.handleRegisterSucc.bind(this))
+              .catch(this.handleRegisterErr.bind(this))
         }
       },
       handleRegisterSucc (res) {
         console.log(res)
+      // "state": 0,
+      // "desc": "账号已存在"
+      // "state": 1,
+      // "desc": "注册成功"
+      // "state": 2,
+      // "desc": "服务器错误"
+        if (res.data.data.register) {
+          this.$router.push({path: '/login'})
+        }
+      },
+      handleRegisterErr () {
+        alert('服务器错误！')
       }
     }
   }
@@ -167,24 +180,24 @@
       margin-bottom:.1rem
   .mes
     display:flex
-    justify-content:space-between
+    justify-content:space-around
     align-items:center
     width:96%
     margin-left:2%
     height:1rem
     border-bottom:1px solid #ccc
     .text
-      width:30%
+      width:40%
       margin-left:.2rem
       font-size:.3rem
       font-weight:600
       height:.3rem
     input
       flex:1
-      width:40%
+      width:30%
       border:none
     .validation
-      width:30%
+      width:35%
       font-size:.26rem
       height:.6rem
       line-height:.6rem
@@ -202,9 +215,7 @@
     box-sizing:border-box
     border-bottom:1px solid #ccc
     span
-      width:.6rem
       padding-left: .2rem
-      text-align:center
       font-size:.3rem
       font-weight:600
       margin-right:.3rem
@@ -224,7 +235,6 @@
     border-bottom:1px solid #ccc
     span
       padding-left: .2rem
-      width:1.2rem
       font-size:.3rem
       font-weight:600
       margin-right:.3rem

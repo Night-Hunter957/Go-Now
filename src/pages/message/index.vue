@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import systemMessages from './systemMessages'
 import privateMessages from './privateMessages'
 export default {
@@ -37,21 +38,21 @@ export default {
       this.$router.go(-1)
     },
     getSystemData () {
-      this.$http.get('/api/sysmessage.json')
+      axios.get('/static/sysmessage.json')
           .then(this.handleGetSysSucc.bind(this), this.handleGetSysError.bind(this))
     },
     getPrivateDate () {
-      this.$http.get('/api/primessage.json')
+      axios.get('/static/primessage.json')
           .then(this.handleGetPriSucc.bind(this), this.handleGetPriError.bind(this))
     },
     handleGetSysSucc (res) {
-      this.notice = res.body.data.system
+      this.notice = res.data.data ? res.data.data.system : '暂无消息'
     },
     handleGetSysError () {
       console.log('失败')
     },
     handleGetPriSucc (res) {
-      this.letter = res.body.data.system
+      this.letter = res.data.data ? res.data.data.system : '暂无消息'
     },
     handleGetPriError () {
       console.log('失败')

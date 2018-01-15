@@ -5,7 +5,7 @@
     </div>
     <div class="strategy-info">
       <ul class="strategy-list">
-        <li class="strategy-item border-bottom" v-for="(item, index) in list" :key="index">
+        <li class="strategy-item border-bottom" v-for="(item, index) in list" :key="item.id">
           <div class="item-user">
             <p class="item-name">云南小镇</p>
             <p class="item-title">{{item.title}}</p>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import { mapState } from 'vuex'
 export default {
     props: ['strategy'],
@@ -51,13 +52,14 @@ export default {
     },
     methods: {
       getListInfo () {
-        this.$http.get('/api/loadStrategy.json?city=' + this.city + '&page=' + this.pageNum)
-          .then(this.handleGetDataSucc.bind(this), this.handleGetDataError.bind(this))
+        axios.get('/static/loadStrategy.json?city=' + this.city + '&page=' + this.pageNum)
+          .then(this.handleGetDataSucc.bind(this))
+          .catch(this.handleGetDataError.bind(this))
       },
       handleGetDataSucc (res) {
-        res = res ? res.body : null
-        if (res && res.strategy) {
-          this.loadstrategy = this.loadstrategy.concat(res.strategy)
+        res = res ? res.data : null
+        if (res && res.data && res.data.strategy) {
+          this.loadstrategy = this.loadstrategy.concat(res.data.strategy)
           this.pageNum += 1
         }
       },
