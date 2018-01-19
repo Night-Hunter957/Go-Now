@@ -1,15 +1,18 @@
 <template>
   <div>
-    <div class="banner-top">
-      <img class="top-img" :src="bannerInfo" >
+    <div class="start-page" v-if="startpage">
+      <img src="../../../static/img/logo.jpg" alt="" class="start-img">
     </div>
-    <search></search>
-    <icons></icons>
-    <selection :selectionInfo="selectionInfo"></selection>
-    <couple :coupleInfo="coupleInfo"></couple>
-    <babytrip :babytripInfo="babytripInfo"></babytrip>
-    <movietrip :movietripInfo="movietripInfo"></movietrip>
-    <common-footer></common-footer>
+    <div class="banner-top" v-show="!startpage">
+      <img class="top-img" src="../../../static/img/banner.jpg" >
+    </div>
+    <search v-show="!startpage"></search>
+    <icons v-show="!startpage"></icons>
+    <selection :selectionInfo="selectionInfo" v-show="!startpage"></selection>
+    <couple :coupleInfo="coupleInfo" v-show="!startpage"></couple>
+    <babytrip :babytripInfo="babytripInfo" v-show="!startpage"></babytrip>
+    <movietrip :movietripInfo="movietripInfo" v-show="!startpage"></movietrip>
+    <common-footer v-show="!startpage"></common-footer>
   </div>
 </template>
 <script>
@@ -31,12 +34,13 @@
         coupleInfo: [],
         babytripInfo: [],
         movietripInfo: [],
-        isTop: false
+        isTop: false,
+        startpage: true
       }
     },
     methods: {
       getIndexData () {
-        axios.get('/static/index.json')
+        axios.get('http://www.kunyun.xyz:8080/common/index.html')
         .then(this.handleGetDataSucc.bind(this))
         .catch(this.handleGetDataErr.bind(this))
       },
@@ -65,10 +69,25 @@
     },
     created () {
       this.getIndexData()
+    },
+    mounted () {
+      setTimeout(() => {
+        this.startpage = false
+      }, 3000)
     }
   }
 </script>
 <style scoped lang="stylus">
+  .start-page
+    position:absolute
+    top:0
+    left:0
+    right:0
+    bottom:0
+    z-index:99999999
+    .start-img
+      height:100%
+      width:100%
   .banner-top
     width:100%
     height:3.15rem

@@ -5,7 +5,7 @@
       <span class="search-box" ref="searchBox">
         <router-link to="/city" tag="span" class="searchrouter">
           <em class="searchicon" ref="searchicon"></em>
-          {{headerInfo.searchtxt}}
+          年终大促爆款清单
         </router-link>
       </span>
       <router-link to="/Chinesemap" tag="div">
@@ -21,7 +21,7 @@
         </router-link>
       </span>
       <span class="temp-num">
-        {{headerInfo.temperature}}
+        9°
         <i class="temp-icon"></i>
       </span>
       <span class="more-img">
@@ -46,7 +46,7 @@
     watch: {
       headerInfo () {
         this.$nextTick(() => {
-          this.$refs.header.style.backgroundImage = 'url(' + this.headerInfo.viewImg[this.getRandBG] + ')'
+          this.$refs.header.style.backgroundImage = 'url(./static/img/top.png)'
         })
       }
     },
@@ -90,7 +90,8 @@
     height: 4.6rem;
     width: 100%;
     background-size: 100% 100%;
-    background-color:#000; 
+    background-color:#000;
+    background: url(../../../static/img/top.png); 
   }
   .search-con {
     width: 100%;

@@ -71,10 +71,10 @@ export default {
     handleLogin () {
       if (this.emailFlag) {
         if (this.acount && this.password) {
-          axios.post('/static/login.json',
+          axios.post('http://www.kunyun.xyz:8080/common/login.html',
             {
-              username: this.acount,
-              password: this.password
+              phone: this.acount,
+              pwd: this.password
             }).then(this.handleLoginSucc.bind(this))
           .catch(this.handleLoginErr.bind(this))
         } else {
@@ -83,32 +83,24 @@ export default {
       }
       if (this.phoneFlag) {
         if (this.phone && this.mes) {
-          axios.post('/static/login.json',
+          axios.post('http://www.kunyun.xyz:8080/common/send_login_code.html',
             {
               phone: this.phone,
               mes: this.mes
             }).then(this.handleLoginSucc.bind(this))
             .catch(this.handleLoginErr.bind(this))
         } else {
-          console.log('账号或密码为空')
+          alert('账号或验证码为空')
         }
       }
     },
     handleLoginSucc (res) {
-      const status = res.data.data.login
-      //      "state": 0,
-      //      "desc": "账号不存在"
-
-      //      "state": 1,
-      //      "desc": "登录成功"
-
-      //      "state": 2,
-      //      "desc": "账号密码错误"
-
-      //      "state": 3,
-      //      "desc": "服务器错误"
-      if (status === 1) {
-        this.$router.push({path: '/'})
+      if (res.data.result) {
+        window.localStorage.isLogin = true
+        alert('登录成功！')
+        this.$router.push({path: '/mine'})
+      } else {
+        alert('账号或密码错误')
       }
     },
     handleLoginErr () {

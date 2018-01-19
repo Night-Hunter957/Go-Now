@@ -1,7 +1,7 @@
 <template>
-	<div class="destination-main">
+	<div class="destination-main" >
 		<div class="main-hotviews">
-        <hotel-destination :recommend="recommend"></hotel-destination>
+        <hotel-destination ></hotel-destination>
         <main-strategy :strategy="strategy"></main-strategy>
 		</div>
 	</div>
@@ -15,7 +15,7 @@
       hotelDestination,
       mainStrategy
     },
-    props: ['recommend', 'strategy'],
+    props: ['strategy'],
     computed: {
       getRandBG () {
         const maxIndex = this.adds.length - 1

@@ -46,7 +46,7 @@
     methods: {
       ...mapMutations(['getCity']),
       getDestData () {
-        axios.get('/static/destination.json?city=' + this.city)
+        axios.get('http://www.kunyun.xyz:8080/common/place.html?city=' + this.city)
           .then(this.handleGetDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
       },

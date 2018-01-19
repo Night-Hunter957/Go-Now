@@ -10,8 +10,8 @@
             <p class="item-name">云南小镇</p>
             <p class="item-title">{{item.title}}</p>
             <p class="item-comment">
-              <span class="browse">{{item.browseNum}}</span>浏览·
-              <span class="collect">{{item.collect}}</span>收藏
+              <span class="browse">{{item.viewCount}}</span>浏览·
+              <span class="collect">{{item.collectCount}}</span>收藏
             </p>
           </div>
           <img v-lazy="item.imgUrl" alt="" class="item-img">

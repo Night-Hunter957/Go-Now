@@ -22,7 +22,6 @@ Vue.use(VueLazyload, {
   loading: '../static/img/defaultimg.png',
   attmpt: 1
 })
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

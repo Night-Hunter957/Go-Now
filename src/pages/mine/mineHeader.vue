@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <span class="icon setting"></span>
+    <router-link to="/setting" tag="span" class="icon setting"></router-link>
     <router-link to="/message" tag="span" class="icon message">
     </router-link>
   </header>

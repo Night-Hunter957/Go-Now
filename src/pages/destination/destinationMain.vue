@@ -1,7 +1,7 @@
 <template>
 	<div class="destination-main">
 		<div class="main-adds">
-			<img :src="getRandBG" alt="">
+			<img src="../../../static/img/adds.jpg" alt="">
 		</div>
 		<div class="main-hotviews">
         <main-destination :views="views"></main-destination>

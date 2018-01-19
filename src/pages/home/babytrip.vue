@@ -13,11 +13,11 @@
   	  	  <p class="sel-desc" v-text="item.title"></p>
   	  	  <div class="sel-res">
   	  	  	<div class="res-left">
-  	  	  	  <img src="https://n3-q.mafengwo.net/s10/M00/AE/EF/wKgBZ1lkcRiAXs8iAALY5sXyY7s27.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90">聚聚<span>在重庆</span>
+  	  	  	  <img src="https://n3-q.mafengwo.net/s10/M00/AE/EF/wKgBZ1lkcRiAXs8iAALY5sXyY7s27.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90">{{item.nickname || user}}<span>在{{item.place}}</span>
   	  	  	</div>
   	  	  	<div class="res-right">
-  	  	  	  <span class="mr1">1468</span>浏览·
-  	  	  	  <span class="mar1">312</span>回复
+  	  	  	  <span class="mr1">{{item.browseNum}}</span>浏览·
+  	  	  	  <span class="mar1">{{item.reply}}</span>回复
   	  	  	</div>
   	  	  </div>
   	  	</li>

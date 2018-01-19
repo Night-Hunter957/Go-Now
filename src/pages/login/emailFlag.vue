@@ -2,7 +2,7 @@
 	<div>
   	<div class="emailuser">
   	  <span>账号</span>
-  	  <input ref="acount" type="text" placeholder="手机/邮箱" @change="userchange" autofocus>
+  	  <input ref="acount" type="text" placeholder="手机号" @change="userchange" autofocus>
   	</div>
   	<div class="password">
       <span>密码</span>
@@ -23,10 +23,14 @@ export default {
         this.$refs.passtype.type = 'password'
       }
       this.passShow = !this.passShow
-      console.log(this.passShow)
     },
     userchange () {
-      this.$emit('getUser', this.$refs.acount.value)
+      const regPhone = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/
+      if (regPhone.test(this.$refs.acount.value)) {
+        this.$emit('getUser', this.$refs.acount.value)
+      } else {
+        alert('手机号格式错误！')
+      }
     },
     passwordchange () {
       this.$emit('getpassword', this.$refs.passtype.value)

@@ -8,13 +8,13 @@
     </div>
     <div class="btn_hotel">
         <ul>
-          <li v-for='(item,index) in datas' v-text="item.name" :class="{active:index == num}" @click="tab(index)"></li>
+          <li v-for='(item,index) in datas' v-text="item.name" :class="{active:index == num}" @click="tab(item.name, index)"></li>
         </ul>
     </div>
     <div class="hotviews-info border-bottom" ref="hotscroll">
       <ul class="hotviews-list">
-        <li class="hotviews-item" v-for="item in recommend" :key="item.id" @click="handlChangeCity(item.address)">
-          <router-link :to="'/destination/' + item.address" class="hotviews-item" tag="div">
+        <li class="hotviews-item" v-for="item in recommend" :key="item.id" @click="handlChangeCity(item.place)">
+          <router-link :to="'/destination/' + item.place" class="hotviews-item" tag="div">
             <img v-lazy="item.imgUrl" alt="" class="item-img" >
           </router-link>
         </li>
@@ -24,10 +24,10 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import BScroll from 'better-scroll'
   import { mapState, mapMutations } from 'vuex'
 export default {
-    props: ['recommend'],
     data () {
       return {
         datas: [{
@@ -62,16 +62,29 @@ export default {
       }
     },
     methods: {
-      tab (index) {
+      tab (name, index) {
         this.num = index
+        axios.get('/static/changeRecommend.json?type=' + name)
+          .then(this.handleGetDataSucc.bind(this))
+          .catch(this.handleGetDataErr.bind(this))
       },
       handlChangeCity (city) {
         this.getCity(city)
       },
-      ...mapMutations(['getCity'])
+      ...mapMutations(['getCity']),
+      ...mapMutations(['getRecommend']),
+      handleGetDataSucc (res) {
+        if (res && res.data.recommend) {
+          this.getRecommend(res.data.recommend)
+        }
+      },
+      handleGetDataErr () {
+        alert('获取收据失败！')
+      }
     },
     computed: {
-      ...mapState(['city'])
+      ...mapState(['city']),
+      ...mapState(['recommend'])
     }
 }
 </script>

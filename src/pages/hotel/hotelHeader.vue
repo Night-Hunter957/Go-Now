@@ -14,8 +14,8 @@
           </div>
           <div class="hotel_date">
               <p @click = "setDate">{{data1}}入住</p>
-              <p @click = "setDate2">{{data2}}离开
-                  <span class="dyas">共住几晚</span>
+              <p @click = "setDate2">{{data2}}离开<br>
+                  <span class="dyas">共住{{nights}}晚</span>
               </p>
           </div>
           <div class="hotel_btn">
@@ -34,9 +34,20 @@
     },
     data () {
       return {
-        data1: '2018-1-1',
-        data2: '2018-1-1',
-        days: 0
+        data1: '',
+        data2: '',
+        startMonth: 1,
+        endMonth: 12,
+        startDay: 0,
+        endDay: 0,
+        nights: 0,
+        year: 0,
+        month: 0,
+        day: 0,
+        days: 31,
+        startyear: 0,
+        endyear: 0,
+        yearDays: 365
       }
     },
     watch: {
@@ -44,19 +55,66 @@
     methods: {
       setDate () {
         this.$calendar.show({
-          year: [2018, 2018],
-          date: '2018-1-1', // 初始化的日期
+          year: [this.year, this.year],
           onOk: (date) => {
-            this.data1 = date
+            this.startDay = parseInt(date.split('-')[2], 10) || this.day
+            this.startMonth = parseInt(date.split('-')[1], 10) || this.month
+            this.startyear = parseInt(date.split('-')[0], 10) || this.year
+            this.endyear = this.startMonth >= 12 ? (this.year + 1) : this.startyear
+            this.data2 = this.data1 = this.year + '-' + this.startMonth + '-' + this.startDay
+            switch (this.startMonth) {
+              case 1 : this.days = 31
+                break
+              case 2 : this.days = 28
+                break
+              case 3 : this.days = 31
+                break
+              case 4 : this.days = 30
+                break
+              case 5 : this.days = 31
+                break
+              case 6 : this.days = 30
+                break
+              case 7 : this.days = 31
+                break
+              case 8 : this.days = 31
+                break
+              case 9 : this.days = 30
+                break
+              case 10 : this.days = 31
+                break
+              case 11 : this.days = 30
+                break
+              case 12: this.days = 31
+                break
+            }
+            if ((this.startyear % 4 === 0) && (this.startyear % 100 !== 0 || this.startyear % 400 === 0) && this.startMonth === 2) {
+              this.days = 29
+              this.yearDays = 366
+            }
           }
         })
       },
       setDate2 () {
         this.$calendar.show({
-          year: [2018, 2018], // 年份的范围,如果初始化的年份不在这个范围，会自动选最小的年份
-          date: '2018-1-1', // 初始化的日期
+          year: [this.year, this.endyear || this.year], // 年份的范围,如果初始化的年份不在这个范围，会自动选最小的年份
+          month: this.startMonth === 12 ? [1, 12] : [this.startMonth, this.startMonth + 1],
           onOk: (date) => {
-            this.data2 = date
+            this.startyear = (this.startyear === 0 ? this.year : this.startyear)
+            this.endDay = parseInt(date.split('-')[2], 10) === this.day ? this.startDay : parseInt(date.split('-')[2], 10)
+            this.endMonth = parseInt(date.split('-')[1], 10)
+            this.endyear = parseInt(date.split('-')[0], 10) === this.year ? this.year : parseInt(date.split('-')[0], 10)
+            this.data2 = this.endyear + '-' + this.endMonth + '-' + this.endDay
+            this.nights = (this.days * (this.endMonth - this.startMonth)) + this.endDay - this.startDay
+            if (this.endyear !== this.startyear) {
+              console.log(31 * (31 - this.startDay))
+              this.nights = 31 * (31 - this.startDay) + this.endDay
+            }
+
+            if (this.nights < 0) {
+              this.nights = 0
+              alert('您选择的时间有误！')
+            }
           },
           onCancel: () => {
             console.log('关闭')
@@ -64,7 +122,45 @@
         })
       }
     },
-    created () {},
+    created () {
+      const d = new Date()
+      this.year = d.getFullYear()
+      this.month = d.getMonth() + 1
+      this.day = d.getDate()
+      this.data2 = this.year + '-' + this.month + '-' + this.day
+      this.data1 = this.year + '-' + this.month + '-' + this.day
+      this.startDay = this.day
+      switch (this.month) {
+        case 1 : this.days = 31
+          break
+        case 2 : this.days = 28
+          break
+        case 3 : this.days = 31
+          break
+        case 4 : this.days = 30
+          break
+        case 5 : this.days = 31
+          break
+        case 6 : this.days = 30
+          break
+        case 7 : this.days = 31
+          break
+        case 8 : this.days = 31
+          break
+        case 9 : this.days = 30
+          break
+        case 10 : this.days = 31
+          break
+        case 11 : this.days = 30
+          break
+        case 12: this.days = 31
+          break
+      }
+      if ((this.year % 4 === 0) && (this.year % 100 !== 0 || this.year % 400 === 0) && this.month === 2) {
+        this.days = 29
+        this.yearDays = 366
+      }
+    },
     destroyed () {}
   }
 </script>
@@ -169,5 +265,10 @@
     width:100%;
     font-size: .4rem;
     padding:.2rem 0rem;
+  }
+  .dyas {
+    width: 100%;
+    text-align: right;
+    display: inline-block;
   }
 </style>

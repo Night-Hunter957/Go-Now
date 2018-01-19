@@ -15,7 +15,7 @@
     </div>
     <div class="nickname">
       <span>昵称</span>
-      <input @blur="nameConfirm" ref="conName" type="text" placeholder="昵称为6-15位">
+      <input @blur="nameConfirm" ref="conName" type="text" placeholder="昵称为3-15位">
     </div>
     <div class="setpass">
       <span>设置密码</span>
@@ -37,7 +37,10 @@
       return {
         tips: '',
         tipsBox: false,
-        identifying: ''
+        hasPhone: false,
+        hasValidation: false,
+        hasNickname: false,
+        hasPassword: false
       }
     },
     methods: {
@@ -53,18 +56,16 @@
         this.$router.go(-1)
       },
       getValidation () {
-        const regPhone = /1(3|5|7|8)[\d]{9}/g
+        const regPhone = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/
         const str = this.$refs.conPhone.value
-        let hasPhone = false
-        console.log(str)
         if (regPhone.test(str)) {
+          console.log(str)
           this.tipsBox = false
-          hasPhone = true
-          axios.get('/static/send_register_code.json',
+          axios.post('http://www.kunyun.xyz:8080/common/send_register_code.html',
             {
               phone: str
             }).then(this.handleIdentifyingSucc.bind(this))
-              .catch(this.handleIdentifyingSucc.bind(this))
+              .catch(this.handleIdentifyingErr.bind(this))
         } else {
           this.tipsBox = true
           this.tips = '请输入正确的手机格式'
@@ -72,13 +73,10 @@
             this.tipsBox = false
           }, 2000)
         }
-        return hasPhone
       },
       validationConfirm () {
-        let hasValidation = false
-        if (this.$refs.vali.value && this.$refs.vali.value === this.identifying) {
-          hasValidation = true
-          console.log(this.identifying)
+        if (this.$refs.vali.value && this.$refs.vali.value) {
+          this.hasValidation = true
         } else {
           this.tipsBox = true
           this.tips = '请填写验证码'
@@ -86,29 +84,25 @@
             this.tipsBox = false
           }, 2000)
         }
-        return hasValidation
       },
       nameConfirm () {
-        const regName = /^.{6,15}/
+        const regName = /^.{3,15}/
         const str = this.$refs.conName.value
-        let hasNickname = false
         if (regName.test(str)) {
-          hasNickname = true
+          this.hasNickname = true
         } else {
           this.tipsBox = true
-          this.tips = '昵称至少6-15位'
+          this.tips = '昵称至少3-15位'
           setTimeout(() => {
             this.tipsBox = false
           }, 2000)
         }
-        return hasNickname
       },
       passConfirm () {
         const regPass = /^[0-9a-z]{6,15}/
         const str = this.$refs.passtype.value
-        let hasPassword = false
         if (regPass.test(str)) {
-          hasPassword = true
+          this.hasPassword = true
         } else {
           this.tipsBox = true
           this.tips = '密码至少6-15位'
@@ -116,53 +110,53 @@
             this.tipsBox = false
           }, 2000)
         }
-        return hasPassword
       },
       handleComplete () {
-        console.log(this.getValidation())
-        console.log(this.validationConfirm())
-        console.log(this.nameConfirm())
-        console.log(this.passConfirm())
-
         var username = this.$refs.conPhone.value
         var identifying = this.$refs.vali.value
         var nickname = this.$refs.conName.value
         var password = this.$refs.passtype.value
-        if (this.getValidation() && this.validationConfirm() && this.nameConfirm() && this.passConfirm()) {
-          axios.post('/static/register.json',
+        if (this.hasPhone && this.hasValidation && this.hasNickname && this.hasPassword) {
+          axios.post('http://www.kunyun.xyz:8080/common/register.html',
             {
               phone: username,
-              nick: nickname,
+              nickname: nickname,
               code: identifying,
               pwd: password
             }).then(this.handleRegisterSucc.bind(this))
-              .catch(this.handleRegisterErr.bind(this))
+          .catch(this.handleRegisterErr.bind(this))
         } else {
           this.tipsBox = true
-          this.tips = '请填写完整！'
+          this.tips = '填写有误，请核实！'
           setTimeout(() => {
             this.tipsBox = false
           }, 2000)
         }
       },
       handleRegisterSucc (res) {
-        console.log(res)
-      // "state": 0,
-      // "desc": "账号已存在"
-      // "state": 1,
-      // "desc": "注册成功"
-      // "state": 2,
-      // "desc": "服务器错误"
-        if (res.data.data.register) {
+        if (res.data.result) {
+          alert('注册成功！')
           this.$router.push({path: '/login'})
+        } else {
+          this.tipsBox = true
+          this.tips = res.data.error
+          setTimeout(() => {
+            this.tipsBox = false
+          }, 2000)
         }
       },
       handleRegisterErr () {
         alert('服务器错误！')
       },
       handleIdentifyingSucc (res) {
-        if (res && res.data) {
-          this.identifying = res.data.number
+        if (res.data.result) {
+          this.hasPhone = true
+        } else {
+          this.tipsBox = true
+          this.tips = res.data.error
+          setTimeout(() => {
+            this.tipsBox = false
+          }, 2000)
         }
       },
       handleIdentifyingErr () {
@@ -219,8 +213,7 @@
     height:1rem
     border-bottom:1px solid #ccc
     .text
-      width:40%
-      margin-left:.2rem
+      margin:0 .2rem
       font-size:.3rem
       font-weight:600
       height:.3rem

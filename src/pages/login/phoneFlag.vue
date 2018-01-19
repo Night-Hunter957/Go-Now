@@ -1,23 +1,44 @@
 <template>
 	<div>
     <div class="phoneuser">
-      <input ref="phone" type="text" placeholder="请输入手机号码" @change="phonechange" autofocus>
+      <input ref="phone" type="text" placeholder="请输入手机号码" @blur="phonechange" autofocus>
     </div>
     <div class="mes-confirm">
-      <input ref="mes" type="text" placeholder="短信验证码" @change="meschange">
-      <button>获取验证码</button>
+      <input ref="mes" type="text" placeholder="短信验证码" @blur="meschange">
+      <button @click="getcode">获取验证码</button>
     </div> 
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   methods: {
     phonechange () {
-      this.$emit('getPhone', this.$refs.phone.value)
+      const regPhone = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/
+      if (regPhone.test(this.$refs.phone.value)) {
+        this.$emit('getPhone', this.$refs.phone.value)
+      } else {
+        alert('手机号格式错误！')
+      }
     },
     meschange () {
       this.$emit('getMes', this.$refs.mes.value)
+    },
+    getcode () {
+      axios.post('/static/send_login_code.json',
+        {
+          phone: this.$refs.phone.value
+        }).then(this.handleIdentifyingSucc.bind(this))
+          .catch(this.handleIdentifyingErr.bind(this))
+    },
+    handleIdentifyingSucc (res) {
+      if (res.data.result) {
+        alert('短信已发送至您的手机')
+      }
+    },
+    handleIdentifyingErr () {
+      alert('服务器发生错误')
     }
   }
 }

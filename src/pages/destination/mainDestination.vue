@@ -8,11 +8,11 @@
     </div>
     <div class="hotviews-info border-bottom" ref="hotscroll">
       <ul class="hotviews-list">
-        <li class="hotviews-li" v-for="item in views" :key="item.id" @click="handlChangeCity(item.address)">
-          <router-link :to="'/destination/' + item.address" class="hotviews-item" tag="div">
+        <li class="hotviews-li" v-for="item in views" :key="item.id" @click="handlChangeCity(item.city)">
+          <router-link :to="'/destination/' + item.city" class="hotviews-item" tag="div">
             <img v-lazy="item.imgUrl" alt="" class="item-img" >
             <p class="item-txt">
-              <span class="item-addr">{{item.address}}</span>
+              <span class="item-addr">{{item.city}}</span>
               <span class="item-visitors">
                 <i class="number">{{item.visiterNum}}</i>
                 <em>人去过</em>

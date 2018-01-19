@@ -1,6 +1,5 @@
 {
-	"ret": true,
-	"data": {
-		"register":1
-	}
+    "success": true,
+    "result": true,
+    "error": null
 }

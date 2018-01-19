@@ -3,7 +3,7 @@
     <div>
       <div class="list-area" v-for="(area, key) of cityList">
           <div class="list-title">{{key}}</div>
-          <div class="list-item border-bottom" v-for="item in area" @click="handleChooseCity(item.name)">{{item.name}}</div>
+          <div class="list-item border-bottom" v-for="item in area" :key="item.id" @click="handleChooseCity(item.name)">{{item.name}}</div>
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@
       handleChooseCity (city) {
         this.getCity(city)
         this.$nextTick(() => {
-          this.$router.go(-1)
+          this.$router.push('/destination/' + city)
         })
       },
       ...mapMutations(['getCity'])

@@ -1,8 +1,7 @@
 <template>
 	<div class="destination">
 		<hotel-header></hotel-header>
-    <hotel-main 
-      :recommend="recommend" 
+    <hotel-main
       :strategy="strategy">
     </hotel-main>
     <common-footer></common-footer>
@@ -22,12 +21,12 @@
     },
     data () {
       return {
-        recommend: [],
         strategy: []
       }
     },
     computed: {
-      ...mapState(['city'])
+      ...mapState(['city']),
+      ...mapState(['recommend'])
     },
     watch: {
       city () {
@@ -37,6 +36,7 @@
     },
     methods: {
       ...mapMutations(['getCity']),
+      ...mapMutations(['getRecommend']),
       getDestData () {
         axios.get('/static/hotel.json?' + this.city)
           .then(this.handleGetDataSucc.bind(this))
@@ -46,7 +46,7 @@
         res = res ? res.data : null
         if (res && res.data) {
           res.data.adds && (this.adds = res.data.adds)
-          res.data.recommend && (this.recommend = res.data.recommend)
+          res.data.recommend && (this.getRecommend(res.data.recommend))
           res.data.strategy && (this.strategy = res.data.strategy)
         }
       },

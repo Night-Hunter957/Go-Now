@@ -3,44 +3,36 @@
 	"data":{
     "recommend":[{
       "id":"hot0001",
-      "address":"广东",
-      "imgUrl":"../../../static/img/hotel3.png",
-      "visiterNum":523644
+      "place":"广东",
+      "imgUrl":"../../../static/img/hotel3.png"
     },{
       "id":"hot0002",
-      "address":"深圳",
-      "imgUrl":"../../../static/img/hotel2.png",
-      "visiterNum":323644
+      "place":"深圳",
+      "imgUrl":"../../../static/img/hotel2.png"
     },{
       "id":"hot0003",
-      "address":"广东",
-      "imgUrl":"../../../static/img/hotel3.png",
-      "visiterNum":523644
+      "place":"广东",
+      "imgUrl":"../../../static/img/hotel3.png"
     },{
       "id":"hot0004",
-      "address":"深圳",
-      "imgUrl":"../../../static/img/hotel2.png",
-      "visiterNum":323644
+      "place":"深圳",
+      "imgUrl":"../../../static/img/hotel2.png"
     },{
       "id":"hot0005",
-      "address":"广东",
-      "imgUrl":"../../../static/img/hotel3.png",
-      "visiterNum":523644
+      "place":"广东",
+      "imgUrl":"../../../static/img/hotel3.png"
     },{
       "id":"hot0006",
-      "address":"深圳",
-      "imgUrl":"../../../static/img/hotel2.png",
-      "visiterNum":323644
+      "place":"深圳",
+      "imgUrl":"../../../static/img/hotel2.png"
     },{
       "id":"hot0007",
-      "address":"广东",
-      "imgUrl":"../../../static/img/hotel3.png",
-      "visiterNum":523644
+      "place":"广东",
+      "imgUrl":"../../../static/img/hotel3.png"
     },{
       "id":"hot0008",
-      "address":"深圳",
-      "imgUrl":"../../../static/img/hotel2.png",
-      "visiterNum":323644
+      "place":"深圳",
+      "imgUrl":"../../../static/img/hotel2.png"
     }],
     "strategy":[{
       "id":"t0001",
